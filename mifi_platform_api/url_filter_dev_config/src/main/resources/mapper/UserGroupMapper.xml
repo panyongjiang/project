@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.UserGroupMapper">
+	<sql id="base_column">
+		id as id,
+		group_name as groupName,
+		description as
+		description,
+		create_time as createTime,
+		modify_time as modifyTime
+	</sql>
+
+	<sql id="base_column_mapping">
+		group_id,user_id
+	</sql>
+
+	<sql id="base_column_add">
+		group_name,description
+	</sql>
+
+	<insert id="saveAllGroup" parameterType="java.util.Map">
+		insert into user_group_mapping(
+		<include refid="base_column_mapping"></include>
+		) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.group_id},#{item.user_id})
+		</foreach>
+	</insert>
+
+	<insert id="saveGroupDetail" parameterType="com.uway.mobile.domain.UserGroup"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user_group (
+		<include refid="base_column_add" />
+		) values(#{groupName},#{description})
+	</insert>
+
+	<select id="getAllGroupDetailByUserId" resultType="java.util.Map">
+		select
+		<include refid="base_column" />
+		from user_group where id in (select group_id from user_group_mapping
+		where user_id = #{id})
+	</select>
+
+	<select id="getAllGroupIdByUserId" resultType="java.lang.String">
+		select group_id from user_group_mapping where user_id = #{id}
+	</select>
+
+
+	<select id="getAllGroupDetail" resultType="java.util.Map">
+		select
+		<include refid="base_column" />
+		from user_group
+	</select>
+
+	<select id="getUserGroupById" resultType="com.uway.mobile.domain.UserGroup">
+		select
+		<include refid="base_column" />
+		from user_group where id = #{id}
+
+	</select>
+
+	<select id="getAllGroupCount" resultType="java.lang.Long">
+		select count(1) from user_group
+		where 1=1
+		<if test="group_name != null and group_name != ''">
+			and group_name like #{group_name}
+		</if>
+		<if test="description != null and description != ''">
+			and description like #{description}
+		</if>
+		<if test="group_id != null and group_id != ''">
+			and id = #{group_id}
+		</if>
+	</select>
+
+	<select id="getAllGroupDetailLimit" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select
+		<include refid="base_column" />
+		from user_group
+		where 1=1
+		<if test="group_name != null and group_name != ''">
+			and group_name like #{group_name}
+		</if>
+		<if test="description != null and description != ''">
+			and description like #{description}
+		</if>
+		<if test="group_id != null and group_id != ''">
+			and id = #{group_id}
+		</if>
+		limit #{page_num}, #{page_size}
+	</select>
+
+	<select id="statisticsAllAdminByGroupId" resultType="com.uway.mobile.domain.User">
+		SELECT * FROM user WHERE role = 1 and is_deleted = 0 and id IN(SELECT user_id FROM user_group_mapping WHERE
+		group_id = #{id})
+    </select>
+    
+    
+    <select id="getUserGroupByName" resultType="com.uway.mobile.domain.UserGroup">
+       select 
+       <include refid="base_column" />
+        from user_group where group_name = #{name}
+    </select>
+	
+
+
+	<delete id="deleteAllGroupByUserId">
+		delete from user_group_mapping where user_id = #{id}
+	</delete>
+
+	<delete id="deleteGroupDetailByGroupId">
+		delete from user_group where id = #{id}
+	</delete>
+
+	<delete id="deleteGroupMappingDetailByGroupId">
+		delete from user_group_mapping where group_id = #{id}
+	</delete>
+
+	<update id="updateGroupDetail" parameterType="com.uway.mobile.domain.UserGroup">
+		update user_group set group_name = #{groupName} ,description =
+		#{description} where id = #{id}
+	</update>
+
+</mapper>

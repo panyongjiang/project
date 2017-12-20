@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.ParamsMapper">
+  <!-- <select id="getById" resultType="java.util.Map">
+      select * from params where  device_company_id=#{device_company_id}
+  </select> -->
+  
+  <select id="getById" resultType="com.uway.mobile.domain.Params">
+      select * from param where  device_company_id=#{device_company_id}
+  </select>
+  
+
+</mapper>  

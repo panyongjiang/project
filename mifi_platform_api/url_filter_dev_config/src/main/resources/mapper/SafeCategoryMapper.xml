@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.SafeCategoryMapper">
+    <insert id="insertSafeCategory">  
+	    insert into safe_category (id, user_id)  
+	    values(uuid(), #{userId})
+    </insert> 
+    
+    <select id="getSafeServiceByUser" resultType="java.util.Map">
+    	select 
+    		site_safe siteSafe, 
+    		DATE_FORMAT(site_start_time, '%Y-%m-%d %H:%i:%s') siteStartTime, 
+    		DATE_FORMAT(site_end_time, '%Y-%m-%d %H:%i:%s') stieEndTime,
+			cloud_waf cloudWaf,
+			DATE_FORMAT(waf_start_time, '%Y-%m-%d %H:%i:%s') wafStartTime,
+			DATE_FORMAT(waf_end_time, '%Y-%m-%d %H:%i:%s') wafEndTime,
+			app_safe appSafe,
+			DATE_FORMAT(app_start_time, '%Y-%m-%d %H:%i:%s') appStartTime,
+			DATE_FORMAT(app_end_time, '%Y-%m-%d %H:%i:%s') appEndTime, 
+			expert_safe expertSafe,
+			DATE_FORMAT(expert_start_time, '%Y-%m-%d %H:%i:%s') expertStartTime,
+			DATE_FORMAT(expert_end_time, '%Y-%m-%d %H:%i:%s') expertEndTime
+    	from safe_category where user_id = #{userId}
+    </select>
+    
+        <select id="getAllSafeService" resultType="com.uway.mobile.domain.SafeCategory">
+    	select 
+    		*
+    	from safe_category 
+    </select>
+    
+    <select id="getSafeService" resultType="com.uway.mobile.domain.SafeCategory">
+    	select * from safe_category where user_id = #{userId}
+    </select>
+	
+	<update id="updSafeServiceTime" parameterType="com.uway.mobile.domain.SafeCategory">
+		update safe_category set site_start_time = #{siteStartTime}, site_end_time = #{siteEndTime},
+		waf_start_time = #{wafStartTime}, waf_end_time = #{wafEndTime}, app_start_time = #{appStartTime},
+		app_end_time = #{appEndTime}, expert_start_time = #{expertStartTime}, expert_end_time = #{expertEndTime}
+		where id=#{id}
+	</update>
+	
+	<update id="startService" parameterType="java.util.Map">
+		update safe_category set 
+		<if test="type == 'site'">
+			site_safe = 1
+		</if>
+		<if test="type == 'waf'">
+			cloud_waf = 1
+		</if>
+		<if test="type == 'app'">
+			app_safe = 1
+		</if>
+		<if test="type == 'expert'">
+			expert_safe = 1
+		</if>
+		where user_id = #{user_id}
+	</update>
+	
+	<update id="trialService" parameterType="java.util.Map">
+		update safe_category set 
+		<if test="type == 'site'">
+			site_safe = 2
+		</if>
+		<if test="type == 'waf'">
+			cloud_waf = 2
+		</if>
+		<if test="type == 'app'">
+			app_safe = 2
+		</if>
+		<if test="type == 'expert'">
+			expert_safe = 2
+		</if>
+		where user_id = #{user_id}
+	</update>
+	
+	<update id="offService" parameterType="java.util.Map">
+		update safe_category set 
+		<if test="type == 'site'">
+			site_safe = 0
+		</if>
+		<if test="type == 'waf'">
+			cloud_waf = 0
+		</if>
+		<if test="type == 'app'">
+			app_safe = 0
+		</if>
+		<if test="type == 'expert'">
+			expert_safe = 0
+		</if>
+		where user_id = #{user_id}
+	</update>
+	<update id="offService1" parameterType="java.util.Map">
+		update safe_category set 
+		<if test="type == 'site'">
+			site_safe = 0
+		</if>
+		<if test="type == 'waf'">
+			cloud_waf = 0
+		</if>
+		<if test="type == 'app'">
+			app_safe = 0
+		</if>
+		<if test="type == 'expert'">
+			expert_safe = 0
+		</if>
+		where id = #{id}		
+	</update>
+</mapper>  

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.DeviceConfigMapper">
+	
+	<insert id="insertDevice" parameterType="java.util.Map" >
+		insert into device(mac,model,version,ip,province,city,district,user_id,device_id) 
+		values(#{mac},#{model},#{version},#{ip},#{province},#{city},#{district},#{userId},#{deviceId})
+	</insert>
+	
+	<select id="queryDeviceById" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Device">
+	   select d.*,u.user_name from device d left join user u on d.user_id=u.id where d.company_id=#{companyId}
+	   <if test=' role=="2" '>
+				and  d.user_id=#{userId}
+	   </if>
+	   <if test="deviceId !=null and deviceId !=''  ">
+	      and d.device_id=#{deviceId}
+	   </if>
+	   order by d.id desc
+	   <if test="pageNum !=null and pageSize !=null ">
+	      limit #{pageNum}, #{pageSize}
+	   </if>
+	</select>
+	
+	<select id="countDevice" resultType="long" parameterType="java.util.Map">
+    	select count(1) from device 
+       <choose>
+	      <when test=' role=="1" '>
+	         where company_id=#{companyId}
+	      </when>
+	      <otherwise>
+	         where user_id=#{userId}
+	      </otherwise>
+	   </choose>
+    </select>
+    
+    <select id="fbroute" resultType="long" parameterType="java.util.Map">
+       select count(1) from device where user_id=0 and company_id=#{companyId} 
+       <if test="deviceId !=null and deviceId !=''  ">
+	        and device_id like CONCAT('%',#{deviceId},'%' )
+	    </if>
+    </select>
+    
+    <select id="selectByCondition" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Device">
+       select d.*,u.user_name from device d left join user u  on u.id=d.user_id where d.company_id=#{companyId}
+         <if test=' role=="2" '>
+		   and  d.user_id=#{userId}
+	     </if>
+	     <if test=' filter=="0" '>
+	       and d.user_id=#{userId} 
+	     </if>
+         <if test="deviceid !=null and deviceid !='' ">
+            and d.device_id like CONCAT('%',#{deviceid},'%' )
+         </if>
+         <if test="mac !=null and mac !='' ">
+            and d.mac like CONCAT('%',#{mac},'%' )
+         </if>
+         <if test="model !=null and model !='' ">
+            and d.model like CONCAT('%',#{model},'%' )
+         </if>
+         <if test="registeTime !=null and registeTime !='' ">
+            and d.DATE(registe_time)=#{registeTime}
+         </if>
+         <if test="city !=null and city !='' ">
+            and d.city=#{city} 
+         </if>
+         <if test="province !=null and registeTime !='' ">
+            and d.province=#{province}
+         </if>
+         <if test="district !=null and registeTime !='' ">
+            and d.district=#{district}
+         </if>
+         <if test="userName !=null and userName !=''  ">
+            and u.user_name like CONCAT('%',#{userName},'%' )
+         </if>
+         <if test="version !=null and version !=''  ">
+            and d.version like CONCAT('%',#{version},'%' )
+         </if>
+         order by d.id desc 
+         <if test="pageNum !=null ">
+         limit #{pageNum}, #{pageSize}
+         </if>
+    </select>
+    
+    <select id="getDeviceInfo" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Device">
+      select d.mac as mac,d.device_id as deviceId,d.model as model,d.ip as ip,d.sim_iccid as simIccid,d.version as version,d.soft_version as softVersion
+             from device d where d.device_id=#{deviceId}
+    </select>
+    
+    <select id="selectFlow" parameterType="java.util.Map" resultType="com.uway.mobile.domain.DayFlow">
+       select * from day_flow where DATE_SUB(CURDATE(),INTERVAL 8 DAY) &lt; date_format(#{date},'%Y-%m-%d') and uuid in 
+       <foreach item="list" index="index" collection="list" open="("
+            separator="," close=")">
+            #{list}  
+       </foreach>
+    </select>
+    
+    <select id="selectMonthFlow" parameterType="java.util.List" resultType="java.util.Map">
+       select sum(up_flow) as upFlowSum,sum(down_flow) as downFlowSum,month from month_flow where uuid in 
+       <foreach item="list" index="index" collection="list" open="("
+            separator="," close=")"> 
+            #{list}  
+       </foreach> group by month
+    </select>
+    
+    <select id="selectTotalFlow" parameterType="java.util.Map" resultType="com.uway.mobile.domain.DayFlow">
+       select sum(up_flow) as totalUpFlow,sum(down_flow) as totalDownFlow from month_flow where uuid in 
+       <foreach item="list" index="index" collection="list" open="("
+            separator="," close=")">
+            #{list}  
+       </foreach> and month=#{month}
+    </select>
+    
+    <insert id="inserRoute"  parameterType="com.uway.mobile.domain.Device"
+		useGeneratedKeys="true" keyProperty="id">
+	   insert into device(user_id,device_id,device_company_id,company_id) values(#{userId},#{deviceId},#{deviceCompanyId},#{companyId})	
+	</insert>
+	
+	<update id="bindRoute" parameterType="java.util.Map">
+	   update device set 
+	   <choose>
+	      <when test=" userId!=null and userId!='' ">
+	         user_id=#{userId}
+	      </when>
+	      <otherwise>
+	         user_id=0
+	      </otherwise>
+	   </choose>
+	   where device_id=#{deviceId}
+	</update>
+	
+	<select id="fBindRoute" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Device">
+	   select device_id from device where user_id=0 and company_id=#{companyId}
+	     <if test="deviceId !=null and deviceId !=''  ">
+	        and device_id like CONCAT('%',#{deviceId},'%' )
+	     </if>
+            order by id desc  limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id="getMacNum" parameterType="java.util.Map" resultType="java.lang.Integer">
+	   select count(mac) from device where mac is not null and company_id=#{companyId} 
+	   <if test=' role=="2" '>
+	      and user_id=#{userId}
+	   </if>
+	</select>
+	
+	<delete id="delDevice" parameterType="java.util.Map">
+	   delete from device where device_id=#{deviceId}
+	</delete>
+	
+	<delete id="delFlowByDeviceId" parameterType="java.util.Map">
+	   delete from day_flow where uuid=#{deviceId}
+	</delete>
+	
+	<delete id="delMonthFlowByDeviceId" parameterType="java.util.Map">
+	   delete from month_flow where uuid=#{deviceId}
+	</delete>
+	
+	<delete id="delSecSettinByDeviceId" parameterType="java.util.Map">
+	   delete from sec_setting where device_id=#{deviceId}
+	</delete>
+	
+	<delete id="delYearFlowByDeviceId" parameterType="java.util.Map">
+	   delete from year_flow where uuid=#{deviceId}
+	</delete>
+	
+	<update id="updateDevice" parameterType="java.util.Map">
+	   update device set soft_version=#{softVersion} where device_id=#{deviceId}
+	</update>
+	
+
+</mapper>  

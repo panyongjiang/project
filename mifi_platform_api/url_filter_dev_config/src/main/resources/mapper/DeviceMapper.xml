@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.DeviceMapper">
+
+	<select id="getDevicesByUserId" resultType="com.uway.mobile.domain.Device">
+		select * from device 
+		<choose>
+		   <when test=' role != null and role=="1" '>
+		      where company_id=#{companyId}
+		   </when>
+		   <otherwise>
+		      where user_id = #{userId}
+		   </otherwise>
+		</choose>
+		and mac is not null
+	</select>
+	
+	<select id="selectIdByUserId" parameterType="java.util.List" resultType="com.uway.mobile.domain.Device">
+	   select * from device where user_id in 
+	   <foreach item="list" index="index" collection="list" open="("
+            separator="," close=")">
+            #{list}  
+       </foreach>
+	</select>
+	
+	<select id="queryAllDevice" resultType="com.uway.mobile.domain.Device">
+	   select device_id,user_id from device 
+	</select>
+	
+	<select id="getCompanyId" resultType="com.uway.mobile.domain.DeviceCompany">
+	   select device_company_id from device where user_id=#{id}
+	</select>
+	
+</mapper>  

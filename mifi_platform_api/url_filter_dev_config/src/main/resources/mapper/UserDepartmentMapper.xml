@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.UserDepartmentMapper">
+
+	<insert id="insertUserDepartment" parameterType="com.uway.mobile.domain.UserDepartment"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user_department(department_id,user_id)
+		values(#{departmentId}, #{userId})
+	</insert>
+	
+	<delete id="deleteByDepartmentId">
+		delete from user_department where department_id=#{departmentId}
+	</delete>
+	
+	<delete id="deleteByDepartAndUser">
+		delete from user_department where user_id=#{userId}
+	</delete>
+
+	<select id="getUsersByDepartmentId" resultType="com.uway.mobile.domain.User">
+		select a.user_id as id,b.user_name,b.email,b.role,b.company_id,b.last_login_time from user_department a left join user b 
+		on a.user_id=b.id where a.department_id=#{departmentId}
+	</select>
+	
+	<select id="getOtherUsers" resultType="com.uway.mobile.domain.User">
+		select * from user a where a.company_id=#{departmentId} 
+		AND a.id not in (select user_id from user_department group by user_id)
+	</select>
+
+</mapper>  

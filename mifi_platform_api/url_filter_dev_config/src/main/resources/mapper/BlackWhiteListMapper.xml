@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.BlackWhiteListMapper">
+
+	<insert id="insertBlackWhiteList" parameterType="com.uway.mobile.domain.BlackWhiteList"
+		useGeneratedKeys="true" keyProperty="strategy_id">
+		insert into black_white_list(type,url,strategy_id) values(#{type}, #{url}, #{strategyId})
+	        on duplicate key update url=#{url}
+	</insert>
+	
+	<delete id="deleteById">
+		delete from black_white_list where id=#{id}
+	</delete>
+	
+	<delete id="deleteByStrategyId">
+		delete from black_white_list where strategy_id=#{strategyId}
+	</delete>
+
+	<select id="getListByTypeAndStrategyId" parameterType="java.util.Map" resultType="com.uway.mobile.domain.BlackWhiteList">
+		select * from black_white_list where strategy_id=#{strategyId}
+	</select>
+
+</mapper>  

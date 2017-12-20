@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.CompanyMapper">
+
+   <select id="getCompanyByName" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Company">
+      select * from company c LEFT JOIN `user` u on c.company_id=u.company_id WHERE c.company_name=#{companyName}
+   </select>
+   
+   <insert id="insertCompany" parameterType="com.uway.mobile.domain.Company" 
+         useGeneratedKeys="true" keyProperty="id">
+      insert into company(company_id,company_name) values(#{companyId},#{companyName}) 
+         on duplicate key update company_id=#{companyId},company_name=#{companyName}
+   </insert>
+
+</mapper>  
