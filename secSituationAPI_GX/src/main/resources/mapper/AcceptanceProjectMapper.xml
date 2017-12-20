@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uway.mobile.mapper.AcceptanceProjectMapper" >
+  <resultMap id="AcceptanceProjectMap" type="com.uway.mobile.domain.AcceptanceProject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="numbering" property="numbering" jdbcType="VARCHAR" />
+    <result column="project" property="project" jdbcType="VARCHAR" />
+    <result column="billingmsg" property="billingmsg" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="filing" property="filing" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="nosign" property="nosign" jdbcType="VARCHAR" />
+    <result column="acceptance" property="acceptance" jdbcType="INTEGER" />    
+    <result column="report" property="report" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="entrytime" property="entrytime" jdbcType="DATE" />
+  </resultMap>
+   
+   <sql id="Base_Column_List" >
+    id,unit,time,numbering,project,billingmsg,contact,sign,filing,status,nosign,acceptance,report,remarks,entrytime
+  </sql>
+	<select id="getAcceptance" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from acceptance where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+        <if test="project != null and project != ''">
+			AND project like CONCAT('%',#{project},'%')  
+		</if>
+		<if test="billingmsg != null and billingmsg != ''">
+			AND billingmsg like CONCAT('%',#{billingmsg},'%')  
+		</if>
+		<if test="contact != null and contact != ''">
+			AND contact like CONCAT('%',#{contact},'%')  
+		</if>
+		<if test="unit != null and unit != ''">
+			AND unit like CONCAT('%',#{unit},'%')  
+		</if>
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')  
+		</if>
+		<if test="numbering != null and numbering != ''">
+			AND numbering like CONCAT('%',#{numbering},'%')
+		</if>
+		<if test="sign != null and sign != '' ">
+			AND sign = #{sign}
+		</if>
+		<if test="filing != null and filing != ''">
+			AND filing = #{filing}
+		</if>
+		<if test="status != null and status != ''">
+			AND status = #{status}
+		</if>
+		<if test="acceptance != null and acceptance != ''">
+			AND acceptance = #{acceptance}
+		</if>
+		<if test="report != null and report != ''">
+			AND report = #{report}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		order by id asc limit #{page_num}, #{page_size}
+	</select>
+
+	<select id="countAcceptance" parameterType="java.util.Map"
+		resultType="long">
+		SELECT COUNT(1) FROM acceptance where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+        <if test="project != null and project != ''">
+			AND project like CONCAT('%',#{project},'%')  
+		</if>
+		<if test="billingmsg != null and billingmsg != ''">
+			AND billingmsg like CONCAT('%',#{billingmsg},'%')  
+		</if>
+		<if test="contact != null and contact != ''">
+			AND contact like CONCAT('%',#{contact},'%')  
+		</if>
+		<if test="unit != null and unit != ''">
+			AND unit like CONCAT('%',#{unit},'%')  
+		</if>
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')  
+		</if>
+		<if test="numbering != null and numbering != ''">
+			AND numbering like CONCAT('%',#{numbering},'%')
+		</if>
+		<if test="sign != null and sign != '' ">
+			AND sign = #{sign}
+		</if>
+		<if test="filing != null and filing != ''">
+			AND filing = #{filing}
+		</if>
+		<if test="status != null and status != ''">
+			AND status = #{status}
+		</if>
+		<if test="acceptance != null and acceptance != ''">
+			AND acceptance = #{acceptance}
+		</if>
+		<if test="report != null and report != ''">
+			AND report = #{report}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+	</select>
+	
+	<select id="groupByParm" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT ${groupfields},COUNT(1) sum FROM acceptance where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+        <if test="project != null and project != ''">
+			AND project like CONCAT('%',#{project},'%')  
+		</if>
+		<if test="billingmsg != null and billingmsg != ''">
+			AND billingmsg like CONCAT('%',#{billingmsg},'%')  
+		</if>
+		<if test="contact != null and contact != ''">
+			AND contact like CONCAT('%',#{contact},'%')  
+		</if>
+		<if test="unit != null and unit != ''">
+			AND unit like CONCAT('%',#{unit},'%')  
+		</if>
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')  
+		</if>
+		<if test="numbering != null and numbering != ''">
+			AND numbering like CONCAT('%',#{numbering},'%')
+		</if>
+		<if test="sign != null and sign != '' ">
+			AND sign = #{sign}
+		</if>
+		<if test="filing != null and filing != ''">
+			AND filing = #{filing}
+		</if>
+		<if test="status != null and status != ''">
+			AND status = #{status}
+		</if>
+		<if test="acceptance != null and acceptance != ''">
+			AND acceptance = #{acceptance}
+		</if>
+		<if test="report != null and report != ''">
+			AND report = #{report}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		group by ${groupfields} order by sum desc 
+	</select>
+
+
+
+	<select id="countByParm" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT ${groupfields},COUNT(1) sum FROM acceptance where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+        <if test="project != null and project != ''">
+			AND project like CONCAT('%',#{project},'%')  
+		</if>
+		<if test="billingmsg != null and billingmsg != ''">
+			AND billingmsg like CONCAT('%',#{billingmsg},'%')  
+		</if>
+		<if test="contact != null and contact != ''">
+			AND contact like CONCAT('%',#{contact},'%')  
+		</if>
+		<if test="unit != null and unit != ''">
+			AND unit like CONCAT('%',#{unit},'%')  
+		</if>
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')  
+		</if>
+		<if test="numbering != null and numbering != ''">
+			AND numbering like CONCAT('%',#{numbering},'%')
+		</if>
+		<if test="sign != null and sign != '' ">
+			AND sign = #{sign}
+		</if>
+		<if test="filing != null and filing != ''">
+			AND filing = #{filing}
+		</if>
+		<if test="status != null and status != ''">
+			AND status = #{status}
+		</if>
+		<if test="acceptance != null and acceptance != ''">
+			AND acceptance = #{acceptance}
+		</if>
+		<if test="report != null and report != ''">
+			AND report = #{report}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		group by ${groupfields} order by sum desc 
+	</select>
+
+	
+	<select id="countSign" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT a.unit,a.sum , b.sign FROM 
+		(SELECT unit ,COUNT(*) sum FROM acceptance where 1=1
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')
+		</if>
+		 group by unit order by sum) as a  left   join
+		(SELECT unit ,COUNT(*) sign FROM acceptance  where 
+		sign='是' 
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')
+		</if>
+		group by unit order by sign) as b on a.unit=b.unit order by a.unit desc ;
+	</select>
+	
+	<select id="groupByTime" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		<![CDATA[ select entrytime,coalesce(dat.sum,0) sum from 
+		(select period_add(extract(year_month from now()), -(@num:= @num + 1 )) as time 
+		from terminal ,(select @num:= -1) t 
+		where @num < ${months}-1  order by time ) timeunit
+		  left join 
+		(select extract(year_month from entryime) timekey2,count(*) sum
+		FROM terminal
+ 		]]>
+		where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+			<if test="user != null and user != ''">
+			AND name like CONCAT('%',#{user},'%')  
+		</if>
+		<if test="accounts != null and accounts != ''">
+			AND address like CONCAT('%',#{accounts},'%')  
+		</if>
+		<if test="pc_name != null and pc_name != ''">
+			AND productModel like CONCAT('%',#{productModel},'%')
+		</if>
+		<if test="ip != null and ip != '' ">
+			AND ip = #{ip}
+		</if>
+				<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from entrytime) = #{period_month}
+      </if>
+		<if test="mac != null and mac != ''">
+			AND mac = #{mac}
+		</if>
+		<if test="city != null and city != ''">
+			AND city like CONCAT('%',#{city},'%')
+		</if>
+		<if test="status != null and status != ''">
+			AND status like CONCAT('%',#{status},'%')
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		group by timekey2 ) dat on timeunit.timekey = dat.timekey2  order by entrytime
+	</select>
+	
+	
+	<insert id="insert" parameterType="java.util.List">
+	 	insert into acceptance 
+   		 	(
+   		 	unit,time,numbering,project,billingmsg,contact,sign,filing,status,nosign,acceptance,report,remarks,entrytime
+		      )
+		    values 
+		    <foreach collection="list" item="item" index="index" separator=",">
+		    (
+		      #{item.unit},
+		      #{item.time}, 
+		      #{item.numbering},
+		      #{item.project},
+		      #{item.billingmsg}, 
+		      #{item.contact},
+		      #{item.sign}, 
+		      #{item.filing},
+		      #{item.status},
+		      #{item.nosign},
+		      #{item.acceptance},
+		      #{item.report},
+		      #{item.remarks},
+		      #{item.entrytime}
+		    )
+   		 </foreach> 
+   		 
+	</insert>
+	
+	
+		<select id="createExcel" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from acceptance where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+        <if test="project != null and project != ''">
+			AND project like CONCAT('%',#{project},'%')  
+		</if>
+		<if test="billingmsg != null and billingmsg != ''">
+			AND billingmsg like CONCAT('%',#{billingmsg},'%')  
+		</if>
+		<if test="contact != null and contact != ''">
+			AND contact like CONCAT('%',#{contact},'%')  
+		</if>
+		<if test="unit != null and unit != ''">
+			AND unit like CONCAT('%',#{unit},'%')  
+		</if>
+		<if test="time != null and time != ''">
+			AND time like CONCAT('%',#{time},'%')  
+		</if>
+		<if test="numbering != null and numbering != ''">
+			AND numbering like CONCAT('%',#{numbering},'%')
+		</if>
+		<if test="sign != null and sign != '' ">
+			AND sign = #{sign}
+		</if>
+		<if test="filing != null and filing != ''">
+			AND filing = #{filing}
+		</if>
+		<if test="status != null and status != ''">
+			AND status = #{status}
+		</if>
+		<if test="acceptance != null and acceptance != ''">
+			AND acceptance = #{acceptance}
+		</if>
+		<if test="report != null and report != ''">
+			AND report = #{report}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		order by id
+	</select>
+	
+	
+
+</mapper>

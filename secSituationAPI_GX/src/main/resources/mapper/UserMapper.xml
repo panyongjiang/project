@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.UserMapper">
+
+	<select id="getUserByName" resultType="java.util.Map">
+		select * from user where
+		user_name = #{userName}
+	</select>
+
+	<update id="updPwd" parameterType="java.util.Map">
+		update user set passwd = #{passwd_new} where user_name = #{userName}
+	</update>
+
+</mapper>  

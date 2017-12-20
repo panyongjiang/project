@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.AssetInfoMapper">
+	<cache eviction="FIFO" flushInterval="1000" readOnly="true" />
+  <resultMap id="AssetInfoBasicMap" type="com.uway.mobile.domain.AssetInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="port" jdbcType="VARCHAR" property="port" />
+    <result column="weburl" jdbcType="VARCHAR" property="weburl" />
+    <result column="webname" jdbcType="VARCHAR" property="webname" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="subcategory" jdbcType="VARCHAR" property="subcategory" />
+    <result column="servicetype" jdbcType="VARCHAR" property="servicetype" />
+    <result column="softwarename" jdbcType="VARCHAR" property="softwarename" />
+    <result column="softwareversion" jdbcType="VARCHAR" property="softwareversion" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="unittype" jdbcType="VARCHAR" property="unittype" />
+    <result column="os" jdbcType="VARCHAR" property="os" />
+    <result column="hasweb" jdbcType="VARCHAR" property="hasweb" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="isreport" jdbcType="VARCHAR" property="isreport" />
+    <result column="registdate" jdbcType="DATE" property="registdate" />
+  </resultMap>
+  <sql id="AssetInfoBaseColumnList">
+    id, province, department, ip, port, weburl, webname, category, subcategory, servicetype, 
+    softwarename, softwareversion, manufacturer, unittype, os, hasweb, comment, registdate, isreport
+  </sql>
+  <sql id="Excel_AssetInfo_List">
+    department, ip, port, weburl, webname,servicetype, os, hasweb, isreport
+  </sql>
+  <select id="findAll" parameterType="java.util.Map" resultType="com.uway.mobile.domain.AssetInfo">
+    select 
+    <include refid="Excel_AssetInfo_List" />
+    from assetInformation where 1=1
+     <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+    </if>
+    <if test="province != null and province != ''">
+		AND province like CONCAT('%',#{province},'%')  
+	</if>
+    <if test="department != null and department != ''">
+		AND department like CONCAT('%',#{department},'%')  
+	</if>
+	<if test="ip != null and ip != ''">
+		AND ip = #{ip}
+	</if>
+	<if test="port != null and port != ''">
+		AND port = #{port}
+	</if>
+	<if test="os != null and os != ''">
+		AND os = #{os}
+	</if>
+	<if test="servicetype != null and servicetype != ''">
+		AND servicetype = #{servicetype}
+	</if>	
+  </select>
+  <select id="getExcelAll" parameterType="java.util.Map" resultType="com.uway.mobile.domain.AssetInfo">
+    select 
+    <include refid="Excel_AssetInfo_List" />
+    from assetInformation where 1=1
+     <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+    </if>
+    <if test="province != null and province != ''">
+		AND province like CONCAT('%',#{province},'%')  
+	</if>
+    <if test="department != null and department != ''">
+		AND department like CONCAT('%',#{department},'%')  
+	</if>
+	<if test="ip != null and ip != ''">
+		AND ip = #{ip}
+	</if>
+	<if test="port != null and port != ''">
+		AND port = #{port}
+	</if>
+	<if test="os != null and os != ''">
+		AND os = #{os}
+	</if>
+	<if test="servicetype != null and servicetype != ''">
+		AND servicetype = #{servicetype}
+	</if>	
+  </select> 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="AssetInfoBasicMap">
+    select 
+    <include refid="AssetInfoBaseColumnList" />
+    from assetInformation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getAssets" parameterType="java.util.Map"  resultType="java.util.Map">
+     select 
+    <include refid="AssetInfoBaseColumnList" />
+    from assetInformation where 1=1
+    <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+      </if>
+    <if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and updatetime >= #{beginTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and updatetime <= #{endTime}
+            ]]>
+        </if>
+        <if test="webname != null and webname != ''">
+			AND webname like CONCAT('%',#{webname},'%')  
+		</if>
+        <if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="os != null and os != ''">
+			AND os = #{os}
+		</if>
+		<if test="servicetype != null and servicetype != ''">
+			AND servicetype = #{servicetype}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and updatetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange}) and updatetime <= NOW()]]>
+		</if>
+    order by id  asc limit #{page_num}, #{page_size}
+  </select>
+	<select id="countAllAssets" parameterType="java.util.Map" resultType="long">
+		SELECT COUNT(1)  FROM assetInformation where 1=1
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+      </if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and updatetime >= #{beginTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and updatetime <= #{endTime}
+            ]]>
+        </if>
+        <if test="webname != null and webname != ''">
+			AND webname like CONCAT('%',#{webname},'%')  
+		</if>
+        <if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="os != null and os != ''">
+			AND os = #{os}
+		</if>
+		<if test="servicetype != null and servicetype != ''">
+			AND servicetype = #{servicetype}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and updatetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and updatetime <= NOW()]]>
+		</if>
+	</select>  
+
+	<select id="groupByParm" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT ${groupfields},COUNT(1) sum FROM assetInformation where 1=1
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+      </if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and updatetime >= #{beginTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and updatetime <= #{endTime}
+            ]]>
+        </if>
+        <if test="webname != null and webname != ''">
+			AND webname like CONCAT('%',#{webname},'%')  
+		</if>
+        <if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="os != null and os != ''">
+			AND os = #{os}
+		</if>
+		<if test="servicetype != null and servicetype != ''">
+			AND servicetype = #{servicetype}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and updatetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and updatetime <= NOW()]]>
+		</if>
+		group by ${groupfields} order by sum asc 
+	</select>
+
+	<select id="groupByTime" parameterType="java.util.Map"
+		resultType="java.util.Map">
+			<![CDATA[ 		select time,coalesce(dat.sum,0) sum from 
+		(select period_add(extract(year_month from now()), -(@num:= @num + 1 )) as time 
+		from assetInformation ,(select @num:= -1) t 
+		where @num < ${months}-1  order by time ) timeunit
+		  left join 
+		(select extract(year_month from registdate) timekey2,count(*) sum
+		FROM assetInformation
+  ]]>
+		where 1=1
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+      </if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and updatetime >= #{beginTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and updatetime <= #{endTime}
+            ]]>
+        </if>
+        <if test="webname != null and webname != ''">
+			AND webname like CONCAT('%',#{webname},'%')  
+		</if>
+        <if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="os != null and os != ''">
+			AND os = #{os}
+		</if>
+		<if test="servicetype != null and servicetype != ''">
+			AND servicetype = #{servicetype}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and updatetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and updatetime <= NOW()]]>
+		</if>
+		group by timekey2 ) dat on timeunit.time = dat.timekey2 order by time
+	</select>
+<!-- 	<select id="getAll" resultType="com.uway.mobile.domain.AssetInfo">
+  		SELECT * FROM assetInformation 
+  </select> -->
+	<insert id="insertBatch" parameterType="java.util.List" >
+   		 insert into assetInformation
+		    (
+		   		province, department, ip, port, weburl, webname, category, subcategory, servicetype, 
+    			softwarename, softwareversion, manufacturer, unittype, os, hasweb, comment, registdate,
+    			isreport
+   	 		)
+		    values 
+		    <foreach collection="list" item="item" index="index" separator="," >
+		    (
+		      #{item.province},
+		      #{item.department},
+		      #{item.ip}, 
+		      #{item.port},
+		      #{item.weburl},
+		      #{item.webname}, 
+		      #{item.category},
+		      #{item.subcategory},
+		      #{item.servicetype}, 
+		      #{item.softwarename},
+		      #{item.softwareversion},
+		      #{item.manufacturer},
+		      #{item.unittype},
+		      #{item.os},
+		      #{item.hasweb},
+		      #{item.comment},
+		      #{item.registdate},
+		      #{item.isreport}
+		      )
+   			 </foreach>
+ 	</insert>
+	
+	<select id="groupByPort" parameterType="java.util.Map"
+		resultType="com.uway.mobile.domain.AssetInfo">
+		
+		SELECT ${groupfields},COUNT(1) sum FROM assetInformation where 1=1
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from registdate) &lt;= #{period_month}
+      </if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and updatetime >= #{beginTime}
+            ]]>
+        </if>
+        <if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and updatetime <= #{endTime}
+            ]]>
+        </if>
+        <if test="webname != null and webname != ''">
+			AND webname like CONCAT('%',#{webname},'%')  
+		</if>
+        <if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="os != null and os != ''">
+			AND os = #{os}
+		</if>
+		<if test="servicetype != null and servicetype != ''">
+			AND servicetype = #{servicetype}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and updatetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and updatetime <= NOW()]]>
+		</if>
+		group by ${groupfields} order by sum ASC 
+	</select>
+	
+</mapper>

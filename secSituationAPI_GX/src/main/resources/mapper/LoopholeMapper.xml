@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.LoopholeMapper">
+  <resultMap id="LoopholeMap" type="com.uway.mobile.domain.Loophole">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="aims" jdbcType="VARCHAR" property="aims" />
+    <result column="units" jdbcType="VARCHAR" property="units" />
+    <result column="principal" jdbcType="VARCHAR" property="principal" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="highscan" jdbcType="INTEGER" property="highscan" />
+	<result column="mediumscan" jdbcType="INTEGER" property="mediumscan" />
+	<result column="highseep" jdbcType="INTEGER" property="highseep" />
+	<result column="mediumseep" jdbcType="INTEGER" property="mediumseep" />
+	<result column="lowseep" jdbcType="INTEGER" property="lowseep" />
+	<result column="weakpwd" jdbcType="INTEGER" property="weakpwd" />	
+	<result column="rectifyhighscan" jdbcType="INTEGER" property="rectifyhighscan" />
+	<result column="filinghighscan" jdbcType="INTEGER" property="filinghighscan" />
+	<result column="rectifymediumscan" jdbcType="INTEGER" property="rectifymediumscan" />
+	<result column="filingmediumscan" jdbcType="INTEGER" property="filingmediumscan" />
+	<result column="rectifyhighseep" jdbcType="INTEGER" property="rectifyhighseep" />
+	<result column="rectifymediumseep" jdbcType="INTEGER" property="rectifymediumseep" />
+	<result column="filingmediumseep" jdbcType="INTEGER" property="filingmediumseep" />
+	<result column="rectifylowseep" jdbcType="INTEGER" property="rectifylowseep" />
+	<result column="rectifyweakpwd" jdbcType="INTEGER" property="rectifyweakpwd" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="entrytime" jdbcType="DATE" property="entrytime" />
+  </resultMap>
+  <sql id="LoopholeList">
+    id, aims, units, principal,phone,level, highscan, mediumscan, highseep, mediumseep, lowseep, 
+    weakpwd, rectifyhighscan, filinghighscan, rectifymediumscan, filingmediumscan, rectifyhighseep, rectifymediumseep, filingmediumseep,
+    rectifylowseep,rectifyweakpwd,remarks,entrytime
+  </sql>
+	
+	<insert id="insert" parameterType="java.util.List" >
+   		 insert into loopholeinformation
+		    (
+		   		 aims, units, principal,phone,level, highscan, mediumscan, highseep, 
+		   		 mediumseep, lowseep, weakpwd, rectifyhighscan, filinghighscan, rectifymediumscan, filingmediumscan, 
+		   		 rectifyhighseep, rectifymediumseep, filingmediumseep,rectifylowseep,rectifyweakpwd,remarks,entrytime
+   	 		)
+		    values 
+		    <foreach collection="list" item="item" index="index" separator="," >
+		    (
+		      #{item.aims},
+		      #{item.units},
+		      #{item.principal}, 
+		      #{item.phone},
+		      #{item.level},
+		      #{item.highscan}, 
+		      #{item.mediumscan},
+		      #{item.highseep}, 
+		      #{item.mediumseep},
+		      #{item.lowseep},
+		      #{item.weakpwd},
+		      #{item.rectifyhighscan},
+		      #{item.filinghighscan},
+		      #{item.rectifymediumscan},
+		      #{item.filingmediumscan},
+		      #{item.rectifyhighseep},
+		      #{item.rectifymediumseep},
+		      #{item.filingmediumseep},
+		      #{item.rectifylowseep},
+		      #{item.rectifyweakpwd},
+		      #{item.remarks},
+		      #{item.entrytime}
+		      )
+   			 </foreach>
+ 	</insert>
+ 
+ 	<select id="getLoopholeSummary" parameterType="java.util.Map" resultType="java.util.Map">
+		select units,
+		sum(highscan+highseep+weakpwd) as highrisk,
+		sum(mediumscan+mediumseep) as mediumrisk,
+		sum(rectifyhighscan+filinghighscan+rectifyhighseep+rectifyweakpwd)/sum(highscan+highseep+weakpwd) as handlehighrisk,
+		sum(rectifymediumscan+filingmediumscan+rectifymediumseep+filingmediumseep)/sum(mediumscan+mediumseep) as handlemediumrisk
+		from loopholeinformation where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+			<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="aims != null and aims != ''">
+			AND aims like CONCAT('%',#{aims},'%')  
+		</if>
+		<if test="principal != null and principal != ''">
+			AND principal = #{principal}  
+		</if>
+		<if test="level != null and level != ''">
+			AND level = #{level}  
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+	 	group by units ;
+	</select>
+  
+ <select id="Countloopholebyunits" parameterType="java.util.Map" resultType="java.util.Map">
+		select units,
+		sum(highscan+highseep+weakpwd+mediumscan+mediumseep) as risk
+		from loopholeinformation where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+			<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="aims != null and aims != ''">
+			AND aims like CONCAT('%',#{aims},'%')  
+		</if>
+		<if test="principal != null and principal != ''">
+			AND principal = #{principal}  
+		</if>
+		<if test="level != null and level != ''">
+			AND level = #{level}  
+		</if>
+				<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+	 	group by units order by risk desc;
+	</select>
+
+<select id="reskpropor" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		sum(highscan+highseep+weakpwd)/sum(highscan+highseep+weakpwd+mediumscan+mediumseep) as highrisk,
+		sum(mediumscan+mediumseep)/sum(highscan+highseep+weakpwd+mediumscan+mediumseep) as mediumrisk
+		from loopholeinformation where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+			<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="aims != null and aims != ''">
+			AND aims like CONCAT('%',#{aims},'%')  
+		</if>
+		<if test="principal != null and principal != ''">
+			AND principal = #{principal}  
+		</if>
+		<if test="level != null and level != ''">
+			AND level = #{level}  
+		</if>
+				<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+	</select>	  
+	
+	
+	<select id="countLoophole" parameterType="java.util.Map"
+		resultType="long">
+		SELECT COUNT(1) FROM loopholeinformation where 1=1
+		
+        <if test="aims != null and aims != ''">
+			AND aims like CONCAT('%',#{aims},'%')  
+		</if>
+		<if test="units != null and units != ''">
+			AND units like CONCAT('%',#{units},'%')  
+		</if>
+		<if test="principal != null and principal != ''">
+			AND principal like CONCAT('%',#{principal},'%')  
+		</if>
+		<if test="phone != null and phone != ''">
+			AND phone like CONCAT('%',#{phone},'%')  
+		</if>
+		<if test="level != null and level != ''">
+			AND level like CONCAT('%',#{level},'%')  
+		</if>
+		<if test="highscan != null and highscan != '' ">
+			AND highscan = #{highscan}
+		</if>
+		<if test="mediumscan != null and mediumscan != ''">
+			AND mediumscan = #{mediumscan}
+		</if>
+		<if test="highseep != null and highseep != ''">
+			AND highseep = #{highseep}
+		</if>
+		<if test="mediumseep != null and mediumseep != ''">
+			AND mediumseep = #{mediumseep}
+		</if>
+		<if test="lowseep != null and lowseep != ''">
+			AND lowseep = #{lowseep}
+		</if>
+		<if test="weakpwd != null and weakpwd != ''">
+			AND weakpwd = #{weakpwd}
+		</if>
+		<if test="rectifyhighscan != null and rectifyhighscan != ''">
+			AND rectifyhighscan = #{rectifyhighscan}
+		</if>
+		<if test="filinghighscan != null and filinghighscan != ''">
+			AND filinghighscan = #{filinghighscan}
+		</if>
+		<if test="rectifymediumscan != null and rectifymediumscan != ''">
+			AND rectifymediumscan = #{rectifymediumscan}
+		</if>
+		<if test="filingmediumscan != null and filingmediumscan != ''">
+			AND filingmediumscan = #{filingmediumscan}
+		</if>
+		<if test="rectifyhighseep != null and rectifyhighseep != ''">
+			AND rectifyhighseep = #{rectifyhighseep}
+		</if>
+		<if test="rectifymediumseep != null and rectifymediumseep != ''">
+			AND rectifymediumseep = #{rectifymediumseep}
+		</if>
+	</select>
+
+
+	
+	
+</mapper>

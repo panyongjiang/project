@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uway.mobile.mapper.TerminalMapper" >
+  <resultMap id="TerminalMap" type="com.uway.mobile.domain.Terminal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user" property="user" jdbcType="VARCHAR" />
+    <result column="accounts" property="accounts" jdbcType="VARCHAR" />
+    <result column="pc_name" property="pc_name" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="mac" property="mac" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="untreated" property="untreated" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="entrytime" property="entrytime" jdbcType="DATE" />
+  </resultMap>
+  
+   <sql id="Base_Column_List" >
+    id,user,accounts,pc_name,ip,mac,city,untreated,status,remarks,entrytime
+  </sql>
+	<select id="getTerminal" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from terminal where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+		<if test="user != null and user != ''">
+			AND user like CONCAT('%',#{user},'%')  
+		</if>
+		<if test="accounts != null and accounts != ''">
+			AND accounts like CONCAT('%',#{accounts},'%')  
+		</if>
+		<if test="pc_name != null and pc_name != ''">
+			AND pc_name like CONCAT('%',#{pc_name},'%')
+		</if>
+		<if test="ip != null and ip != '' ">
+			AND ip = #{ip}
+		</if>
+		<if test="mac != null and mac != ''">
+			AND mac = #{mac}
+		</if>
+		<if test="city != null and city != ''">
+			AND city like CONCAT('%',#{city},'%')
+		</if>
+		<if test="status != null and status != ''">
+			AND status like CONCAT('%',#{status},'%')
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		order by id asc limit #{page_num}, #{page_size}
+	</select>
+
+	<select id="countTerminal" parameterType="java.util.Map"
+		resultType="long">
+		SELECT COUNT(1) FROM terminal where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+				<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from entrytime) = #{period_month}
+      </if>
+		<if test="user != null and user != ''">
+			AND user like CONCAT('%',#{user},'%')  
+		</if>
+		<if test="accounts != null and accounts != ''">
+			AND accounts like CONCAT('%',#{accounts},'%')  
+		</if>
+		<if test="pc_name != null and pc_name != ''">
+			AND pc_name like CONCAT('%',#{pc_name},'%')
+		</if>
+		<if test="ip != null and ip != '' ">
+			AND ip = #{ip}
+		</if>
+		<if test="mac != null and mac != ''">
+			AND mac = #{mac}
+		</if>
+		<if test="city != null and city != ''">
+			AND city like CONCAT('%',#{city},'%')
+		</if>
+		<if test="status != null and status != ''">
+			AND status like CONCAT('%',#{status},'%')
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+	</select>
+	
+	<select id="groupByParm" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT ${groupfields},COUNT(1) sum FROM terminal where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="user != null and user != ''">
+			AND name like CONCAT('%',#{user},'%')  
+		</if>
+		<if test="accounts != null and accounts != ''">
+			AND accounts like CONCAT('%',#{accounts},'%')  
+		</if>
+		<if test="pc_name != null and pc_name != ''">
+			AND pc_name like CONCAT('%',#{pc_name},'%')
+		</if>
+		<if test="ip != null and ip != '' ">
+			AND ip = #{ip}
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from entrytime) = #{period_month}
+      </if>
+		<if test="mac != null and mac != ''">
+			AND mac = #{mac}
+		</if>
+		<if test="city != null and city != ''">
+			AND city like CONCAT('%',#{city},'%')
+		</if>
+		<if test="status != null and status != ''">
+			AND status like CONCAT('%',#{status},'%')
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		group by ${groupfields} order by ${groupfields} desc 
+	</select>
+
+
+
+
+	<select id="groupByTime" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		<![CDATA[ select entrytime,coalesce(dat.sum,0) sum from 
+		(select period_add(extract(year_month from now()), -(@num:= @num + 1 )) as time 
+		from terminal ,(select @num:= -1) t 
+		where @num < ${months}-1  order by time ) timeunit
+		  left join 
+		(select extract(year_month from entryime) timekey2,count(*) sum
+		FROM terminal
+ 		]]>
+		where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+			<if test="user != null and user != ''">
+			AND name like CONCAT('%',#{user},'%')  
+		</if>
+		<if test="accounts != null and accounts != ''">
+			AND address like CONCAT('%',#{accounts},'%')  
+		</if>
+		<if test="pc_name != null and pc_name != ''">
+			AND productModel like CONCAT('%',#{productModel},'%')
+			AND accounts like CONCAT('%',#{accounts},'%')  
+		</if>
+
+		<if test="pc_name != null and pc_name != ''">
+			AND pc_name like CONCAT('%',#{pc_name},'%')
+		</if>
+		<if test="ip != null and ip != '' ">
+			AND ip = #{ip}
+		</if>
+				<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from entrytime) = #{period_month}
+      </if>
+		<if test="mac != null and mac != ''">
+			AND mac = #{mac}
+		</if>
+		<if test="city != null and city != ''">
+			AND city like CONCAT('%',#{city},'%')
+		</if>
+		<if test="status != null and status != ''">
+			AND status like CONCAT('%',#{status},'%')
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		group by timekey2 ) dat on timeunit.timekey = dat.timekey2  order by entrytime
+	</select>
+	
+	<select id="groupByWeek" parameterType="java.util.Map"
+		resultType="java.util.Map">
+<![CDATA[ 		select IF(str_to_date(concat(timekey, " ", 'Monday'), '%x%v %W')  > CURDATE() ,
+ CURDATE(),str_to_date(concat(timekey, " ", 'Monday'), '%x%v %W') ) AS  time,
+timekey,coalesce(dat.sum,0) sum from 
+(select DATE_FORMAT(DATE_SUB(NOW(),INTERVAL (@num:= @num + 1 ) WEEK),'%Y%u') 
+as timekey from vulnerability ,(select @num:= -1) t where 
+	DATE_SUB(NOW(),INTERVAL @num +1 WEEK ) > DATE_SUB(NOW(),INTERVAL ${timeRange})
+		order by timekey
+		 ) timeunit left join  ]]>
+		 (select   DATE_FORMAT(refreshtime,'%Y%u') timekey2,count(*) sum
+		FROM vulnerability where 1=1 
+		
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and refreshtime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and refreshtime <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="vulname != null and vulname != ''">
+			AND vulname like CONCAT('%',#{vulname},'%')  
+		</if>
+		<if test="service != null and service != ''">
+			AND service = #{service}
+		</if>
+		<if test="vulstatus != null ">
+			AND vulstatus = #{vulstatus}
+		</if>
+		<if test="notify != null and notify != ''">
+			AND notify = #{notify}
+		</if>
+		<if test="risklevel != null and risklevel != ''">
+			AND risklevel = #{risklevel}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+                <![CDATA[ and refreshtime >= DATE_SUB(NOW(),INTERVAL  ${timeRange}) and refreshtime <= NOW()]]>
+		</if>
+		group by timekey2 ) dat on timeunit.timekey = dat.timekey2  order by timekey
+		
+	</select>
+
+
+	<select id="groupByDay" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		<![CDATA[ 		select date_format(timekey,'%Y-%m-%d') time ,
+		timeunit.timekey,coalesce(dat.sum,0) sum from
+		(select date_format(date_sub(now(),		INTERVAL @num:= @num + 1 day) ,'%Y-%m-%d') as timekey 
+		from vulnerability ,(select @num:=-1) t 
+		where @num < ${day}-1 order by timekey
+		 ) timeunit left join    ]]>
+		 (select date_format(refreshtime,'%Y-%m-%d') timekey2,count(*) sum
+		FROM vulnerability where 1=1 
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and refreshtime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and refreshtime <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="vulname != null and vulname != ''">
+			AND vulname like CONCAT('%',#{vulname},'%')  
+		</if>
+		<if test="service != null and service != ''">
+			AND service = #{service}
+		</if>
+		<if test="vulstatus != null ">
+			AND vulstatus = #{vulstatus}
+		</if>
+		<if test="notify != null and notify != ''">
+			AND notify = #{notify}
+		</if>
+		<if test="risklevel != null and risklevel != ''">
+			AND risklevel = #{risklevel}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+                <![CDATA[ and refreshtime >= DATE_SUB(NOW(),INTERVAL  ${timeRange}) and refreshtime <= NOW()]]>
+		</if>
+		group by timekey2 ) dat on timeunit.timekey = dat.timekey2  order by time
+	</select>	
+	
+	<select id="groupByRes" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT ass.${groupfields},COUNT(1) sum FROM vulnerability vul,assetInformation ass where  vul.ip = ass.ip and vul.port = ass.port and vul.vulstatus = 1
+		<if test="department != null and department != ''">
+			AND ass.department  like CONCAT('%',#{department},'%')
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and vul.refreshtime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and vul.refreshtime <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND vul.vul.ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="vulname != null and vulname != ''">
+			AND vulname like CONCAT('%',#{vulname},'%')  
+		</if>
+		<if test="service != null and service != ''">
+			AND vul.service = #{service}
+		</if>
+		<if test="vulstatus != null ">
+			AND vul.vulstatus = #{vulstatus}
+		</if>
+		<if test="notify != null and notify != ''">
+			AND notify = #{notify}
+		</if>
+		<if test="risklevel != null and risklevel != ''">
+			AND risklevel = #{risklevel}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and vul.refreshtime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and refreshtime <= NOW()]]>
+		</if>
+		group by ass.${groupfields} order by sum desc LIMIT #{topn}
+	</select>
+	
+	<insert id="insert" parameterType="java.util.List">
+
+		insert into terminal 
+   		 	(
+   		 	user,accounts,pc_name,ip,mac,city,untreated,status,remarks,entrytime
+		      )
+		    values 
+		    <foreach collection="list" item="item" index="index" separator=",">
+		    (
+		      #{item.user},
+		      #{item.accounts}, 
+		      #{item.pc_name},
+		      #{item.ip},
+		      #{item.mac}, 
+		      #{item.city},
+		      #{item.untreated}, 
+		      #{item.status},
+		      #{item.remarks},
+		      #{item.entrytime}
+		    )
+   		 </foreach> 
+	</insert>
+	
+	<select id="createExcel" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from terminal where 1=1
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and entrytime >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and entrytime <= #{endTime}
+            ]]>
+		</if>
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from  entrytime) = #{period_month}
+        </if>
+		<if test="user != null and user != ''">
+			AND name like CONCAT('%',#{user},'%')  
+		</if>
+		<if test="accounts != null and accounts != ''">
+			AND address like CONCAT('%',#{accounts},'%')  
+		</if>
+		<if test="pc_name != null and pc_name != ''">
+			AND productModel like CONCAT('%',#{productModel},'%')
+		</if>
+		<if test="ip != null and ip != '' ">
+			AND ip = #{ip}
+		</if>
+		<if test="mac != null and mac != ''">
+			AND mac = #{mac}
+		</if>
+		<if test="city != null and city != ''">
+			AND city like CONCAT('%',#{city},'%')
+		</if>
+		<if test="status != null and status != ''">
+			AND status like CONCAT('%',#{status},'%')
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and entrytime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and entrytime <= NOW()]]>
+		</if>
+		order by id
+	</select>
+	
+
+</mapper>

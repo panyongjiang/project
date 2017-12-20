@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uway.mobile.mapper.SecurityIncidentsMapper" >
+	<cache eviction="FIFO" flushInterval="1000" readOnly="true" />
+  <resultMap id="BaseResultMap" type="com.uway.mobile.domain.SecurityIncidents" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="event" property="event" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="occurenceTime" property="occurenceTime" jdbcType="TIMESTAMP" />
+    <result column="eventDescription" property="eventDescription" jdbcType="VARCHAR" />
+    <result column="unitAddess" property="unitAddess" jdbcType="VARCHAR" />
+    <result column="involveContent" property="involveContent" jdbcType="VARCHAR" />
+    <result column="briefPass" property="briefPass" jdbcType="VARCHAR" />
+    <result column="harmAndEffect" property="harmAndEffect" jdbcType="VARCHAR" />
+    <result column="measures" property="measures" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="entrytime" property="entrytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, category, event, level, occurenceTime, eventDescription, unitAddess, involveContent, 
+    briefPass, harmAndEffect, measures, remarks, ip, department
+  </sql>
+  <sql id="Export_Excel_List" >
+    category, event, eventDescription, department, briefPass, measures
+  </sql>
+  <sql id="Batch_Insert_List" >
+    category, event, level, occurenceTime, eventDescription, unitAddess, involveContent, 
+    briefPass, harmAndEffect, measures, remarks, status, ip, department,entrytime
+  </sql>
+  
+    <insert id="insert" parameterType="java.util.List" >
+    insert into safevent 
+    	(<include refid="Batch_Insert_List" />)
+    	values 
+		    <foreach collection="list" item="item" index="index" separator="," >
+		    (
+		      #{item.category},
+		      #{item.event},
+		      #{item.level},
+		      #{item.occurenceTime}, 
+		      #{item.eventDescription},
+		      #{item.unitAddess},
+		      #{item.involveContent}, 
+		      #{item.briefPass},
+		      #{item.harmAndEffect},
+		      #{item.measures}, 
+		      #{item.remarks},
+		      #{item.status},
+		      #{item.ip},
+		      #{item.department},
+		      #{item.entrytime}
+		      )
+   			 </foreach>
+ 	</insert>
+  <select id="findAll" parameterType="java.util.Map" 
+  			resultType="com.uway.mobile.domain.SecurityIncidents">
+  		SELECT <include refid="Export_Excel_List" /> 
+  		FROM safevent where 1=1
+  		<if test="period_month != null and period_month != '' " >
+      		and extract(year_month from occurenceTime) = #{period_month}
+     	</if>
+     	<if test="department != null and department != '' " >
+        	and department like CONCAT('%',#{department},'%')
+      	</if>
+  </select>
+  <select id="getAll" parameterType="java.util.Map" 
+  			resultType="com.uway.mobile.domain.SecurityIncidents">
+  		SELECT <include refid="Export_Excel_List" /> 
+  		FROM safevent where 1=1
+  		<if test="period_month != null and period_month != '' " >
+      		and extract(year_month from occurenceTime) = #{period_month}
+     	</if>
+     	<if test="department != null and department != '' " >
+        	and department like CONCAT('%',#{department},'%')
+      	</if>
+  </select>
+  <select id="getSecurityIncidents" parameterType="java.util.Map" resultType="java.util.Map">
+    select 
+   	 <include refid="Base_Column_List" />
+    	from safevent where 1=1 
+      <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+      <if test="category != null and category != '' " >
+        and category like CONCAT('%',#{category},'%')
+      </if>
+      <if test="ip != null and ip != '' " >
+        and ip = #{ip}
+      </if>
+      <if test="department != null and department != '' " >
+        and department like CONCAT('%',#{department},'%')
+      </if>
+      <if test="event != null and event != '' " >
+        and event like CONCAT('%',#{event},'%')
+      </if>
+      <if test="level != null and level != '' " >
+        and level like CONCAT('%',#{level},'%')
+      </if>
+      <if test="occurenceTime != null and occurenceTime != '' " >
+        and occurenceTime = #{occurenceTime}
+      </if>
+      <if test="eventDescription != null and eventDescription != '' " >
+        and eventDescription like CONCAT('%',#{eventDescription},'%')
+      </if>
+      <if test="unitAddess != null and unitAddess != '' " >
+        and unitAddess like CONCAT('%',#{unitAddess},'%')
+      </if>
+      <if test="involveContent != null and involveContent != '' " >
+        and involveContent = #{involveContent}
+      </if>
+      <if test="briefPass != null and briefPass != '' " >
+        and briefPass = #{briefPass}
+      </if>
+      <if test="harmAndEffect != null and harmAndEffect != '' " >
+        and harmAndEffect = #{harmAndEffect}
+      </if>
+      <if test="measures != null and measures != '' " >
+        and measures = #{measures}
+      </if>
+      <if test="remarks != null and remarks != '' " >
+        and remarks = #{remarks}
+      </if>
+      <if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and occurencetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and occurencetime <= NOW()]]>
+	  </if>
+		order by id asc limit #{page_num}, #{page_size}
+  </select>
+
+   <select id="countMeasures" parameterType="java.util.Map"
+		resultType="long">
+		select count(1) from safevent where 1=1
+		<if test=" isRegisted != null and isRegisted == 'true' ">
+			AND status=1
+		</if>
+		<if test=" isRegisted != null and isRegisted == 'false' ">
+			AND status=0 
+		</if>
+    	<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+      <if test="department != null and department != '' " >
+        and department like CONCAT('%',#{department},'%')
+      </if>
+  </select>
+  <select id="countSecurityIncidents" parameterType="java.util.Map"
+		resultType="long">
+    select count(*) from safevent where 1=1
+      <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if> 
+      <if test="ip != null and ip != '' " >
+        and ip = #{ip}
+      </if>
+      <if test="department != null and department != '' " >
+        and department like CONCAT('%',#{department},'%')
+      </if>
+      <if test="category != null and category != '' " >
+        and category=#{category}
+      </if>
+      <if test="event != null and event != '' " >
+        and event=#{event}
+      </if>
+      <if test="level != null and level != '' " >
+        and level=#{level}
+      </if>
+      <if test="occurenceTime != null and occurenceTime != '' " >
+        and occurenceTime=#{occurenceTime}
+      </if>
+      <if test="eventDescription != null and eventDescription != '' " >
+        and eventDescription=#{eventDescription}
+      </if>
+      <if test="unitAddess != null and unitAddess != '' " >
+        and unitAddess like CONCAT('%',#{unitAddess},'%')
+      </if>
+      <if test="involveContent != null and involveContent != '' " >
+        and involveContent=#{involveContent}
+      </if>
+      <if test="briefPass != null and briefPass != '' " >
+        and briefPass=#{briefPass}
+      </if>
+      <if test="harmAndEffect != null and harmAndEffect != '' " >
+        and harmAndEffect=#{harmAndEffect}
+      </if>
+      <if test="measures != null and measures != '' " >
+        and measures=#{measures}
+      </if>
+      <if test="remarks != null and remarks != '' " >
+        and remarks=#{remarks}
+      </if>
+      <if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and occurencetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and occurencetime <= NOW()]]>
+	  </if>
+  </select>
+  <select id="groupByParm" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT ${groupfields},COUNT(1) sum FROM safevent where 1=1
+	  <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+	  <if test="category != null and category != '' " >
+        and category=#{category}
+      </if>
+      <if test="ip != null and ip != '' " >
+        and ip = #{ip}
+      </if>
+      <if test="department != null and department != '' " >
+        and department like CONCAT('%',#{department},'%')
+      </if>
+      <if test="event != null and event != '' " >
+        and event =#{event}
+      </if>
+      <if test="level != null and level != '' " >
+        and level=#{level}
+      </if>
+      <if test="occurenceTime != null and occurenceTime != '' " >
+        and occurenceTime=#{occurenceTime}
+      </if>
+      <if test="eventDescription != null and eventDescription != '' " >
+        and eventDescription=#{eventDescription}
+      </if>
+      <if test="unitAddess != null and unitAddess != '' " >
+        and unitAddess like CONCAT('%',#{unitAddess},'%')
+      </if>
+      <if test="involveContent != null and involveContent != '' " >
+        and involveContent=#{involveContent}
+      </if>
+      <if test="briefPass != null and briefPass != '' " >
+        and briefPass=#{briefPass}
+      </if>
+      <if test="harmAndEffect != null and harmAndEffect != '' " >
+        and harmAndEffect=#{harmAndEffect}
+      </if>
+      <if test="measures != null and measures != '' " >
+        and measures=#{measures}
+      </if>
+      <if test="remarks != null and remarks != '' " >
+        and remarks=#{remarks}
+      </if>
+      <if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and occurencetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and occurencetime <= NOW()]]>
+	  </if>
+	  group by ${groupfields} order by sum desc 
+  </select>
+  <select id="groupByMonth" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		<![CDATA[ select time,coalesce(dat.sum,0) sum from 
+		(select period_add(extract(year_month from now()), -(@num:= @num + 1 )) as time 
+		from safevent ,(select @num:= -1) t 
+		where @num < ${months}-1  order by time ) timeunit
+		  left join 
+		(select extract(year_month from occurencetime) timekey2,count(*) sum
+		FROM safevent
+ 		]]>
+		where 1=1
+		<if test="ip != null and ip != '' " >
+        and ip = #{ip}
+      </if>
+      <if test="department != null and department != '' " >
+        and department like CONCAT('%',#{department},'%')
+      </if>
+	  <if test="period_month != null and period_month != '' " >
+      	and extract(year_month from occurenceTime) = #{period_month}
+      </if>
+	    <if test="category != null and category != '' " >
+        and category=#{category}
+      </if>
+      <if test="event != null and event != '' " >
+        and event=#{event}
+      </if>
+      <if test="level != null and level != '' " >
+        and level=#{level}
+      </if>
+      <if test="occurenceTime != null and occurenceTime != '' " >
+        and occurenceTime=#{occurenceTime}
+      </if>
+      <if test="eventDescription != null and eventDescription != '' " >
+        and eventDescription=#{eventDescription}
+      </if>
+      <if test="unitAddess != null and unitAddess != '' " >
+        and unitAddess like CONCAT('%',#{unitAddess},'%')
+      </if>
+      <if test="involveContent != null and involveContent != '' " >
+        and involveContent=#{involveContent}
+      </if>
+      <if test="briefPass != null and briefPass != '' " >
+        and briefPass=#{briefPass}
+      </if>
+      <if test="harmAndEffect != null and harmAndEffect != '' " >
+        and harmAndEffect=#{harmAndEffect}
+      </if>
+      <if test="measures != null and measures != '' " >
+        and measures=#{measures}
+      </if>
+      <if test="remarks != null and remarks != '' " >
+        and remarks=#{remarks}
+      </if>
+      <if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and occurencetime >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and occurencetime <= NOW()]]>
+	  </if>
+		group by timekey2 ) dat on timeunit.time = dat.timekey2 order by time
+	</select>
+  
+  
+  
+</mapper>

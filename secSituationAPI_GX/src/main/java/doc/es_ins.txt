@@ -1,0 +1,427 @@
+http://192.168.8.252:9200/cloud/waf_web/_mapping/
+{
+  "waf_web": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "type": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "flow": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "cc_ip": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "cc_num": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+} 
+
+
+
+http://192.168.8.252:9200/cloud/waf_day_data/_mapping/
+{
+  "waf_day_data": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "attack_ips": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "attack_total": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "req": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}
+
+
+
+http://192.168.8.252:9200/cloud/waf_attack_top/_mapping/
+{
+  "waf_attack_top": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "name": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "value": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}
+
+
+
+http://192.168.8.252:9200/cloud/waf_attack_trend/_mapping/
+{
+  "waf_attack_trend": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "counts": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "WEBSHELL": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "OS_COMMAND": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "FILEI": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "OTHERS": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "LRFI": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "COLLECTOR": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "SCANNER": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "CODE": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "XSS": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "SPECIAL": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "SQLI": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "LIMIT_RATE": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}
+
+
+
+http://192.168.8.252:9200/cloud/waf_attack_detail/_mapping/
+{
+  "waf_attack_detail": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "status": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "url": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "ip": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "times": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "location": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}
+
+
+
+http://192.168.8.252:9200/cloud/waf_cc_detail/_mapping/
+{
+  "waf_cc_detail": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "status": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "location": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "url": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "ip": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "size": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "type": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "times": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}
+
+
+
+http://192.168.8.252:9200/cloud/site_risk/_mapping/
+{
+  "site_risk": {
+    "properties": {
+      "site_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "site_waf_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "date": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "from_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "end_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+	  "last_end_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "site_url": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "risk": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "type": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "title": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "vulid": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "vultype": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "description": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "solution": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "cve_id": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "bugtraq": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "severity_points": {
+        "type": "integer",
+        "index": "not_analyzed"
+      },
+      "date_found": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "method": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "url": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "issue": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "exploit": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "create_time": {
+        "type": "double",
+        "index": "not_analyzed"
+      },
+      "create_user": {
+        "type": "integer",
+        "index": "not_analyzed"
+      }
+    }
+  }
+}

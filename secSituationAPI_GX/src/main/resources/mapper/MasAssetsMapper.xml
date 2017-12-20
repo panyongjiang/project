@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uway.mobile.mapper.MasAssetsMapper" >
+	<cache eviction="FIFO" flushInterval="1000" readOnly="true" />
+  <resultMap id="BaseResultMap" type="com.uway.mobile.domain.MasAssets" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ipAddress" property="ipaddress" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="productModel" property="productmodel" jdbcType="VARCHAR" />
+    <result column="operateSystemVersion" property="operatesystemversion" jdbcType="VARCHAR" />
+    <result column="applicationVersion" property="applicationversion" jdbcType="VARCHAR" />
+    <result column="storeBussinessData" property="storebussinessdata" jdbcType="VARCHAR" />
+    <result column="bussinessType" property="bussinesstype" jdbcType="VARCHAR" />
+    <result column="deviceActualAddress" property="deviceactualaddress" jdbcType="VARCHAR" />
+    <result column="applicationExplain" property="applicationexplain" jdbcType="VARCHAR" />
+    <result column="administratorContact" property="administratorcontact" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="effect" property="effect" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="port" property="port" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+  </resultMap>
+   <sql id="Base_Column_List" >
+    id, name, ipAddress, department, productModel, operateSystemVersion, applicationVersion, 
+    storeBussinessData, bussinessType, deviceActualAddress, applicationExplain, administratorContact, 
+    url, effect, comment, ip, port, time, province
+  </sql>
+   <sql id="Excel_Column_List" >
+    name, ipAddress, department, productModel,
+ 	operateSystemVersion, applicationVersion, bussinessType, url
+  </sql>
+  <insert id="insert" parameterType="java.util.List">
+		insert into mas 
+   		 	(
+   		 	name, ipAddress, department, productModel, operateSystemVersion, applicationVersion, 
+    		storeBussinessData, bussinessType, deviceActualAddress, applicationExplain, administratorContact, 
+   			url, effect, comment, ip, port, time, province
+    		)
+		    values 
+		    <foreach collection="list" item="item" index="index" separator="," >
+		    (
+		      #{item.name},
+		      #{item.ipAddress},
+		      #{item.department},
+		      #{item.productModel}, 
+		      #{item.operateSystemVersion},
+		      #{item.applicationVersion},
+		      #{item.storeBussinessData}, 
+		      #{item.bussinessType},
+		      #{item.deviceActualAddress}, 
+		      #{item.applicationExplain},
+		      #{item.administratorContact},
+		      #{item.url},
+		      #{item.effect},
+		      #{item.comment},
+		      #{item.ip},
+		      #{item.port},
+		      #{item.time},
+		      #{item.province}
+		      )
+   		 </foreach>
+	</insert>
+  	<select id="findAll" parameterType="java.util.Map" resultType="com.uway.mobile.domain.MasAssets">
+  		select
+	     	<include refid="Excel_Column_List" />
+		from mas where 1=1
+		<if test="period_month != null and period_month != '' " >
+      		AND extract(year_month from time) = #{period_month}
+      	</if>
+		<if test="ipAddress != null and ipAddress != ''">
+			AND ipAddress like CONCAT('%',#{ipAddress},'%')  
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="name != null and name != ''">
+			AND name like CONCAT('%',#{name},'%')  
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion like CONCAT('%',#{operateSystemVersion},'%')
+		</if>
+  </select>
+  	<select id="getAll" parameterType="java.util.Map" resultType="com.uway.mobile.domain.MasAssets">
+  		select
+	     	<include refid="Excel_Column_List" />
+		from mas where 1=1
+		<if test="period_month != null and period_month != '' " >
+      		AND extract(year_month from time) = #{period_month}
+      	</if>
+		<if test="ipAddress != null and ipAddress != ''">
+			AND ipAddress like CONCAT('%',#{ipAddress},'%')  
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="name != null and name != ''">
+			AND name like CONCAT('%',#{name},'%')  
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion like CONCAT('%',#{operateSystemVersion},'%')
+		</if>
+  </select>
+	<select id="getMasesResource" parameterType="java.util.Map" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from mas where 1=1
+		<if test="period_month != null and period_month != '' " >
+      		AND extract(year_month from time) = #{period_month}
+      	</if>
+		<if test="ipAddress != null and ipAddress != ''">
+			AND ipAddress like CONCAT('%',#{ipAddress},'%')  
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="name != null and name != ''">
+			AND name like CONCAT('%',#{name},'%')  
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion like CONCAT('%',#{operateSystemVersion},'%')
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and time >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and time <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="productModel != null and productModel != ''">
+			AND productModel like CONCAT('%',#{productModel},'%')
+		</if>
+		<if test="applicationVersion != null and applicationVersion != ''">
+			AND applicationVersion = #{applicationVersion}
+		</if>
+		<if test="storeBussinessData != null and storeBussinessData != ''">
+			AND storeBussinessData = #{storeBussinessData}
+		</if>
+		<if test="bussinessType != null and bussinessType != ''">
+			AND bussinessType = #{bussinessType}
+		</if>
+		<if test="applicationExplain != null and applicationExplain != ''">
+			AND applicationExplain = #{applicationExplain}
+		</if>
+		<if test="administratorContact != null and administratorContact != ''">
+			AND administratorContact = #{administratorContact}
+		</if>
+		<if test="url != null and url != ''">
+			AND url = #{url}
+		</if>
+		<if test="time != null and time != ''">
+			AND time = #{time}
+		</if>
+		<if test="province != null and province != ''">
+			AND province = #{province}
+		</if>
+		<if test="deviceActualAddress != null and deviceActualAddress != ''">
+			AND deviceActualAddress = #{deviceActualAddress}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and time >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and time <= NOW()]]>
+		</if>
+		order by id asc limit #{page_num}, #{page_size}
+	</select>
+	<select id="countMasesResource" parameterType="java.util.Map"
+		resultType="long">
+		SELECT COUNT(1) FROM mas where 1=1
+		<if test="period_month != null and period_month != '' " >
+      		AND extract(year_month from time) = #{period_month}
+      	</if>
+		<if test="ipAddress != null and ipAddress != ''">
+			AND ipAddress like CONCAT('%',#{ipAddress},'%')  
+		</if>
+		<if test="department != null and department != ''">
+			AND department like CONCAT('%',#{department},'%')  
+		</if>
+		<if test="name != null and name != ''">
+			AND name like CONCAT('%',#{name},'%')  
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion like CONCAT('%',#{operateSystemVersion},'%')
+		</if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and time >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and time <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="productModel != null and productModel != ''">
+			AND productModel like CONCAT('%',#{productModel},'%')
+		</if>
+		<if test="applicationVersion != null and applicationVersion != ''">
+			AND applicationVersion = #{applicationVersion}
+		</if>
+		<if test="storeBussinessData != null and storeBussinessData != ''">
+			AND storeBussinessData = #{storeBussinessData}
+		</if>
+		<if test="bussinessType != null and bussinessType != ''">
+			AND bussinessType = #{bussinessType}
+		</if>
+		<if test="applicationExplain != null and applicationExplain != ''">
+			AND applicationExplain = #{applicationExplain}
+		</if>
+		<if test="administratorContact != null and administratorContact != ''">
+			AND administratorContact = #{administratorContact}
+		</if>
+		<if test="url != null and url != ''">
+			AND url = #{url}
+		</if>
+		<if test="time != null and time != ''">
+			AND time = #{time}
+		</if>
+		<if test="province != null and province != ''">
+			AND province = #{province}
+		</if>
+		<if test="deviceActualAddress != null and deviceActualAddress != ''">
+			AND deviceActualAddress = #{deviceActualAddress}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and time >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and time <= NOW()]]>
+		</if>
+	</select>
+	<select id="groupByParm" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		SELECT ${groupfields},COUNT(1) sum FROM mas where 1=1
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from time) = #{period_month}
+      </if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and time >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and time <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="name != null and name != ''">
+			AND name = #{name}  
+		</if>
+		<if test="department != null and department != ''">
+			AND department = #{department}  
+		</if>
+		<if test="productModel != null and productModel != ''">
+			AND productModel =#{productModel}
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion = #{operateSystemVersion}
+		</if>
+		<if test="applicationVersion != null and applicationVersion != ''">
+			AND applicationVersion = #{applicationVersion}
+		</if>
+		<if test="storeBussinessData != null and storeBussinessData != ''">
+			AND storeBussinessData = #{storeBussinessData}
+		</if>
+		<if test="bussinessType != null and bussinessType != ''">
+			AND bussinessType = #{bussinessType}
+		</if>
+		<if test="applicationExplain != null and applicationExplain != ''">
+			AND applicationExplain = #{applicationExplain}
+		</if>
+		<if test="administratorContact != null and administratorContact != ''">
+			AND administratorContact = #{administratorContact}
+		</if>
+		<if test="url != null and url != ''">
+			AND url = #{url}
+		</if>
+		<if test="time != null and time != ''">
+			AND time = #{time}
+		</if>
+		<if test="province != null and province != ''">
+			AND province = #{province}
+		</if>
+		<if test="deviceActualAddress != null and deviceActualAddress != ''">
+			AND deviceActualAddress = #{deviceActualAddress}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and time >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and time <= NOW()]]>
+		</if>
+		group by ${groupfields} order by sum desc 
+	</select>
+	<select id="groupByPort" parameterType="java.util.Map"
+		resultType="com.uway.mobile.domain.MasAssets">
+		SELECT ${groupfields},COUNT(1) sum FROM mas where 1=1
+		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from time) = #{period_month}
+      </if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and time >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and time <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="name != null and name != ''">
+			AND name = #{name}  
+		</if>
+		<if test="department != null and department != ''">
+			AND department = #{department}  
+		</if>
+		<if test="productModel != null and productModel != ''">
+			AND productModel =#{productModel}
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion = #{operateSystemVersion}
+		</if>
+		<if test="applicationVersion != null and applicationVersion != ''">
+			AND applicationVersion = #{applicationVersion}
+		</if>
+		<if test="storeBussinessData != null and storeBussinessData != ''">
+			AND storeBussinessData = #{storeBussinessData}
+		</if>
+		<if test="bussinessType != null and bussinessType != ''">
+			AND bussinessType = #{bussinessType}
+		</if>
+		<if test="applicationExplain != null and applicationExplain != ''">
+			AND applicationExplain = #{applicationExplain}
+		</if>
+		<if test="administratorContact != null and administratorContact != ''">
+			AND administratorContact = #{administratorContact}
+		</if>
+		<if test="url != null and url != ''">
+			AND url = #{url}
+		</if>
+		<if test="time != null and time != ''">
+			AND time = #{time}
+		</if>
+		<if test="province != null and province != ''">
+			AND province = #{province}
+		</if>
+		<if test="deviceActualAddress != null and deviceActualAddress != ''">
+			AND deviceActualAddress = #{deviceActualAddress}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and time >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and time <= NOW()]]>
+		</if>
+		group by ${groupfields} order by sum desc 
+	</select>
+	<select id="groupByTime" parameterType="java.util.Map"
+		resultType="java.util.Map">
+		<![CDATA[ select time,coalesce(dat.sum,0) sum from 
+		(select period_add(extract(year_month from now()), -(@num:= @num + 1 )) as time 
+		from mas ,(select @num:= -1) t 
+		where @num < ${months}-1  order by time ) timeunit
+		  left join 
+		(select extract(year_month from m.time) timekey2,count(*) sum
+		FROM mas m 
+ 		]]>
+ 		where 1=1
+ 		<if test="period_month != null and period_month != '' " >
+      	and extract(year_month from m.time) = #{period_month}
+      </if>
+		<if test="beginTime !=null and beginTime !=''">
+            <![CDATA[
+            and time >= #{beginTime}
+            ]]>
+		</if>
+		<if test="endTime !=null and endTime !=''">
+            <![CDATA[
+            and time <= #{endTime}
+            ]]>
+		</if>
+		<if test="ip != null and ip != ''">
+			AND ip = #{ip}
+		</if>
+		<if test="port != null and port != ''">
+			AND port = #{port}
+		</if>
+		<if test="name != null and name != ''">
+			AND name = #{name}  
+		</if>
+		<if test="department != null and department != ''">
+			AND department = #{department}  
+		</if>
+		<if test="productModel != null and productModel != ''">
+			AND productModel =#{productModel}
+		</if>
+		<if test="operateSystemVersion != null and operateSystemVersion != '' ">
+			AND operateSystemVersion = #{operateSystemVersion}
+		</if>
+		<if test="applicationVersion != null and applicationVersion != ''">
+			AND applicationVersion = #{applicationVersion}
+		</if>
+		<if test="storeBussinessData != null and storeBussinessData != ''">
+			AND storeBussinessData = #{storeBussinessData}
+		</if>
+		<if test="bussinessType != null and bussinessType != ''">
+			AND bussinessType = #{bussinessType}
+		</if>
+		<if test="applicationExplain != null and applicationExplain != ''">
+			AND applicationExplain = #{applicationExplain}
+		</if>
+		<if test="administratorContact != null and administratorContact != ''">
+			AND administratorContact = #{administratorContact}
+		</if>
+		<if test="url != null and url != ''">
+			AND url = #{url}
+		</if>
+		<if test="time != null and time != ''">
+			AND time = #{time}
+		</if>
+		<if test="province != null and province != ''">
+			AND province = #{province}
+		</if>
+		<if test="deviceActualAddress != null and deviceActualAddress != ''">
+			AND deviceActualAddress = #{deviceActualAddress}
+		</if>
+		<if test="timeRange != null and timeRange != ''">
+			<![CDATA[ and time >= DATE_SUB(NOW(),INTERVAL  ${timeRange})  and time <= NOW()]]>
+		</if>
+		group by timekey2 ) dat on timeunit.time = dat.timekey2  order by time
+	</select>
+	
+
+</mapper>
