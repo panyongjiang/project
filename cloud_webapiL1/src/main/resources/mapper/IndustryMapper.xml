@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.IndustryMapper">
+
+<select id="getIndustry" resultType="java.util.Map">
+    select id,industry_name as industryName from
+    industry order by id
+  </select>
+  
+  <select id="getIndustryById" resultType="com.uway.mobile.domain.Industry">
+    select * from
+    industry where id = #{id}
+  </select>
+</mapper>

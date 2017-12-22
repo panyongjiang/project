@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.CodeMapper">
+
+   <insert id="insertCode" parameterType="java.util.Map" >
+
+	  INSERT INTO active_code (code, create_user) VALUES 
+	  <foreach collection="list" item="item" index="index" separator="," > 
+      (#{item.code},#{item.createUser}) 
+      </foreach>
+    </insert>
+    
+    <select id="listCodes" resultType="java.util.Map">
+    
+    SELECT code FROM active_code WHERE status = '0' 
+    ORDER BY code ASC LIMIT #{pageNum}, #{pageSize}
+    </select>
+    
+    <select id="countCodes" resultType="long">
+    select count(1) from active_code where 1=1 AND status = '0'
+    </select>
+    
+    <select id="getCode" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from active_code where code= #{code} and status ='0'
+    </select>
+    
+    <update id="updCode" parameterType="java.util.Map">
+		update active_code set status = '1', user = #{userId} 
+		where code = #{code}
+	</update>
+</mapper>

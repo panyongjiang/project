@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.WafConfigMapper">
+    <resultMap type="com.uway.mobile.domain.Port" id="PortResultMap">
+       <id column="id" property="id"/>
+       <result column="portname" property="portName"/>
+       <result column="sid" property="sid"/>
+       <result column="ssid" property="ssid"/>
+       <result column="scheme" property="scheme"/>
+       <result column="listenPort" property="listenPort"/>
+       <result column="port" property="port"/>
+       <result column="status" property="status"/>
+       <result column="create_time" property="time"/>
+       <result column="point" property="siteSon" />
+    </resultMap>
+    
+    <resultMap type="com.uway.mobile.domain.SubDomainList" id="DomainResultMap">
+       <result column="site_waf_id" property="sid"/>
+       <result column="site_domain" property="sDomain"/>
+       <result column="son_site_id" property="ssid"/>
+       <result column="point" property="point"/>
+       <result column="host" property="host"/>
+    </resultMap>
+    
+    <resultMap type="com.uway.mobile.domain.Site" id="SiteResultMap">
+       <result column="task_id" property="taskId"/>
+    </resultMap>
+    
+    <resultMap type="com.uway.mobile.domain.SafeManagement" id="SafeResultMap">
+       <result column="site_waf_id" property="id"/>
+       <result column="site_domain" property="site_title"/>
+       <result column="site_son_id" property="ssid"/>
+       <result column="point" property="site_son_point"/>
+       <result column="value" property="value"/>
+    </resultMap>
+    
+    <resultMap type="com.uway.mobile.domain.InterceptUrl" id="InUrlResult">
+        <result column="i_name" property="name" />
+        <result column="i_type" property="type" />
+        <result column="create_time" property="time" />
+        <result column="user_name" property="user" />
+        <result column="user_id" property="userId"/>
+        <result column="site_waf_id" property="siteId"/>
+     </resultMap>
+    
+    <select id="getPort" resultMap="PortResultMap" parameterType="java.util.Map">
+            select portname,ssid,scheme,listenPort,port,s.point,status 
+                  from port p,site_son s 
+                      where s.son_site_id=p.ssid and p.create_user=#{user_id} order by p.create_time desc limit #{pageNum}, #{pageSize} 
+    </select>
+    
+    <select id="SelectPortNameById"  resultType="java.util.Map">
+            select * from port where portname = #{portName} and ssid = #{id}
+    </select>
+    
+    <select id="SelectPortInfoById"  resultType="java.util.Map">
+            select * from port 
+            where scheme = #{scheme} 
+            	and listenport = #{listenPort} 
+            	and port = #{port} 
+            	and ssid = #{id}
+    </select>
+    
+    <select id="countSiteSon" resultType="long" parameterType="java.util.Map">
+    	select count(1) from site p,site_son s 
+                      where p.site_waf_id=s.site_waf_id and s.create_user=#{user_id}
+                      <if test="searchKey !=null and searchKey !='' ">
+                            and ( p.site_domain like concat('%',#{searchKey},'%') 
+                                  or s.point like concat('%',#{searchKey},'%')
+                                  or s.host like concat('%',#{searchKey},'%')
+                                )
+                      </if>
+    </select>
+    
+    <select id="getDomainList" resultMap="DomainResultMap" parameterType="java.util.Map">
+            select s.site_waf_id,p.site_domain,s.son_site_id,s.point,s.host
+                  from site p,site_son s 
+                      where p.site_waf_id=s.site_waf_id and s.create_user=#{user_id}
+                         <if test="searchKey !=null and searchKey !='' ">
+                            and ( p.site_domain like concat('%',#{searchKey},'%') 
+                                  or s.point like concat('%',#{searchKey},'%')
+                                  or s.host like concat('%',#{searchKey},'%')
+                                )
+                         </if>
+                       order by s.create_time desc limit #{pageNum}, #{pageSize}
+    </select>
+    
+    <insert id="insertPort" parameterType="java.util.Map">
+         insert into port 
+            (portname,ssid,scheme,listenport,port,status,create_user) values
+               (#{portName},#{id},#{scheme},#{listenPort},#{port},#{status},#{user_id})
+    </insert>
+    
+    <select id="countPort" resultType="long" parameterType="java.util.Map">
+    	select count(1) from port where create_user=#{user_id}
+    </select>
+    
+    <select id="getSiteById" parameterType="java.util.Map" resultMap="SiteResultMap">
+       select task_id from site where site_waf_id=#{sid}
+    </select>
+    
+    <select id="countSafeManagement" resultType="long">
+    	select count(1) from safe_management 
+    </select>
+    
+    <select id="getSafeList" resultMap="SafeResultMap" parameterType="java.util.Map">
+       select p.site_domain,t.site_son_id,t.point,t.value,t.site_waf_id,t.create_time FROM site p,(
+           select m.site_son_id,s.point,m.value,s.site_waf_id,m.create_time 
+                from site_son s,safe_management m 
+                     where s.son_site_id=m.site_son_id) t 
+                          where p.site_waf_id=t.site_waf_id 
+                               order by t.create_time desc limit #{pageNum}, #{pageSize}
+    </select>
+    
+    <select id="countInList" resultType="long">
+        SELECT COUNT(1) 
+		FROM (SELECT a.i_type, a.ip, a.i_name, a.create_time, a.ssid, b.site_id, b.point, b.site_waf_id 
+			 FROM intercept_url a 
+			 LEFT JOIN site_son b 
+			 ON a.ssid = b.son_site_id
+			 WHERE a.user_id = #{userId}) c 
+		LEFT JOIN site s 
+		ON c.site_id = s.id 
+		WHERE 1=1
+		<if test="iType !=null and iType !='' ">
+            and c.i_type=#{iType}
+        </if>
+        <if test="iName != null and iName != ''">
+            and c.i_name like #{iName} 
+        </if>
+        <if test="ip != null and ip != ''">
+           and c.ip like #{ip} 
+        </if>
+        <if test="startTime != null and startTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(c.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(c.create_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
+		</if>
+     </select>
+     
+     <select id="getAllList" resultType="java.util.Map">
+        SELECT c.i_type, c.ip, c.i_name, DATE_FORMAT(c.create_time, '%Y-%m-%d %H:%i:%s') create_time,c.point, s.site_domain, c.ssid, c.site_waf_id, c.status 
+		FROM (SELECT a.i_type, a.ip, a.i_name, a.create_time, a.ssid, b.site_id, b.point, b.site_waf_id, a.status 
+			 FROM intercept_url a 
+			 LEFT JOIN site_son b 
+			 ON a.ssid = b.son_site_id
+			 WHERE a.user_id = #{userId}) c 
+		LEFT JOIN site s 
+		ON c.site_id = s.id 
+		WHERE 1=1
+		<if test="iType !=null and iType !='' ">
+            and c.i_type=#{iType}
+        </if>
+        <if test="iName != null and iName != ''">
+            and c.i_name like #{iName} 
+        </if>
+        <if test="ip != null and ip != ''">
+           and c.ip like #{ip} 
+        </if>
+        <if test="startTime != null and startTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(c.create_time, '%Y-%m-%d') >= #{startTime}
+			]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(c.create_time, '%Y-%m-%d') <= #{endTime}
+			]]>
+		</if>
+        order by c.create_time desc 
+        limit #{pageNum}, #{pageSize}
+     </select>
+   
+     <select id="getLen" parameterType="java.util.Map" resultMap="InUrlResult">
+        select ip from intercept_url where ssid=#{id} and status=#{keyword} and i_type=#{i_type}
+     </select>
+     
+     <insert id="insertIpOrUrl" parameterType="java.util.Map">
+        insert into intercept_url(i_name,i_type,ip,user_id,ssid,status,create_time) values
+           (#{i_name},#{i_type},#{ip},#{user_id},#{id},#{keyword},#{date})
+     </insert>
+     
+     <update id="updateIpOrUrl" parameterType="java.util.Map">
+         update intercept_url set i_name=#{i_name} where ssid=#{id} and status=#{keyword} and i_type=#{i_type} and ip=#{ip}
+     </update>
+     
+     <delete id="deleteIpOrUrl" parameterType="java.util.Map">
+        delete from intercept_url where ssid=#{id} and status=#{keyword} and i_type=#{i_type} and ip=#{ip} and i_name=#{i_name}
+     </delete>
+    
+    
+</mapper>  

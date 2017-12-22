@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.CertificateMapper">
+
+   <resultMap type="com.uway.mobile.domain.Site" id="SiteResultMap">
+      <result column="site_domain" property="siteDomain"/>
+      <result column="site_waf_id" property="siteWafId"/>
+   </resultMap>
+   
+   <resultMap type="com.uway.mobile.domain.SubDomainList" id="SubDomainResultMap">
+      <result column="son_site_id" property="ssid"/>
+      <result column="point" property="point"/>
+      <result column="site_domain" property="sDomain"/>
+   </resultMap>
+   
+   <select id="countSite" resultType="long">
+    	select count(1) from site 
+   </select>
+   
+   <select id="getSite" parameterType="java.util.Map" resultMap="SiteResultMap">
+      select site_domain,site_waf_id from site where type = 1 and create_user = #{createUser} order by create_time desc
+   </select>
+   
+   <select id="getSiteSonById" parameterType="java.util.Map" resultMap="SubDomainResultMap">
+      select son_site_id,point from site_son where site_waf_id=#{siteId} and son_site_id is not null order by create_time desc
+   </select>
+   
+   <select id="getDomainById" parameterType="java.util.Map" resultMap="SubDomainResultMap">
+      select s.point,p.site_domain from site p,site_son s where s.son_site_id=#{ssid} and s.site_waf_id=#{siteId} and p.site_waf_id=#{siteId}
+   </select>
+   
+   <insert id="insertCer" parameterType="com.uway.mobile.domain.Certificate">
+      insert into certificate_check 
+         (id,cer_name,cer_url,son_site_id,user_id) values
+            (uuid(),#{cerName},#{cerUrl},#{siteSonId},#{createUser})
+   </insert>
+   
+   
+    
+    
+</mapper>  

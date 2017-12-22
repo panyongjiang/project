@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.SiteMapper">
+    <insert id="insertSite" parameterType="com.uway.mobile.domain.Site" useGeneratedKeys="true" keyProperty="id">  
+	    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	   		SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	   
+	    insert into site(site_waf_id, site_title, site_domain, site_head, cdn_type, site_ip, site_repo, email, type, remark, verify_txt, create_user, sweep_time)  
+	    values(#{siteWafId}, #{siteTitle}, #{siteDomain}, #{siteHead}, #{cdn_type}, #{siteIp}, #{siteRepo}, #{email}, #{type}, #{remark}, #{verify_txt}, #{createUser}, #{sweepTime})
+    </insert>
+    
+    <select id="getAllSite" resultType="java.util.Map">
+		select id, IFNULL(site_title, '') siteTitle, site_domain siteDomain, IFNULL(site_ip, '') siteIp, site_repo siteRepo, email
+		from site where 1=1
+		<if test="userId != null and userId != ''">
+			and create_user=#{userId}
+		</if>
+		group by id, site_title, site_domain, site_ip, site_repo, email
+		order by create_time desc
+	</select>
+	
+	<select id="getAllSafeSite" resultType="java.util.Map">
+		select id, site_title siteTitle, site_domain siteDomain, site_ip siteIp, site_repo siteRepo, email
+		from site where type = 0
+		<if test="userId != null and userId != ''">
+			and create_user=#{userId}
+		</if>
+		group by id, site_title, site_domain, site_ip, site_repo, email
+		order by create_time desc
+	</select>
+	
+	<select id="getAllWAFSite" resultType="java.util.Map">
+		select id, site_domain,cdn_type,status,verify_txt from site where type = 1
+		<if test="userId != null and userId != ''">
+			and create_user=#{userId}
+		</if>
+		order by create_time desc
+	</select>
+	
+	<select id="getAllWAFId" resultType="java.util.Map">
+		select id as siteId from site where type = 1 and status = '2'
+	</select>
+	
+	<select id="getAllSAFEId" resultType="java.util.Map">
+		select id as siteId from site where type = 0
+	</select>
+	
+	<select id="getSiteByUrlType" resultType="java.util.Map">
+	    select * from site where site_title = #{site_title} and type = #{type}
+	</select>
+	
+	<select id="getSiteByIdType" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Site">
+	    select * from site where id = #{siteId} and type = #{type}
+	</select>
+	
+	<select id="getTask" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Site">
+	    select task_id from site where id = #{siteId} and type = #{type}
+	</select>
+	
+	<select id="getSiteRiskById" resultType="java.util.Map">
+	     SELECT id, from_time fromTime, end_time endTime,risk
+         FROM site_risk WHERE site_id = #{id} ORDER BY create_time DESC  LIMIT 1
+	</select>
+	<delete id="deleteSite" parameterType="java.util.Map">
+        delete from site where id=#{id}
+    </delete>
+    
+    <select id="getSiteById" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Site">
+    select * from site where id=#{id}
+    </select>
+    
+    <select id="getScan" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from site_scan where site_id = #{siteId} and last_end_time = #{lastEndTime}
+    </select>
+    
+    <insert id="insertScan" parameterType="java.util.Map" >  
+	    insert into site_scan(site_id, site_waf_id, last_end_time)  
+	    values(#{siteId}, #{siteWafId}, #{lastEndTime})
+    </insert>
+    
+    <select id="getLast" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT MAX(last_end_time) AS lastEndTime FROM site_scan WHERE site_id = #{siteId};
+    </select>
+    
+    <select id="getAllLast" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT site_id AS siteId, last_end_time AS lastEndTime FROM site_scan 
+    WHERE site_id = #{siteId} ORDER BY last_end_time DESC LIMIT 4;
+    </select>
+    
+    <select id="getAllSiteHole" resultType="java.util.Map">
+    	<![CDATA[
+	    	select fromTime, endTime, sum(d.hole_num) hole_num, sum(high_num) high_num, sum(mid_num) mid_num, sum(low_num) low_num
+			from(
+				select a.id, a.site_id, a.site_url, DATE_FORMAT(from_time,'%Y-%m-%d %H:%i:%s') fromTime, 
+					DATE_FORMAT(end_time,'%Y-%m-%d %H:%i:%s') endTime, IFNULL(b.hole_num, 0) hole_num, 
+					IFNULL(c.high_num, 0) high_num, IFNULL(c.mid_num, 0) mid_num, IFNULL(c.low_num, 0) low_num 
+				from (
+					select a1.* 
+					from site_risk a1, (
+						select max(create_time) createTime, site_id from site_risk group by site_id) b1 
+					where a1.site_id = b1.site_id and a1.create_time = b1.createTime
+				) a LEFT JOIN 
+					(select site_id, count(1) hole_num, site_risk_id from site_hole group by site_id, site_risk_id) b
+				on a.site_id = b.site_id and a.id = b.site_risk_id
+				LEFT JOIN(
+					select MAX(CASE WHEN level = '低危' THEN num ELSE 0 END) low_num,
+						MAX(CASE WHEN level = '中危' THEN num ELSE 0 END) mid_num,
+						MAX(CASE WHEN level = '高危' THEN num ELSE 0 END) high_num,
+						site_risk_id, site_id
+					from (
+						select site_risk_id, site_id, level, count(1) num 
+						from (
+							SELECT site_risk_id, site_id,
+								case when severity_points >= 5 and severity_points <= 7 then '中危'
+								when severity_points < 5 then '低危' 
+								else '高危' end level
+							FROM `site_hole` ) a3
+						group by site_risk_id, site_id, level
+					) b3 group by site_risk_id, site_id
+				) c on a.site_id = c.site_id and a.id = c.site_risk_id
+			) d where d.site_id in ( select id from site where create_user = #{userId})
+		]]>
+    </select>
+    
+    <update id="updSite" parameterType="com.uway.mobile.domain.Site">
+    update site set status=#{status}, task_id=#{taskId} where id=#{id}
+    </update>
+    <select id="getAllReport" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT CONCAT (s1.site_domain,s2.last_end_time) fileName , s2.last_end_time sweepTime 
+    	FROM site s1 LEFT JOIN site_scan s2 ON s1.id = s2.site_id 
+    	ORDER BY s2.last_end_time DESC 
+    	LIMIT #{pageNum}, #{pageSize}
+    </select>
+    <select id="getReportBySite" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT CONCAT (s1.site_domain,s2.last_end_time) fileName , DATE_FORMAT(s2.last_end_time, '%Y-%m-%d %H:%i:%s') sweepTime 
+    	FROM site_scan s2 LEFT JOIN site s1 ON s1.id = s2.site_id where s1.id = #{siteId}
+    	<if test="fromTime != null and endTime != null">
+    		and last_end_time BETWEEN #{fromTime} AND #{endTime}
+    	</if>
+    	ORDER BY s2.last_end_time DESC
+    	LIMIT #{pageNum}, #{pageSize}   	
+    </select>
+    <select id="countAllReport" resultType="long">
+    	SELECT count(1)     	 
+    	FROM site s1 LEFT JOIN site_scan s2 ON s1.id = s2.site_id 
+    	ORDER BY s2.last_end_time DESC 
+    </select>
+    <select id="countReportBySite" resultType="long">
+    	SELECT count(1)     	 
+    	FROM site_scan s2 LEFT JOIN site s1 ON s1.id = s2.site_id where s1.id = #{siteId}
+    	<if test="fromTime != null and endTime != null">
+    		and last_end_time BETWEEN #{fromTime} AND #{endTime}
+    	</if>
+    	ORDER BY s2.last_end_time DESC   	  	
+    </select>
+    <select id="getMinCreateTimeByUser" parameterType="java.util.Map" resultType="java.util.Map">
+    		SELECT MIN(create_time) createTime FROM site 
+    		WHERE create_user = #{createUser}
+    </select>
+    <select id="getLastByEndTime" parameterType="java.util.Map" resultType="java.util.Map">
+	    <![CDATA[
+		    SELECT MAX(last_end_time) AS lastEndTime FROM site_scan 
+		    WHERE site_id = #{siteId} and last_end_time < #{endTime};
+	    ]]>
+    </select>
+    <select id="getSiteDomainByUser" parameterType="java.util.Map" resultType="java.util.Map">	   		
+	   		SELECT site_domain,verify_txt,`status`  
+	   		FROM site WHERE TYPE =1 AND create_user = #{createUser}
+			UNION 
+			SELECT DISTINCT site_domain,verify_txt,`status` 			
+			FROM site WHERE TYPE=0 AND create_user = #{createUser} 
+			AND site_domain NOT IN (SELECT site_domain  
+	   		FROM site WHERE TYPE =1 AND create_user = #{createUser})
+    </select>
+    
+    <select id="saftSiteByUser" parameterType="java.util.Map" resultType="java.util.Map">
+    		SELECT site_title,site_domain 
+    		FROM site 
+    		WHERE type = #{type} 
+    		and create_user = #{userId}
+    		<if test="siteUrl != '' and siteUrl != null">
+    			and site_title LIKE '%${siteUrl}%'
+    		</if>
+    </select>
+    <select id="getSafeSiteByDomain" parameterType="java.util.Map" resultType="java.util.Map">
+    		SELECT id as siteId,site_title,IFNULL(sweep_time, '') sweep_time,IFNULL(remark, '') remark 
+    		FROM site 
+    		WHERE type = 0 
+    		and create_user = #{userId} 
+    		and site_domain = #{siteDomain}   		
+    </select>
+    <select id="getSonSiteByDomain" parameterType="java.util.Map" resultType="java.util.Map">
+    		SELECT a.id,a.site_id siteId,IFNULL(type, '') type, host, point, IFNULL(cname, '') cname, isp  
+    		FROM site_son a ,
+    		(SELECT id FROM site WHERE TYPE = 1 AND create_user = #{userId} AND site_domain = #{siteDomain}) b 
+			WHERE a.site_id=b.id		
+    </select>
+    <select id="getWafSiteByDomain" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Site">
+    		select * from site 
+    		where site_domain = #{siteDomain} and create_user = #{userId} and type = 1		
+    </select>   
+    <select id="getAllSiteList"  resultType="java.util.Map">	   		
+	   		SELECT * FROM 
+	   		(SELECT site_domain,verify_txt,`status`,user.user_name,site.create_user    
+	   		FROM site INNER JOIN `user` ON site.create_user = user.id WHERE site.type = 1 
+	   		<if test="site_domain != null and site_domain != ''">
+				and site.site_domain like #{site_domain}
+			</if>
+			<if test="userName != null and userName != ''">
+				and user.user_name = #{userName}
+			</if>
+			UNION 
+			SELECT DISTINCT site_domain,verify_txt,`status`,user.user_name,site.create_user   			
+			FROM site INNER JOIN `user` ON site.create_user = user.id WHERE site.type = 0 
+			<if test="site_domain != null and site_domain != ''">
+				and site.site_domain like #{site_domain}
+			</if>
+			<if test="userName != null and userName != ''">
+				and user.user_name = #{userName}
+			</if>
+			AND site.site_domain NOT IN (SELECT site_domain  
+	   		FROM site WHERE TYPE =1 )) AS a
+	   		ORDER BY a.user_name
+	   		LIMIT #{page_num}, #{page_size}
+     </select>
+     <select id="getAllSiteCount"  resultType="int">	   		
+	   		SELECT COUNT(1) FROM 
+	   		(SELECT site_domain,verify_txt,`status`,user.user_name   
+	   		FROM site INNER JOIN `user` ON site.create_user = user.id WHERE site.type = 1 
+	   		<if test="site_domain != null and site_domain != ''">
+				and site.site_domain like #{site_domain}
+			</if>
+			<if test="userName != null and userName != ''">
+				and user.user_name = #{userName}
+			</if>
+			UNION 
+			SELECT DISTINCT site_domain,verify_txt,`status`,user.user_name  			
+			FROM site INNER JOIN `user` ON site.create_user = user.id WHERE site.type = 0 
+			<if test="site_domain != null and site_domain != ''">
+				and site.site_domain like #{site_domain}
+			</if>
+			<if test="userName != null and userName != ''">
+				and user.user_name = #{userName}
+			</if>
+			AND site.site_domain NOT IN (SELECT site_domain  
+	   		FROM site WHERE TYPE =1 )) AS T
+     </select>
+    <select id="getSiteSafeServiceMsg" parameterType="java.util.Map" resultType="java.util.Map">	   		
+	   		SELECT a.site_end_time,MAX(IFNULL(ss.last_end_time,'')) last_end_time  
+	   		FROM 
+	   			(SELECT s.id,sa.user_id,sa.site_end_time 
+	   			 FROM site AS s,safe_category AS sa 
+	   			 WHERE s.create_user = sa.user_id AND s.id = #{siteId} AND sa.user_id = #{userId} ) 
+	   			 AS a
+			LEFT JOIN site_scan AS ss ON a.id=ss.site_id
+			GROUP BY site_end_time
+     </select>
+     <select id="getSiteWafServiceMsg" parameterType="java.util.Map" resultType="java.util.Map">	   		
+	   		SELECT a.waf_end_time,IFNULL(ss.host,'') host 
+	   		FROM 
+				(SELECT s.id,sa.user_id,sa.waf_end_time 
+				 FROM site AS s,safe_category AS sa 
+				 WHERE s.create_user = sa.user_id AND s.id = #{siteId} AND sa.user_id = #{userId} )
+				 AS a
+			LEFT JOIN site_son AS ss ON a.id=ss.site_id
+     </select>
+     <select id="getSitesByUserAndType" parameterType="java.util.Map" resultType="java.util.Map">
+    	SELECT id,site_title,site_domain
+	 	FROM site WHERE type=#{type}    	
+    	<if test="userId != null and userId != ''">
+				and create_user=#{userId}
+		</if>
+    </select>
+    <select id="getAllMaxLastBySite" resultType="java.util.Map">
+    	SELECT site_id,last_end_time 
+    	FROM site_scan 
+    	GROUP BY site_id 
+    	HAVING(MAX(last_end_time))
+    </select>
+    <select id="getSafeSiteByUser" resultType="java.util.Map">
+    	SELECT site_title as siteUrl 
+    	FROM site 
+    	WHERE create_user = #{createUser} AND TYPE = 0
+    </select>
+    <select id="getSafeSiteCountByUser" resultType="int">
+    	SELECT COUNT(1) 
+    	FROM site 
+    	WHERE create_user = #{createUser} AND TYPE = 0
+    </select>
+    <select id="getWafSiteByUser" resultType="java.util.Map">
+    	SELECT a.host,b.site_domain 
+    	FROM site_son a 
+    	RIGHT JOIN (SELECT site_waf_id,site_domain 
+    		FROM site 
+    		WHERE create_user = #{createUser} AND TYPE = 1) b 
+    	ON a.site_waf_id = b.site_waf_id
+    </select>
+    <select id="getWafSiteCountByUser" resultType="int">
+    	SELECT COUNT(1) 
+    	FROM site_son a 
+    	RIGHT JOIN (SELECT site_waf_id,site_domain 
+    		FROM site 
+    		WHERE create_user = #{createUser} AND TYPE = 1) b 
+    	ON a.site_waf_id = b.site_waf_id
+    </select>
+    <select id="getSiteCount" resultType="java.util.Map">
+    	SELECT COUNT(1) AS count1 ,
+    		(SELECT COUNT(1) FROM site WHERE TYPE = 0) AS count2 
+		FROM site_son a 
+		RIGHT JOIN (SELECT site_waf_id,site_domain FROM site WHERE TYPE = 1) b 
+		ON a.site_waf_id = b.site_waf_id
+    </select>
+</mapper>  

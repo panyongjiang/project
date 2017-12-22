@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.AppCheckMapper">
+	<insert id="insert" parameterType="com.uway.mobile.domain.AppCheck">
+		insert into app_check(id, app_name,app_url,create_user)
+		values(uuid(), #{appName},#{appUrl},#{createUser})
+	</insert>
+
+	<select id="countAppCheck" resultType="long" parameterType="java.util.Map">
+		select count(1) from app_check where 1=1 
+		<if test="userId != null and userId != ''">
+			AND create_user = #{userId}
+		</if>
+	</select>
+
+	<select id="listAppCheck" resultType="java.util.Map">
+		SELECT 
+			app.id as id, app.app_name AS appName, 
+			CASE app.app_status WHEN 1 THEN '已检测' ELSE '检测中' END AS appStatus,
+			app.app_status, app.app_url AS
+			appUrl, app.create_user AS createUser, app.app_chk_url AS appChkUrl,
+			app.app_chk_user AS appChkUser, u1.user_name AS createUserName,
+			u2.user_name AS appCheckUserName,
+			DATE_FORMAT(app.create_time, '%Y-%m-%d %H:%i:%s') AS createTime, IFNULL(remark, '') remark
+		FROM app_check app
+		LEFT JOIN `user` u1 ON u1.id = app.create_user
+		LEFT JOIN `user` u2 ON u2.id = app.app_chk_user
+		WHERE 1=1
+		<if test="userId != null and userId != ''">
+			AND app.create_user = #{userId}
+		</if>
+		ORDER BY app.create_time DESC LIMIT #{pageNum}, #{pageSize};
+
+	</select>
+
+	<select id="getAppById" resultType="com.uway.mobile.domain.AppCheck">
+		select * from app_check where
+		id = #{appCheckId}
+	</select>
+
+	<update id="addAppReport" parameterType="java.util.Map">
+		update app_check set app_status= 1, app_chk_url = #{appCheckUrl},
+		app_chk_user = #{appCheckUser}
+		<if test="remark != null and remark != ''">
+			, remark = #{remark}
+		</if>
+		where id = #{id}
+	</update>
+
+</mapper>

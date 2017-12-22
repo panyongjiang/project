@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.SiteSonMapper">
+    <insert id="insertSiteSon" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+    
+     insert into site_son(site_id, site_waf_id, son_site_id,type,host,point,isp,use_cdn,son_order,cname,create_user)  
+	 values(#{site_id},#{site_waf_id}, #{son_site_id}, #{model},#{host},#{point},#{isp},#{use_cdn},#{order},#{cname},#{userId})
+    </insert>
+    
+    <select id="getSiteSonById" resultType="java.util.Map">
+		SELECT site_waf_id AS sid, son_site_id as id 
+		FROM site_son WHERE id=#{siteSonId}
+	</select>
+	
+	<delete id="deleteSon" parameterType="java.util.Map">
+        delete from site_son where id=#{id}
+    </delete>
+    <delete id="deleteSonBySite" parameterType="java.util.Map">
+        delete from site_son where site_id=#{siteId}
+    </delete>
+     <select id="getSons" resultType="java.util.Map">
+		SELECT son_site_id as id 
+		FROM site_son WHERE site_waf_id=#{siteWafId}
+	</select>
+    
+    <select id="listSon" resultType="java.util.Map">
+    SELECT id, type, host, point, cname, isp  FROM site_son WHERE site_id = #{siteId};
+    </select>
+    
+    <update id="updSonSite" parameterType="java.util.Map">
+    update site_son set point = #{point} where id = #{id}
+    </update>
+    </mapper>

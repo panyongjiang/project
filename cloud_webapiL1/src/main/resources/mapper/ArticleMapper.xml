@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.ArticleMapper">
+	<select id="getArticleByName" resultType="java.util.Map">
+		select id, title, sub_title as subTitle, pic_url as picUrl, category_id as categoryId,
+			IFNULL(description, '') description, IFNULL(remark, '') remark, sort, 
+			IFNULL(author, '') author, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') createTime
+		from article 
+		where title like #{title}
+	</select>
+	
+	<select id="showArticleById" resultType="java.util.Map">
+		select id, title, sub_title as subTitle, pic_url as picUrl, category_id as categoryId,
+			IFNULL(remark, '') remark, content, IFNULL(description, '') description, sort, 
+			author, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') createTime, pic_id as picId, status
+		from article 
+		where id = #{id}
+	</select>
+	
+	<select id="getArticleById" resultType="com.uway.mobile.domain.Article">
+		select * from article where id=#{id}
+	</select>
+    
+    <select id="countArticleByCategory" resultType="long">
+    	select count(1) from article where 1=1 and status = '1'
+		<if test="categoryId != null and categoryId != ''">
+			and category_id = #{categoryId}
+		</if>
+    </select>
+    
+    <select id="headerArticleBanner" resultType="java.util.Map">
+    	select id, title, sub_title as subTitle, pic_url as picUrl, category_id as categoryId, description
+		from article 
+		where category_id = #{categoryId} order by sort desc limit #{pageNum}, #{pageSize}
+    </select>
+    
+    <select id="listArticleByCategory" resultType="java.util.Map">
+    	select id, title, IFNULL(sub_title,'') as subTitle, pic_url as picUrl, category_id as categoryId,
+			content, IFNULL(description, '') description, IFNULL(remark, '') remark, sort, 
+			author, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i%s') createTime, pic_id as picId,status
+		from article where 1=1 
+		<if test="categoryId != null and categoryId != ''">
+			and category_id = #{categoryId}
+		</if>
+		 order by create_time desc limit #{pageNum}, #{pageSize}
+    </select>
+    
+    <select id="listPublishedArticleByCategory" resultType="java.util.Map">
+    	select id, title, IFNULL(sub_title,'') as subTitle, pic_url as picUrl, category_id as categoryId,
+			content, IFNULL(description, '') description, IFNULL(remark, '') remark, sort, 
+			author, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i%s') createTime, pic_id as picId,status
+		from article where status=1
+		<if test="categoryId != null and categoryId != ''">
+			and category_id = #{categoryId}
+		</if>
+		 order by create_time desc limit #{pageNum}, #{pageSize}
+    </select>
+    
+    <select id="listCategory" resultType="java.util.Map">
+    	select id, category_name categoryName from article_category
+    </select>
+    
+    <select id="validateArticle" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Article">
+    	select * from article where title=#{title}
+    	<if test="id != null and id != ''">
+    		and id &lt;&gt; #{id}
+    	</if>
+    </select>
+    
+    <select id="getMaxSort" resultType="long">
+    	select count(1) from article where category_id = #{categoryId}
+    </select>
+    
+    <insert id="insertArticle" parameterType="com.uway.mobile.domain.Article">
+    	insert into article (id, title, sub_title, category_id, content, description, sort, author, create_user,pic_id,remark)
+    	values (uuid(), #{title}, #{subTitle}, #{categoryId}, #{content}, #{description}, #{sort}, #{author}, #{createUser}, #{picId}, #{remark})
+    </insert>
+    
+    <update id="updateArticle" parameterType="com.uway.mobile.domain.Article">
+    	update article set sub_title=#{subTitle}, category_id = #{categoryId}, content = #{content},
+    		description = #{description}, sort = #{sort}, author = #{author}, title = #{title}, remark = #{remark}
+    	<if test="picId != null and picId != ''">
+    		, pic_id = #{picId}
+    	</if>
+    	where id = #{id}
+    </update>
+    
+    <update id="moveSortArticle">
+    	udpate article set sort = sort - 1 where sort &gt; #{sort}
+    </update>
+    
+    <update id="updArticleStateById"  parameterType="java.util.Map" >
+        update article set status = 1
+    	where id = #{id}
+    </update>
+    
+    <delete id="delArticleById" parameterType="java.lang.String">
+    	delete from article where id = #{id}
+    </delete>
+    
+    <update id="updateArticleStatus" parameterType="java.lang.String">
+    	update article set status = 1 where id = #{id}
+    </update>
+</mapper>  

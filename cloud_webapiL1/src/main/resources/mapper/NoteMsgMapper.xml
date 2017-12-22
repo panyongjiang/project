@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.NoteMsgMapper">
+	<select id="getAllNoteMsg" parameterType="java.util.Map" resultType="java.util.Map">
+		select id, user_id, title, content, status, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i%s') createTime
+		from note_msg where 1=1 and user_id = #{userId}
+		limit #{pageNum}, #{pageSize}
+	</select>
+
+	<select id="countAllNoteMsg" parameterType="java.util.Map" resultType="long">
+		select count(1) from note_msg where 1=1 and user_id = #{userId}
+	</select>
+	
+	<select id="getNoteMsgById" resultType="java.util.Map">
+		select id, user_id, title, content, status, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i%s') createTime
+		from note_msg where id=#{id} and user_id = #{userId}
+	</select>
+    
+    <update id="updNoteMsgStatus" parameterType="java.util.Map">
+    	update note_msg set status = 1 where id = #{id} and user_id = #{userId}
+    </update>
+    
+    <delete id="delNoteMsg">
+	    <![CDATA[
+	    	delete from note_msg where DATE_FORMAT(create_time, '%Y-%m-%d %H:%i%s') <= #{delTime}
+    	]]>
+    </delete>
+</mapper>  

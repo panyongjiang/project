@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.SensitiveMapper">
+	<insert id="insertSensitive" parameterType="com.uway.mobile.domain.SensitiveWord">
+		insert into sensitive_word (id,name) values (uuid(),#{name})
+	</insert>
+	
+	<delete id="delSensitive" parameterType="java.lang.String">
+		delete from sensitive_word where name = #{name}
+	</delete>
+	<select id="checkWord" resultType="java.lang.String">
+		select name from sensitive_word where name = #{name}
+	</select>
+</mapper>

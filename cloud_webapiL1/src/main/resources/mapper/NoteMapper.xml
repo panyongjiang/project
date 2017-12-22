@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.NoteMapper">
+	<select id="getAllNote" parameterType="java.util.Map" resultType="java.util.Map">
+		select id, content, phone, CASE WHEN status = 0 THEN '未处理' ELSE '已处理' END status,
+		DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') createTime from note where 1=1
+		<if test="mobile != null and mobile != ''">
+			and phone like #{mobile}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="content != null and content != ''">
+			and content like #{content}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
+		</if>
+		ORDER BY create_time DESC 
+		limit #{pageNum}, #{pageSize}
+	</select>
+
+	<select id="countAllNote" parameterType="java.util.Map" resultType="long">
+		select count(1) from note where 1=1
+		<if test="mobile != null and mobile != ''">
+			and phone like #{mobile}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="content != null and content != ''">
+			and content like #{content}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
+		</if>
+	</select>
+	
+	<select id="getNoteById" resultType="java.util.Map">
+		select id, phone, content, status, DATE_FORMAT(create_time, '%Y-%m-%d %H:%i%s') createTime from note where id=#{id}
+	</select>
+	
+    <insert id="insertNote" parameterType="com.uway.mobile.domain.Note">  
+	    insert into note(id, phone, content)  
+	    values(uuid(), #{phone}, #{content})
+    </insert>
+    
+    <update id="updNoteStatus" parameterType="java.util.Map">
+    	update note set status = #{status} where id = #{id}
+    </update>
+    
+    <delete id="delNote">
+    	delete from note where id=#{id}
+    </delete>
+</mapper>  
