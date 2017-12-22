@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.ProtectRuleMapper">
+      <sql id="base_column">
+			id,
+			domain_id,
+			record_name,
+			name,
+			operate,
+			ip_rule,
+			url_rules,
+			method_rules,
+			header_rules,
+			cookie_rules,
+			args_rules,
+			rule_id,
+			enable
+       </sql>
+      
+      <insert id="addProtectRule" parameterType="java.util.Map">
+          insert into protect_rule(id,domain_id,record_name,name,operate,rule_id) values(uuid(),#{domain_id},#{record_name},#{name},#{operate},#{rule_id})
+      </insert>
+      
+      <select id="getChildDomainRuleByRecordName" parameterType="java.util.Map" resultType="java.util.Map">
+           select 
+           <include refid="base_column"></include>
+           from protect_rule where rule_id = #{rule_id}
+      </select>
+  
+      <update id="updateProtectRule" parameterType="java.util.Map">
+          update protect_rule set name = #{name}
+           <if test="record_name != null and record_name != ''">
+              ,record_name = #{record_name}
+          </if>
+           <if test="name != null and name != ''">
+              ,name = #{name}
+          </if>
+           <if test="operate != null and operate != ''">
+              ,operate = #{operate}
+          </if>
+           <if test="rule_id != null and rule_id != ''">
+              ,rule_id = #{rule_id}
+          </if>
+          where domain_id = #{domain_id}
+      </update>
+
+      
+      <delete id="deleteProtectRule" parameterType="java.util.Map">
+           delete from protect_rule where rule_id = #{rule_id}
+      </delete>
+      
+      
+      <delete id="deleteRecordAllProtectRule" parameterType="java.util.Map">
+           delete from protect_rule where domain_id = #{domain_id} and record_name = #{record_name}
+      </delete>
+      
+
+
+
+</mapper>

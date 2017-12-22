@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.WafSiteMapper">
+    <sql id="base_column">
+        id,
+		domain_id,
+		site_title,
+		site_domain,
+		user_id,
+		defense_mode,
+		type,
+		name,
+		ip,
+		port,
+		view,
+		record_id,
+		ttl,
+		cname,
+		parent_id,
+		record_name,
+		status
+    </sql>
+    
+     <sql id="base_column_status">
+        id,
+		domain_id,
+		site_title,
+		site_domain,
+		user_id,
+		create_time,
+		modify_time,
+		defense_mode,
+		type,
+		name,
+		ip,
+		port,
+		view,
+		record_id,
+		ttl,
+		cname,
+		parent_id,
+		record_name,
+		CASE STATUS
+		     WHEN '1' THEN '已激活' 
+		     WHEN '0' THEN '未激活' END as status
+    </sql>
+    
+    
+    <sql id="base_column_pojo">
+        id,
+		domain_id AS domainId,
+		site_title AS siteTitle,
+		site_domain AS siteDomain,
+		user_id AS userId,
+		create_time AS createTime,
+		modify_time AS modifyTime,
+		defense_mode AS defenseMode,
+		type,
+		name,
+		ip,
+		port,
+		view,
+		record_id AS recordId,
+		ttl,
+		cname,
+		parent_id AS parentId,
+		status,
+		record_name
+    </sql>
+    
+    <insert id="addChildDomainById" parameterType="java.util.Map">
+         insert into waf_site (domain_id,name,ip,port,view,ttl,parent_id,record_id,cname,user_id,record_name,site_title,site_domain) values(#{domain_id},#{name},#{ip},#{port},#{view},#{ttl},#{domain_id},#{record_id},#{cname},#{user_id},#{record_name},#{site_title},#{site_domain})
+    </insert>
+    
+     <insert id="addDomainById" parameterType="java.util.Map">
+         insert into waf_site (domain_id,defense_mode,type,user_id,site_title,site_domain) values(#{domain_id},#{defense_mode},#{type},#{user_id},#{site_title},#{site_domain})
+    </insert>
+    
+    
+    <select id="selectDomainByUser"  parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        <include refid="base_column"></include> 
+        from waf_site where user_id = #{user_id} and parent_id = 0
+    </select>
+
+    <select id="selectDomainByUserLimit" parameterType="java.util.Map"  resultType="java.util.Map">
+         select
+        <include refid="base_column_status"></include> 
+        from waf_site where user_id = #{user_id} and parent_id = 0
+        <if test="site_domain!=null and site_domain!=''">
+           and site_domain like #{site_domain}
+        </if>
+        <if test="domain_id != null and domain_id != ''">
+           and domain_id = #{domain_id}
+        </if>
+        order by create_time ASC limit  #{page_num}, #{page_size}
+    </select>
+    
+    <select id="selectCountDomainByUser"  parameterType="java.util.Map"  resultType="java.lang.Long">
+        select
+        count(1)
+        from waf_site where user_id = #{user_id} and parent_id = 0
+        <if test="site_domain!=null and site_domain!=''">
+           and site_domain like #{site_domain}
+        </if>
+        <if test="domain_id != null and domain_id != ''">
+           and domain_id = #{domain_id}
+        </if>
+    </select>
+    
+    <select id="selectChildDomainById"  parameterType="java.util.Map"  resultType="java.util.Map">
+         select
+        <include refid="base_column"></include> 
+         from waf_site where parent_id = #{domain_id} group by record_name 
+    </select>
+    
+    
+    <select id="selectChildDomainByIdLimit"  parameterType="java.util.Map"  resultType="java.util.Map">
+         select
+        <include refid="base_column"></include> 
+         from waf_site where parent_id = #{domain_id}
+         limit  #{page_num}, #{page_size}
+    </select>
+    
+    
+    <select id="selectCountChildDomainById"  parameterType="java.util.Map"  resultType="java.lang.Long">
+         select
+         count(1)
+         from waf_site where parent_id = #{domain_id}
+    </select>
+    
+    
+    <select id="selectChildDomainByChildId"  parameterType = "java.lang.String" resultType="java.util.Map" >
+        select 
+        <include refid="base_column"></include>
+        from waf_site where id = #{id}
+    </select>
+    
+    
+    <select id="getAllDomianIds"  parameterType = "java.lang.String" resultType="java.lang.String" >
+         select domain_id from waf_site where parent_id = 0
+     </select>
+     
+     <select id="getAllDomainWafSites"  parameterType = "java.lang.String" resultType="java.util.Map" >
+         select 
+         <include refid="base_column_status"></include>
+          from waf_site where parent_id = 0
+     </select>
+     
+     
+     <select id="getAllChildWafSites"  resultType="java.util.Map"  >
+         select 
+         <include refid="base_column"></include>
+         from waf_site where status = 1 and parent_id != 0
+     </select>
+    
+     
+    <update id="updateChildDomainById" parameterType="java.util.Map">
+          update waf_site set record_id = #{record_id},ip = #{ip},view = #{view},ttl = #{ttl},port = #{port}
+          where id = #{id}
+    </update>
+    
+    <delete id="deleteChildDomainById" parameterType="java.util.Map">
+         delete from waf_site where parent_id = #{id}
+    </delete>
+    
+    <delete id="deleteDomainById" parameterType="java.util.Map">
+          delete from waf_site where id = #{id}
+    </delete>
+
+</mapper>

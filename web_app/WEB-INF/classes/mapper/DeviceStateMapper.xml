@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.DeviceStateMapper">
+	<sql id="device_state_insert">
+		device_indicator,device_ip,cpu_usage_rate,memory_total,memory_usage,network_rx,network_tx,network_speed
+	</sql>
+	
+	<sql id="device_state_select">
+		id,device_module as deviceModule,device_indicator as deviceIndicator,device_name as deviceName,device_type as deviceType,device_model_num as deviceModelNum,device_vendor as deviceVendor,
+		device_ip as deviceIp,device_system as deviceSystem,cpu_usage_rate as cpuUsageRate,memory_total as memoryTotal,memory_usage as memoryUsage,network_rx as networkRx,network_tx as networkTx,network_speed as networkSpeed
+	</sql>
+	
+	<insert id="saveDeviceState" parameterType="com.uway.web.domain.DeviceState">
+		insert into device_state(
+			<include refid="device_state_insert" />
+		)values (
+			#{deviceIndicator},
+			#{deviceIp},
+			#{cpuUsageRate},
+			#{memoryTotal},
+			#{memoryUsage},
+			#{networkRx},
+			#{networkTx},
+			#{networkSpeed}
+		)
+	</insert>
+	
+	<update id="updateDeviceState" parameterType="com.uway.web.domain.DeviceState">
+		update device_state 
+		 <trim prefix="set" suffixOverrides=",">
+		  <if test="deviceName != null">device_name=#{deviceName},</if>
+		  <if test="deviceType != null">device_type=#{deviceType},</if>
+		  <if test="deviceModelNum != null">device_model_num=#{deviceModelNum},</if>
+		  <if test="deviceVendor != null">device_vendor=#{deviceVendor},</if>
+		  <if test="deviceIp != null">device_ip=#{deviceIp},</if>
+		  <if test="deviceSystem != null">device_system=#{deviceSystem},</if>
+		  <if test="memoryTotal != null">memory_total=#{memoryTotal},</if>
+		  <if test="memoryUsage != null">memory_usage=#{memoryUsage},</if>
+		  <if test="networkRx != null">network_rx=#{networkRx},</if>
+		  <if test="networkTx != null">network_tx=#{networkTx},</if>
+		  <if test="networkSpeed != null">network_speed=#{networkSpeed},</if>
+		 </trim>
+		 where  <if test="id != null and id > 0">
+					id = #{id}
+				</if>
+				<if test="deviceIndicator != null">
+					device_indicator = #{deviceIndicator}
+				</if>
+	</update>
+	
+	<select id="getDeviceStates" parameterType="com.uway.web.domain.DeviceState" 
+		resultType="com.uway.web.domain.DeviceState">
+		select <include refid="device_state_select" /> from device_state
+			where 1 =1 
+				<if test="id != null and id > 0">
+					and id = #{id}
+				</if>
+				<if test="deviceIndicator != null">
+					and device_indicator = #{deviceIndicator}
+				</if>
+				<if test="deviceModule != null">
+					and device_module = #{deviceModule}
+				</if>
+	</select>
+	
+	<select id= "getWafServiceCount" resultType="Long">
+		select count(1) as cnt from waf_site where parent_id = 0 and status = 1
+	</select>
+	
+	<select id= "getSafetyTaskCount" resultType="Long">
+		select count(1) as cnt from site_scan
+	</select>
+	
+	<select id= "getSenTaskCount" resultType="Long">
+		select count(1) as cnt from sensitive_job
+	</select>
+	
+	<select id= "getWafServiceList" parameterType="java.util.Map" 
+		resultType="java.util.Map">
+		select ws.domain_id as domainId,u.id,u.company,ws.site_domain as domainName from waf_site ws
+			left join user u on ws.user_id = u.id
+			where ws.parent_id = 0
+		  		and ws.status = 1
+		  		<if test="domainName != null">
+					and ws.site_domain like CONCAT('%',#{domainName},'%')
+				</if>
+				<if test="company != null">
+					and u.company like CONCAT('%',#{company},'%')
+				</if>
+			limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id= "getSafetyScanTaskList" parameterType="java.util.Map" 
+		resultType="java.util.Map">
+		select ss.record_id,u.id,u.company,ss.execution_mode,ss.last_end_time,IF(ws.record_name = '' or ISNULL(ws.record_name),ws.site_domain,CONCAT(ws.record_name,'.',ws.site_domain)) as domainName from site_scan ss ,waf_site ws
+		left join user u on ws.user_id = u.id
+		where ws.record_id = ss.record_id
+			  <if test="domainName != null">
+			  	and ws.site_domain like CONCAT('%',#{domainName},'%')
+			  </if>
+			  <if test="company != null">
+			  	and u.company like CONCAT('%',#{company},'%')
+			  </if>
+			limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id= "getSenTaskList" parameterType="java.util.Map" 
+		resultType="java.util.Map">
+		select ss.record_id,u.id,u.company,ss.detect_target,ss.modify_time,concat('每',ss.day_period,'天 ',ss.run_time) as runPeriod,IF(ws.record_name = '' or ISNULL(ws.record_name),ws.site_domain,CONCAT(ws.record_name,'.',ws.site_domain)) as domainName from sensitive_job ss ,waf_site ws
+		left join user u on ws.user_id = u.id
+		where ws.record_id = ss.record_id
+			  <if test="domainName != null">
+			  	and ws.site_domain like CONCAT('%',#{domainName},'%')
+			  </if>
+			  <if test="company != null">
+			  	and u.company like CONCAT('%',#{company},'%')
+			  </if>
+			limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id= "getDomianList" parameterType="java.util.Map" 
+		resultType="String">
+		select site_domain from waf_site ws 
+		where 1 =1 
+			<if test="domainName != null">
+				and ws.site_domain like CONCAT('%',#{domainName},'%') 
+			</if>
+		ORDER BY LENGTH(site_domain)
+		limit 0,10
+	</select>
+	
+	<select id= "getCompanyList" parameterType="java.util.Map" 
+		resultType="String">
+		select company from user 
+			where 1 =1 
+				<if test="domainName != null">
+				  and company like CONCAT('%',#{company},'%')
+				</if>
+			ORDER BY LENGTH(company)
+			limit 0,10
+	</select>
+	
+</mapper>  

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: web_app
+Implementation-Version: 0.0.1
+Archiver-Version: Plexus Archiver
+Built-By: S-BJ-NPC-0004
+Implementation-Vendor-Id: com.uway.base
+Created-By: Apache Maven 3.2.1
+Build-Jdk: 1.8.0_11
+Implementation-URL: http://projects.spring.io/spring-boot/base_factory
+ /web_app/
+Implementation-Vendor: Pivotal Software, Inc.
+

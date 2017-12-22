@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.UserApplicationMapper">
+      <sql id="base_column">
+		id,company,responsible,phone,email,city,service,url,status,operate,operatetime,applicantion
+       </sql>
+      
+      <insert id="addUserApplication" parameterType="java.util.Map">
+          insert into user_application
+          (company,responsible,phone,email,city,service,url,status,operate,operatetime,applicantion) 
+          values
+          (#{company},#{responsible},#{phone},#{email},#{city},#{service},#{url},#{status},#{operate},#{operatetime},#{applicantion})
+      </insert>
+      
+      <select id="selectUserApplication" parameterType="java.util.Map"  resultType="java.util.Map">
+           select
+           <include refid="base_column"></include>
+           from user_application where 1=1
+           <if test="id != null and id != ''">
+              AND id = #{id}
+          	</if>
+          	<if test="company != null and company != ''">
+              AND company like CONCAT('%',#{company},'%')
+          	</if>
+          	<if test="responsible != null and responsible != ''">
+              AND responsible = #{responsible}
+          	</if>
+          	<if test="phone != null and phone != ''">
+              AND phone = #{phone}
+          	</if>
+          	<if test="email != null and email != ''">
+              AND email = #{email}
+          	</if>
+          	<if test="service != null and service != ''">
+              AND service = #{service}
+          	</if>
+          	<if test="city != null and city != ''">
+              AND city = #{city}
+          	</if>
+          	<if test="url != null and url != ''">
+              AND url = #{url}
+          	</if>
+          	<if test="status != null and status != ''">
+              AND status = #{status}
+          	</if>
+          	<if test="operate != null and operate != ''">
+              AND operate = #{operate}
+          	</if>         	          	
+          	<if test="beginTime !=null and beginTime !=''">
+	            <![CDATA[
+	            AND applicantion >= #{beginTime}
+	            ]]>
+			</if>
+			<if test="endTime !=null and endTime !=''">
+            	<![CDATA[
+            	AND applicantion <= #{endTime}
+            	]]>
+			</if>
+             order by id Desc limit #{page_num}, #{page_size}     	        	 
+      </select>
+  
+  	  <select id="countUserApplication" parameterType="java.util.Map"  resultType="java.lang.Long">
+           select
+           count(1)
+           from user_application where 1=1
+           <if test="id != null and id != ''">
+              AND id = #{id}
+          	</if>
+          	<if test="company != null and company != ''">
+              AND company like CONCAT('%',#{company},'%')
+          	</if>
+          	<if test="responsible != null and responsible != ''">
+              AND responsible = #{responsible}
+          	</if>
+          	<if test="phone != null and phone != ''">
+              AND phone = #{phone}
+          	</if>
+          	<if test="email != null and email != ''">
+              AND email = #{email}
+          	</if>
+          	<if test="service != null and service != ''">
+              AND service = #{service}
+          	</if>
+          	<if test="city != null and city != ''">
+              AND city = #{city}
+          	</if>
+          	<if test="url != null and url != ''">
+              AND url = #{url}
+          	</if>
+          	<if test="status != null and status != ''">
+              AND status = #{status}
+          	</if>
+          	<if test="operate != null and operate != ''">
+              AND operate = #{operate}
+          	</if> 
+       </select>	
+  
+  
+      <update id="updateUserApplication" parameterType="java.util.Map">
+          update user_application set id = #{id}
+           <if test="responsible != null and responsible != ''">
+              ,responsible = #{responsible}
+          </if>
+           <if test="phone != null and phone != ''">
+              ,phone = #{phone}
+          </if>
+           <if test="email != null and email != ''">
+              ,email = #{email}
+          </if>
+           <if test="service != null and service != ''">
+              ,service = #{service}
+          </if>
+          <if test="city != null and city != ''">
+              ,city = #{city}
+          </if>
+          <if test="url != null and url != ''">
+              ,url = #{url}
+          </if>
+          <if test="status != null and status != ''">
+              ,status = #{status}
+          </if>
+           <if test="operate != null and operate != ''">
+              ,operate = #{operate}
+          </if>
+          <if test="operatetime != null">
+              ,operatetime = #{operatetime}
+          </if>
+         <if test="applicantion != null">
+              ,applicantion = #{applicantion}
+          </if>       
+          where id = #{id}
+      </update>
+
+      
+      <delete id="deleteUserApplication" parameterType="java.util.Map">
+           delete from user_application where id = #{id}
+      </delete>
+      
+
+
+
+</mapper>

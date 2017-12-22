@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.DictionariesMapper">
+	<select id="getDictionaries" resultType="java.util.Map">
+		select ds.id,ds.code,ds.chinese_name as chineseName,ds.english_name as englishName,ds.status,ds.parent_id as parentId,
+		pds.code as pcode,pds.chinese_name as pchineseName,pds.english_name as penglishName,ds.describes as describes
+		from dictionaries as ds
+		left join dictionaries as pds on ds.parent_id=pds.id
+		where 1=1
+		<if test="id!=null">
+			and ds.id = #{id}
+		</if>
+		<if test="code!=null and code!=''">
+			and ds.code = #{code}
+		</if>
+		<if test="chineseName!=null and chineseName!=''">
+			and ds.chinese_name like CONCAT('%',#{chineseName},'%')
+		</if>
+		<if test="englishName!=null and englishName!=''">
+			and ds.english_name like CONCAT('%',#{englishName},'%')
+		</if>
+		<if test="parentId!=null">
+			and ds.parent_id=#{parentId}
+		</if>
+		<if test="status!=null and status!=''">
+			and ds.status=#{status}
+		</if>
+	</select>
+
+	<select id="getDictionariesByCode" resultType="com.uway.web.domain.Dictionaries">
+		select ds.id,ds.code,ds.chinese_name as chineseName,ds.describes as describes,ds.english_name as englishName,ds.status,ds.parent_id as parentId
+		from dictionaries as ds
+		where ds.code = #{code}
+	</select>
+	
+	<select id="listDictionaries" resultType="java.util.Map">
+		select ds.id,ds.code,ds.chinese_name as chineseName,ds.english_name as englishName,ds.status,ds.parent_id as parentId,
+		pds.code as pcode,pds.chinese_name as pchineseName,pds.english_name as penglishName,ds.describes as describes 
+		from dictionaries as ds
+		left join dictionaries as pds on ds.parent_id=pds.id
+		where 1=1 and ds.parent_id = 0
+		<if test="id!=null">
+			and ds.id = #{id}
+		</if>
+		<if test="code!=null and code!=''">
+			and ds.code = #{code}
+		</if>
+		<if test="chineseName!=null and chineseName!=''">
+			and ds.chinese_name like CONCAT('%',#{chineseName},'%')
+		</if>
+		<if test="englishName!=null and englishName!=''">
+			and ds.english_name like CONCAT('%',#{englishName},'%')
+		</if>
+		<if test="status!=null and status!=''">
+			and ds.status=#{status}
+		</if>
+		<if test="parentId!=null">
+			and ds.parent_id=#{parentId}
+		</if>
+		order by ds.create_time desc limit #{page_num}, #{page_size}
+	</select>
+	
+	<select id="listCountDictionaries" resultType="java.lang.Long">
+		select count(1)
+		from dictionaries as ds
+		left join dictionaries as pds on ds.parent_id=pds.id
+		where 1=1 and ds.parent_id = 0
+		<if test="id!=null">
+			and ds.id = #{id}
+		</if>
+		<if test="code!=null and code!=''">
+			and ds.code = #{code}
+		</if>
+		<if test="chineseName!=null and chineseName!=''">
+			and ds.chinese_name like CONCAT('%',#{chineseName},'%')
+		</if>
+		<if test="englishName!=null and englishName!=''">
+			and ds.english_name like CONCAT('%',#{englishName},'%')
+		</if>
+		<if test="status!=null and status!=''">
+			and ds.status=#{status}
+		</if>
+		<if test="parentId!=null">
+			and ds.parent_id=#{parentId}
+		</if>
+	</select>
+	
+	
+	<select id="countDictionaries" parameterType="java.util.Map" resultType="long">
+		select count(1) from dictionaries
+		where 1=1
+		<if test="id!=null">
+			and ds.id = #{id}
+		</if>
+		<if test="code!=null and code!=''">
+			and code = #{code}
+		</if>
+		<if test="chineseName!=null and chineseName!=''">
+			and chinese_name like CONCAT('%',#{chineseName},'%')
+		</if>
+		<if test="englishName!=null and englishName!=''">
+			and english_name like CONCAT('%',#{englishName},'%')
+		</if>
+		<if test="status!=null and status!=''">
+			and status=#{status}
+		</if>
+		<if test="parentId!=null">
+			and parent_id=#{parentId}
+		</if>
+	</select>
+	
+	<select id="getDictionariesById" resultType="com.uway.web.domain.Dictionaries">
+		select ds.id,ds.code,ds.chinese_name as chineseName,ds.english_name as englishName,ds.status,ds.parent_id as parentId,ds.describes as describes
+		from dictionaries as ds
+		where id = #{id}
+	</select>
+	
+	<select id="getDictionariesIdByPId" resultType="long" parameterType="java.util.List">
+		select id
+		from dictionaries as ds
+		where parent_id in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<insert id="addDictionaries" useGeneratedKeys="true" keyProperty='id'
+		parameterType="com.uway.web.domain.Dictionaries">
+		insert into dictionaries(code, chinese_name, english_name,status,parent_id,describes)
+		values (#{code}, #{chineseName}, #{englishName},#{status},#{parentId},#{describes})
+	</insert>
+
+	<update id="updDictionaries" parameterType="com.uway.web.domain.Dictionaries">
+		update dictionaries
+		set code = #{code},chinese_name = #{chineseName}, english_name = #{englishName}, 
+		status = #{status},parent_id = #{parentId}
+		<if test="describes != null and describes != ''">
+		   ,describes =  #{describes}
+		</if>
+		where id=#{id}
+	</update>
+
+	<delete id="delDictionaries" parameterType="java.util.List">
+		delete from dictionaries
+		where 1=1 and id in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="updDictionariesStatus">
+		update dictionaries set status = #{status}
+		where 1=1 and id in
+		<foreach item="item" index="index" collection="dicIds" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+</mapper>  

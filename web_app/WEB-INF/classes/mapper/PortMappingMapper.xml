@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.PortMappingMapper"> 
+       <sql id="base_column">
+			id,
+			ip,
+			port,
+			domain_id,
+			site_domain,
+			record_name,
+			server_port,
+			tcp_id
+       </sql>
+
+       <insert id="insertAllRecordIpMapping" parameterType="java.util.Map" >
+          insert into port_mapping(ip,port,record_name,domain_id) values
+          <foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.ip},#{item.port},#{item.record_name},#{item.domain_id})
+		   </foreach>
+        </insert>
+        
+        <insert id="insertPortMappingByTcpId" parameterType="java.util.Map"  >
+            insert into port_mapping(ip,port,record_name,domain_id,site_domain,server_port,tcp_id) values(#{ip},#{port},#{record_name},#{domain_id},#{site_domain},#{server_port},#{tcp_id})
+        </insert>
+
+       <select id="selectPortMappingByRecordNameLimit" parameterType="java.util.Map" resultType="java.util.Map">
+           select 
+           <include refid="base_column"></include>
+           from port_mapping where domain_id = #{domain_id} and record_name = #{record_name}
+           limit  #{page_num}, #{page_size}
+       </select>
+       
+       <select id="selectCountPortMappingByRecordName"  parameterType="java.util.Map" resultType="java.lang.Long">
+           select 
+           count(1)
+           from port_mapping where domain_id = #{domain_id} and record_name = #{record_name}
+        </select>
+
+       <update id="updatePortMappingByTcpId" parameterType="java.util.Map">
+            update port_mapping set server_port = #{server_port}
+            <if test="port != null and port != ''">
+               ,port=#{port}
+            </if>
+            <if test="ip != null and ip != ''">
+               ,ip=#{ip}
+            </if>
+            <if test="tcp_new_id != null and tcp_new_id != ''">
+               ,tcp_id=#{tcp_new_id}
+            </if>
+            where tcp_id = #{tcp_id}
+       </update>
+       
+       <update id="modifyPortMappingByTcpId" parameterType="java.util.Map">
+            update port_mapping set server_port = #{server_port},tcp_id = #{tcp_id}
+            where domain_id = #{domain_id} and record_name = #{record_name}
+       </update>
+      
+       <delete id="deleteAllRecordIpMapping" parameterType="java.util.Map">
+             delete from port_mapping where domain_id = #{domain_id} and record_name = #{record_name}
+       </delete>
+       
+       <delete id="deletePortMappingByTcpId" parameterType="java.util.Map">
+             delete from port_mapping where tcp_id = #{tcp_id}
+       </delete>
+</mapper>

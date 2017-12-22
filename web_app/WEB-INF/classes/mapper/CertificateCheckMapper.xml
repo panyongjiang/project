@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.CertificateCheckMapper">
+    <sql id="base_column">
+        id,
+		name,
+		user_id,
+		crt_name,
+		domain_id,
+		crt,
+		key_name,
+		key_detail,
+		cert_id,
+		record_name
+     </sql>
+     
+     
+    <insert id="uploadCertificate"  parameterType="java.util.Map">
+         insert into certificate_check(id,name,user_id,crt_name,crt,key_name,key_detail,domain_id,cert_id,record_name) values(uuid(),#{name},#{user_id},#{crt_name},#{crt},#{key_name},#{key},#{domain_id},#{cert_id},#{record_name})
+    </insert>
+    
+    
+    <select id="selectCertificate" parameterType="java.util.Map" resultType="java.util.Map">
+         select 
+         <include refid="base_column"></include>
+         from certificate_check where domain_id = #{domain_id} and  record_name = #{record_name} order by create_time Desc limit 1
+    </select>
+    
+    
+    <select id="selectCertificateLimit" parameterType="java.util.Map" resultType="java.util.Map">
+         select 
+         <include refid="base_column"></include>
+         from certificate_check where domain_id = #{domain_id} order by create_time Desc limit #{page_num},#{page_size}
+    </select>
+    
+     <select id="selectCertificateCount" parameterType="java.util.Map" resultType="java.lang.Long">
+         select 
+         count(1)
+         from certificate_check where domain_id = #{domain_id} 
+    </select>
+    
+    
+    <update id="updateCertificate"  parameterType="java.util.Map" >
+           update  certificate_check set user_id = #{user_id}
+           <if test="name != null and name != ''">
+              ,name = #{name} 
+           </if>
+           <if test="crt_name != null and crt_name != ''">
+              ,crt_name = #{crt_name}
+           </if>
+           <if test="crt != null and crt != ''">
+              ,crt = #{crt}
+           </if>
+           <if test="key_name != null and key_name != ''">
+              ,key_name = #{key_name}
+           </if>
+           <if test="key != null and key != ''">
+              ,key_detail = #{key}
+           </if>
+           where domain_id = #{domain_id} and record_name = #{record_name}
+    </update>
+    
+    
+    <delete id="deleteCertificate"  parameterType="java.util.Map">
+           delete from certificate_check where domain_id = #{domain_id} and record_name = #{record_name}
+    </delete>
+    
+   
+
+</mapper>

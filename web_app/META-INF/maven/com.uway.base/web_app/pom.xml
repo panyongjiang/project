@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.uway.base</groupId>
+		<artifactId>base_factory</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	
+	<artifactId>web_app</artifactId>
+	<name>web_app</name>
+	<packaging>war</packaging>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+   </build>
+  
+  <profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>environment.type</name>
+					<value>dev</value>
+				</property>
+			</activation>
+			<build>
+				<filters>
+					<filter>dev.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>environment.type</name>
+					<value>test</value>
+				</property>
+			</activation>
+			<build>
+				<filters>
+					<filter>test.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<profile>
+			<id>product</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>environment.type</name>
+					<value>product</value>
+				</property>
+			</activation>
+			<build>
+				<filters>
+					<filter>product.properties</filter>
+				</filters>
+			</build>
+		</profile>
+	</profiles>
+  
+   <dependencies>
+     <dependency>
+        <groupId>com.uway.base</groupId>
+	 	<artifactId>platform</artifactId>
+		<version>0.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.uway.authority</groupId>
+	 	<artifactId>base_auth</artifactId>
+		<version>0.0.1</version>
+      </dependency>
+       <dependency>
+        <groupId>com.uway.log</groupId>
+	 	<artifactId>base_log</artifactId>
+		<version>0.0.1</version>
+      </dependency>
+        <dependency>
+        <groupId>com.uway.cms</groupId>
+	 	<artifactId>base_cms</artifactId>
+		<version>0.0.1</version>
+      </dependency>
+   </dependencies>
+
+</project>

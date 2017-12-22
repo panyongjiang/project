@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.AssetManagementMapper">
+
+	<select id="selectDomainByUser"  parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        *
+        from safe_site where user_id = #{user_id}
+    </select>
+    <select id="selectAssetListLimit" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT a.site_domain,a.user_name,b.service_id,a.domain_id,a.id
+		FROM 
+			(SELECT waf_site.site_domain,waf_site.domain_id,user.user_name,user.id
+			FROM waf_site 
+			LEFT JOIN `user` 
+			ON waf_site.user_id = user.id 
+			WHERE waf_site.parent_id = 0) a 
+		LEFT JOIN 
+			(SELECT GROUP_CONCAT(DISTINCT service_id) AS service_id,domain_id FROM order_service 
+			WHERE service_status !=0 ) b 
+		ON a.domain_id = b.domain_id 
+		WHERE 1=1
+		<if test="site_domain != null and site_domain != ''">
+			and site_domain=#{site_domain}
+		</if>
+		<if test="user_name != null and user_name != ''">
+			and user_name=#{user_name}
+		</if>	
+		ORDER BY a.domain_id
+		LIMIT #{page_num}, #{page_size}
+	</select>
+	<select id="selectCountAssetListLimit" parameterType="java.util.Map" resultType="long">
+		SELECT COUNT(1)
+		FROM 
+			(SELECT waf_site.site_domain,waf_site.domain_id,user.user_name 
+			FROM waf_site 
+			LEFT JOIN `user` 
+			ON waf_site.user_id = user.id 
+			WHERE waf_site.parent_id = 0) a 
+		LEFT JOIN 
+			(SELECT GROUP_CONCAT(DISTINCT service_id) AS service_id,domain_id FROM order_service 
+			WHERE service_status !=0 ) b 
+		ON a.domain_id = b.domain_id 
+		WHERE 1=1
+		<if test="site_domain != null and site_domain != ''">
+			and site_domain=#{site_domain}
+		</if>
+		<if test="user_name != null and user_name != ''">
+			and user_name=#{user_name}
+		</if>		
+	</select>
+	<select id="getOrderServiceBySonDomain" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 
+			(CASE WHEN service_id = 1 THEN '网站安全防护' 
+			 WHEN service_id = 2 THEN '网站安全监测' 
+			 ELSE '敏感信息检测' END) AS service_id,
+			start_time,end_time,times FROM order_service 
+		WHERE record_name = #{record_name} AND domain_id = #{domain_id};		
+	</select>
+	<select id="getDomainListByUser" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT * FROM waf_site WHERE user_id = #{id} AND parent_id = 0
+	</select>
+</mapper>

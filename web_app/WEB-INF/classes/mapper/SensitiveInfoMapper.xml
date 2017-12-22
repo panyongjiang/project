@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.SensitiveInfoMapper">
+	<sql id="sensitive_job_insert">
+		record_id,status,switch,day_period,run_time,run_period,detect_target,exclusions,deep,last_result_id,current_result_id
+	</sql>
+	
+	<sql id="sensitive_job_select">
+		id,record_id as recordId,status,switch as switchStr,day_period as dayPeriod,run_time as runTime,run_period as runPeriod,detect_target as detectTarget,exclusions,deep,
+		last_result_id as lastPesultId,current_result_id as currentResultId,create_time as createTime,modify_time as modifyTime
+	</sql>
+	
+	<sql id="sensitive_result_insert">
+		record_id,result_id,page_title,page_url,sensitive_type,sensitive_words,page_content,img_id,img_url
+	</sql>
+	
+	<sql id="sensitive_result_select">
+		id,record_id as recordId,result_id as resultId,page_title as pageTitle,page_url as pageUrl,sensitive_type as sensitiveType,sensitive_words as sensitiveWords,page_content as pageContent,img_id as imgId,img_url as imgUrl
+	</sql>
+	
+	<sql id="sensitive_summary_insert">
+		record_id,result_id,current_page_num,current_page_length,current_image_num,current_image_length,current_detect_num
+	</sql>
+	
+	<sql id="sensitive_summary_select">
+		id,record_id as recordId,result_id as resultId,current_page_num as currentPageNum,current_page_length as currentPageLength,
+		current_image_num as currentImageNum,current_image_length as currentImageLength, current_detect_num as currentDetectNum,create_time as createTime,modify_time as modifyTime
+	</sql>
+	
+	<insert id="saveSensitiveJob" useGeneratedKeys="true" keyProperty="id"
+		 parameterType="com.uway.web.domain.sensitive.SensitiveJob">
+		insert into sensitive_job(
+			<include refid="sensitive_job_insert" />
+		)values (
+			#{recordId},
+			#{status},
+			#{switchStr},
+			#{dayPeriod},
+			#{runTime},
+			#{runPeriod},
+			#{detectTarget},
+			#{exclusions},
+			#{deep},
+			#{lastResultId},
+			#{currentResultId}
+		)
+	</insert>
+	
+	<insert id="saveSensitiveSummary" parameterType="com.uway.web.domain.sensitive.SensitiveSummary">
+		insert into sensitive_summary(
+			<include refid="sensitive_summary_insert" />
+		)values (
+			#{recordId},
+			#{resultId},
+			#{currentResultId},
+			#{currentPageNum},
+			#{currentPageLength},
+			#{currentImageNum},
+			#{currentImageLength},
+			#{currentDetectNum}
+		)
+	</insert>
+	
+	<update id="updateSensitiveJob" parameterType="com.uway.web.domain.sensitive.SensitiveJob">
+		update sensitive_job 
+		 <trim prefix="set" suffixOverrides=",">
+		  <if test="status != null">status=#{status},</if>
+		  <if test="switchStr != null">switch=#{switchStr},</if>
+		  <if test="dayPeriod != null">day_period=#{dayPeriod},</if>
+		  <if test="runPeriod != null">run_period=#{runPeriod},</if>
+		  <if test="runTime != null">run_time=#{runTime},</if>
+		  <if test="detectTarget != null">detect_target=#{detectTarget},</if>
+		  <if test="exclusions != null">exclusions=#{exclusions},</if>
+		  <if test="deep != null">deep=#{deep},</if>
+		  <if test="lastResultId != null">last_result_id=#{lastResultId},</if>
+		  <if test="currentResultId != null">current_result_id=#{currentResultId},</if>
+		  <if test="currentPageNum != null">current_page_num=#{currentPageNum},</if>
+		  <if test="currentPageLength != null">current_page_length=#{currentPageLength},</if>
+		  <if test="currentImageNum != null">current_image_num=#{currentImageNum},</if>
+		  <if test="currentImageLength != null">current_image_length=#{currentImageLength},</if>
+		  <if test="currentDetectNum != null">current_detect_num=#{currentDetectNum},</if>
+		 </trim>
+		 where id = #{id}
+	</update>
+	
+	<select id="getSensitiveJobs" parameterType="com.uway.web.domain.sensitive.SensitiveJob" 
+		resultType="com.uway.web.domain.sensitive.SensitiveJob">
+		select <include refid="sensitive_job_select" /> from sensitive_job
+			where 1 =1 
+				<if test="id != null and id > 0">
+					and id = #{id}
+				</if>
+				<if test="recordId != null">
+					and record_id = #{recordId}
+				</if>
+				<if test="detectTarget != null and detectTarget >0">
+					and detect_target = #{detectTarget}
+				</if>
+			ORDER BY modify_time DESC 
+	</select>
+	
+	<select id="getSensitiveJobsDetails" parameterType="java.util.Map" 
+		resultType="com.uway.web.domain.sensitive.SensitiveJob">
+		select a.id,a.record_id as recordId,a.status,a.switch as switchStr,a.day_period as dayPeriod,a.run_time as runTime,a.run_period as runPeriod,a.detect_target as detectTarget,a.exclusions,a.deep,
+			a.last_result_id as lastPesultId,a.current_result_id as currentResultId,a.current_page_num as currentPageNum,a.current_page_length as currentPageLength,
+			a.current_image_num as currentImageNum,a.current_image_length as currentImageLength, a.current_detect_num as currentDetectNum,a.create_time as createTime,IF(a.current_result_id = '' or ISNULL(a.current_result_id),null,a.modify_time) as modifyTime,IF(b.record_name = '' or ISNULL(b.record_name),b.site_domain,CONCAT(b.record_name,'.',b.site_domain)) as domainName 
+		from sensitive_job a, waf_site b
+			where 1 =1 and a.record_id = b.record_id
+				<if test="id != null and id > 0">
+					and a.id = #{id}
+				</if>
+				<if test="recordId != null">
+					and a.record_id = #{recordId}
+				</if>
+				<if test="detectTarget != null and detectTarget >0">
+					and a.detect_target = #{detectTarget}
+				</if>
+				limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id="getSensitiveResultsTopX" parameterType="java.util.Map" 
+		resultType="com.uway.web.domain.sensitive.SensitiveResult">
+		select c.sensitive_type,c.sensitive_words,c.img_url
+			from waf_site a, sensitive_job b, sensitive_result c
+			where a.user_id = #{userId}
+				and a.record_id = b.record_id
+				and b.current_result_id = c.result_id
+				order by c.create_time DESC
+				limit 0,#{topx}
+	</select>
+	
+	<select id="getSensitiveJobsDetailsCount" parameterType="java.util.Map" 
+		resultType="Long">
+		select count(1)
+		from sensitive_job a, waf_site b
+			where 1 =1 and a.record_id = b.record_id
+				<if test="id != null and id > 0">
+					and a.id = #{id}
+				</if>
+				<if test="recordId != null">
+					and a.record_id = #{recordId}
+				</if>
+				<if test="detectTarget != null and detectTarget >0">
+					and a.detect_target = #{detectTarget}
+				</if>
+	</select>
+	
+	<select id="getSensitiveJobList" parameterType="java.util.List" 
+		resultType="com.uway.web.domain.sensitive.SensitiveJob">
+		select <include refid="sensitive_job_select" /> from sensitive_job
+			where id in 
+				<foreach collection="list" index="index" item="item" open="(" close=")" separator=",">  
+		           #{item}  
+		       	</foreach> 
+	</select>
+	
+	<delete id="delSensitiveJob" parameterType="java.util.List">
+		delete from sensitive_job where id in 
+		<foreach collection="list" index="index" item="item" open="(" close=")" separator=",">  
+           #{item}  
+       	</foreach> 
+	</delete>
+	
+	<insert id="saveSensitiveResult" parameterType="java.util.List">
+		insert into sensitive_result(
+			<include refid="sensitive_result_insert" />
+		)values
+			<foreach collection="list" item="item" index="index" separator="," > 
+	        	(
+					#{item.recordId},
+					#{item.resultId},
+					#{item.pageTitle},
+					#{item.pageUrl},
+					#{item.sensitiveType},
+					#{item.sensitiveWords},
+					#{item.pageContent},
+					#{item.imgId},
+					#{item.imgUrl}
+				) 
+	    	</foreach> 
+	</insert>
+	
+	<select id="getSensitiveResults" parameterType="com.uway.web.domain.sensitive.SensitiveResult"
+		resultType="com.uway.web.domain.sensitive.SensitiveResult">
+		select <include refid="sensitive_result_select" /> from sensitive_result
+		where result_id = #{resultId} 
+	</select>
+	
+	<select id="getSensitiveResultsByIds" parameterType="java.util.List"
+		resultType="com.uway.web.domain.sensitive.SensitiveResult">
+		select <include refid="sensitive_result_select" /> from sensitive_result
+		where id in  
+		<foreach collection="list" index="index" item="item" open="(" close=")" separator=",">  
+           #{item}  
+       	</foreach>
+	</select>
+	
+	<delete id="delSensitiveResults" parameterType="java.util.List">
+		delete from sensitive_result where id in 
+		<foreach collection="list" index="index" item="item" open="(" close=")" separator=",">  
+           #{item}  
+       	</foreach> 
+	</delete>
+	
+	<select id="getbadnessPageNum" resultType="Long" parameterType="java.lang.String">
+			  select count(1) from(
+				select page_url from sensitive_result 
+						where result_id = #{resultId,jdbcType=VARCHAR} 
+							  group by page_url) a
+	</select>
+	
+	<select id="getAllCurBadnessPageNum" resultType="Long" parameterType="java.lang.String">
+			   select count(1) from(
+				select page_url from sensitive_result a,sensitive_job b, waf_site c
+						where c.user_id = #{userId}
+									and c.record_id = b.record_id
+									and b.current_result_id = a.result_id
+							  group by page_url) a
+	</select>
+	
+	<select id="getAllLastBadnessPageNum" resultType="Long" parameterType="java.lang.String">
+			   select count(1) from(
+				select page_url from sensitive_result a,sensitive_job b, waf_site c
+						where c.user_id = #{userId}
+									and c.record_id = b.record_id
+									and b.last_result_id = a.result_id
+							  group by page_url) a	
+	</select>
+	
+	<select id="getSensitivityNum" resultType="Long" parameterType="String">
+		select count(1) as cnt from sensitive_result 
+			where result_id = #{resultId,jdbcType=VARCHAR} 
+	</select>
+	
+	<select id="getAllCurSensitivityNum" resultType="Long" parameterType="String">
+		select count(1) as cnt
+			from waf_site a, sensitive_job b, sensitive_result c
+			where a.user_id = #{userId}
+				and a.record_id = b.record_id
+				and b.current_result_id = c.result_id
+	</select>
+	
+	<select id="getAllLastSensitivityNum" resultType="Long" parameterType="String">
+		select count(1) as cnt
+			from waf_site a, sensitive_job b, sensitive_result c
+			where a.user_id = #{userId}
+				and a.record_id = b.record_id
+				and b.last_result_id = c.result_id
+	</select>
+	
+	<select id="getSensitiveTypeSummary" resultType="com.uway.web.domain.sensitive.SensitiveResult" 
+		parameterType="com.uway.web.domain.sensitive.SensitiveJob">
+		select sensitive_type as sensitiveType,count(sensitive_type) as typeCnt 
+		from sensitive_result 
+		where result_id = #{currentResultId,jdbcType=VARCHAR}  
+		group by sensitive_type
+	</select>
+	
+	<select id="getAllSensitiveTypeSummary" resultType="com.uway.web.domain.sensitive.SensitiveResult" 
+		parameterType="String">
+		select a.sensitive_type as sensitiveType,count(a.sensitive_type) as typeCnt 
+		from sensitive_result a,sensitive_job b, waf_site c
+		where c.user_id = #{userId}
+					and c.record_id = b.record_id
+					and b.current_result_id = a.result_id
+		group by a.sensitive_type
+	</select>
+	
+	<select id="getAllSensitiveType" resultType="com.uway.web.domain.sensitive.SensitiveResult" 
+		parameterType="String">
+		select c.sensitive_type as sensitiveType,count(c.sensitive_type) as typeCnt  
+			from waf_site a, sensitive_job b, sensitive_result c
+				where a.user_id = #{userId}
+					and a.record_id = b.record_id
+					and b.current_result_id = c.result_id
+				group by c.sensitive_type
+	</select>
+	
+	<select id="getSensitiveDetails" parameterType="java.util.Map" 
+		resultType="com.uway.web.domain.sensitive.SensitiveResult">
+		select <include refid="sensitive_result_select" />
+		 from sensitive_result 
+		 where result_id = #{resultId,jdbcType=VARCHAR} 
+		 limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id="getSensitiveDetailsExport" parameterType="java.util.Map"  resultType="java.util.Map">
+		select b.page_title,
+			   b.page_url,
+			   (case 
+					when b.sensitive_type = '100'
+					then '色情'
+					when b.sensitive_type = '110'
+					then '性感'
+					when b.sensitive_type = '200'
+					then '广告'
+					when b.sensitive_type = '210'
+					then '二维码'
+					when b.sensitive_type = '300'
+					then '暴恐'
+					when b.sensitive_type = '400'
+					then '违禁'
+					when b.sensitive_type = '600'
+					then '谩骂'
+					when b.sensitive_type = '700'
+					then '灌水'
+					else '其他'
+					end
+					) as sensitive_type,
+				    if(isnull(b.sensitive_words),'图片',b.sensitive_words) as sensitive_words
+				from sensitive_job a,sensitive_result b
+				where a.record_id = #{recordId}
+						and a.current_result_id = b.result_id
+	</select>
+	
+	<select id="getSensitiveDetailsCount" parameterType="java.util.Map" 
+		resultType="Long">
+		select count(1)
+		 from sensitive_result 
+		 where result_id = #{resultId,jdbcType=VARCHAR} 
+	</select>
+	
+	<select id="getSensitiveNumByDomain" parameterType="String" 
+		resultType="Long">
+		select count(1) as cnt
+		from waf_site a, sensitive_job b, sensitive_result c
+		where a.domain_id = #{domainId}
+			and a.record_id = b.record_id
+			and b.current_result_id = c.result_id
+	</select>
+	
+	<select id="getSensitiveNumByUser" parameterType="String" 
+		resultType="Long">
+		select count(1) as cnt
+		from waf_site a, sensitive_job b, sensitive_result c
+		where a.user_id = #{userId}
+			and a.record_id = b.record_id
+			and b.current_result_id = c.result_id
+	</select>
+	
+	<select id="getDomianSite" parameterType="com.uway.web.domain.sensitive.SensitiveJob" 
+		resultType="java.util.Map">
+		select IF(record_name = '' or ISNULL(record_name),site_domain,CONCAT(record_name,'.',site_domain)) as domainSite from waf_site where record_id = #{recordId}
+	</select>
+	
+	<select id="getSensitiveTrend" parameterType="java.util.Map" 
+		resultType="java.util.Map">
+		select DATE_FORMAT(b.modify_time,'%Y-%m-%d') as dateStr ,sum((select count(1) from sensitive_result c where b.current_result_id = c.result_id)) as totalNum
+			from waf_site a, sensitive_job b
+			where a.user_id = #{userId}
+				and a.record_id = b.record_id 
+				and DATE_FORMAT(b.modify_time,'%Y-%m-%d') &gt;= #{startDate} 
+				and DATE_FORMAT(b.modify_time,'%Y-%m-%d') &lt;= #{endDate} 
+				group by DATE_FORMAT(b.modify_time,'%Y-%m-%d')
+				order by DATE_FORMAT(b.modify_time,'%Y-%m-%d') desc
+	</select>
+	
+	<select id="getSumOfDetectTimes" parameterType="String" 
+		resultType="Long">
+		select sum(a.current_detect_num) as cnt from sensitive_summary a,sensitive_job b, waf_site c
+			where c.user_id = #{userId}
+				and c.record_id = b.record_id
+				and a.record_id = b.record_id
+	</select>
+	
+	<select id="getSumOfSensitiveNum" parameterType="String" 
+		resultType="Long">
+		select count(1) as cnt from sensitive_result s where s.record_id = #{recordId}
+	</select>
+	
+	<select id="getAllCurrentSensitiveNum" resultType="java.util.Map">
+		select IF(w.record_name = '' or ISNULL(w.record_name),w.site_domain,CONCAT(w.record_name,'.',w.site_domain)) as domainName,
+			 a.modify_time,count(b.page_title) as cnt
+			from sensitive_job a,sensitive_result b,waf_site w
+			where a.current_result_id = b.result_id
+						and w.record_id = a.record_id
+				group by domainName,modify_time
+	</select>
+	
+</mapper>  

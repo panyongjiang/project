@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.CostTableMapper">
+      <sql id="base_column">
+		id,url,account,company,service,sales,signtime,paytime,cost,operate,operatetime,remarks
+       </sql>
+      
+      <insert id="addCostTable" parameterType="java.util.Map">
+          insert into costtable
+          (url,account,company,service,sales,signtime,paytime,cost,operate,operatetime,remarks) 
+          values
+          (#{url},#{account},#{company},#{service},#{sales},#{signtime},#{paytime},#{cost},#{operate},#{operatetime},#{remarks})
+      </insert>
+      
+      <select id="selectCostTable" parameterType="java.util.Map"  resultType="java.util.Map">
+           select
+           <include refid="base_column"></include>
+           from costtable where 1=1
+           <if test="id != null and id != ''">
+              AND id = #{id}
+          	</if>
+            <if test="account != null and account != ''">
+              AND account = #{account}
+          	</if>
+          	 <if test="url != null and url != ''">
+              AND url like CONCAT('%',#{url},'%')
+          	</if>
+          	<if test="company != null and company != ''">
+              AND company like CONCAT('%',#{company},'%')
+          	</if>
+          	<if test="service != null and service != ''">
+              AND service = #{service}
+          	</if>
+          	<if test="sales != null and sales != ''">
+              AND sales = #{sales}
+          	</if>
+          	<if test="cost != null and cost != ''">
+              AND cost = #{cost}
+          	</if>
+          	<if test="costmax != null and costmax != ''">
+              <![CDATA[
+           		 AND cost <= #{costmax}
+               ]]>
+          	</if>
+          	<if test="costmin != null and costmin != ''">
+               <![CDATA[
+           		 AND cost >= #{costmin}
+               ]]>
+          	</if>   	
+          	<if test="operate != null and operate != ''">
+              AND operate = #{operate}
+          	</if>
+          	<if test="beginTime !=null and beginTime !=''">
+	            <![CDATA[
+	            AND signtime >= #{beginTime}
+	            ]]>
+			</if>
+			<if test="endTime !=null and endTime !=''">
+            	<![CDATA[
+            	AND signtime <= #{endTime}
+            	]]>
+			</if>
+             order by id Desc limit #{page_num}, #{page_size}     	        	 
+      </select>
+  
+  	  <select id="countCostTable" parameterType="java.util.Map"  resultType="java.lang.Long">
+           select
+           count(1)
+           from costtable where 1=1
+           <if test="account != null and account != ''">
+              AND account = #{account}
+          	</if>
+          	 <if test="url != null and url != ''">
+              AND url like CONCAT('%',#{url},'%')
+          	</if>
+          	<if test="company != null and company != ''">
+              AND company like CONCAT('%',#{company},'%')
+          	</if>
+          	<if test="service != null and service != ''">
+              AND service = #{service}
+          	</if>
+          	<if test="sales != null and sales != ''">
+              AND sales = #{sales}
+          	</if>
+          	<if test="cost != null and cost != ''">
+              AND cost = #{cost}
+          	</if>
+          	<if test="costmax != null and costmax != ''">
+              <![CDATA[
+           		 AND cost >= #{costmax}
+               ]]>
+          	</if>
+          	<if test="costmin != null and costmin != ''">
+               <![CDATA[
+           		 AND cost <= #{costmin}
+               ]]>
+          	</if>   	
+          	<if test="operate != null and operate != ''">
+              AND operate = #{operate}
+          	</if>
+          	<if test="beginTime !=null and beginTime !=''">
+	            <![CDATA[
+	            AND signtime >= #{beginTime}
+	            ]]>
+			</if>
+			<if test="endTime !=null and endTime !=''">
+            	<![CDATA[
+            	AND signtime <= #{endTime}
+            	]]>
+			</if> 
+       </select>	
+  
+  
+      <update id="updateCostTable" parameterType="java.util.Map">
+          update costtable set account = #{account}
+           <if test="company != null and company != ''">
+              ,company = #{company}
+          </if>
+           <if test="url != null and url != ''">
+              ,url=#{url}
+          	</if>
+           <if test="service != null and service != ''">
+              ,service = #{service}
+          </if>
+           <if test="sales != null and sales != ''">
+              ,sales = #{sales}
+          </if>
+           <if test="cost != null and cost != ''">
+              ,cost = #{cost}
+          </if>
+          <if test="operate != null and operate != ''">
+              ,operate = #{operate}
+          </if>
+          <if test="operatetime != null">
+              ,operatetime = #{operatetime}
+          </if>
+         <if test="signtime != null">
+              ,signtime = #{signtime}
+          </if>
+          <if test="paytime != null">
+              ,paytime = #{paytime}
+          </if>
+          <if test="remartks != null and remartks != ''">
+              ,remartks = #{remartks}
+          </if>
+          where id = #{id}
+      </update>
+      
+      <delete id="deleteCostTable" parameterType="java.util.Map">
+           delete from costtable where id = #{id}
+      </delete>
+      
+</mapper>

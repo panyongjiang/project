@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.CurrentDataMapper">
+      <sql id="base_column">
+		id,
+		time,
+		flux_in_list,
+		flux_out_list,
+		cc_defense_list,
+		connection_number_list,
+		domain_id
+      </sql>
+
+      <insert id="insertCurrentDate" parameterType="java.util.Map">
+           insert into current_data(time,flux_in_list,flux_out_list,cc_defense_list,connection_number_list,domain_id) values(#{time},#{flux_in_list},#{flux_out_list},#{cc_defense_list},#{connection_number_list},#{connection_number_list},#{domain_id})
+      </insert>
+      
+      
+      <update id="updateCurrentDate" parameterType="java.util.Map">
+           update current_data set time = #{time},flux_in_list = #{flux_in_list},flux_out_list = #{flux_out_list},cc_defense_list = #{cc_defense_list},connection_number_list = #{connection_number_list}
+           where domain_id = #{domain_id}
+      </update>
+      
+      
+      <select id="selectCurrentDate" parameterType="java.util.Map" resultType="java.util.Map">
+           select 
+           <include refid="base_column"></include>
+           from current_data where domain_id = #{domain_id} and time = #{time}
+      </select>
+ 
+</mapper>

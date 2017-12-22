@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.BlackWhitelistMapper">
+     <sql id="base_column">
+	      id,
+	      operate,
+	      ip_url,
+	      type,
+	      rule_id,
+	      record_name,
+	      domain_id
+     </sql>
+     
+     <insert id="addBlackWhitelistById"  parameterType="java.util.Map">
+         insert into black_white_list(operate,ip_url,type,rule_id,record_name,domain_id)
+          values(#{operate},#{ip_url},#{type},#{rule_id},#{record_name},#{domain_id})
+     </insert>
+     
+     
+        
+      <select id="selectBlackWhitelistLimit" parameterType="java.util.Map"  resultType="java.util.Map">
+           select
+           <include refid="base_column"></include>
+           from black_white_list where type=#{type}  and domain_id= #{domain_id} and record_name = #{record_name}
+           order by create_time Desc limit #{page_num}, #{page_size}  
+      </select>
+      
+      
+       <select id="selectCountBlackWhitelistLimit" parameterType="java.util.Map"  resultType="java.lang.Long">
+           select
+           count(1)
+           from black_white_list where type=#{type}  and domain_id= #{domain_id} and record_name = #{record_name}
+       </select>
+       
+       <select id="getIpRulesByDomainRecordRuleId" parameterType="java.util.Map"  resultType="java.util.Map" >
+           select  
+           <include refid="base_column"></include>
+           from black_white_list where rule_id = #{rule_id}
+       </select>
+       
+        <select id="getUrlRulesByDomainRecordRuleId" parameterType="java.util.Map"  resultType="java.util.Map" >
+            select  
+            <include refid="base_column"></include>
+            from black_white_list where rule_id = #{rule_id}
+       </select>
+       
+       <select id="getIpOrUrlDetailsByCondition" parameterType="java.util.Map"  resultType="java.util.Map">
+            select  
+            <include refid="base_column"></include>
+            from black_white_list where ip_url = #{ip_url}
+       </select>
+       
+       
+       <update id="updateBlackWhitelistById" parameterType="java.util.Map">
+           update black_white_list set operate =#{operate},ip_url=#{ip_url} where rule_id = #{rule_id}
+       </update>
+    
+
+       <delete id="deleteBlackWhitelistById" parameterType="java.lang.String">
+            delete from black_white_list where rule_id = #{rule_id}
+       </delete>
+       
+       <delete id="deleteBlackWhitelistByCondition" parameterType="java.util.Map">
+           delete from black_white_list where domain_id = #{domain_id} and record_name = #{record_name}
+       </delete>
+
+</mapper>

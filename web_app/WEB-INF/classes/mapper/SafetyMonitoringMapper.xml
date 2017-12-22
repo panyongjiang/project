@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.SafetyMonitoringMapper">
+
+	<select id="selectRecordByUser"  parameterType="java.util.Map" resultType="java.util.Map">
+        select IF(record_name = '' or ISNULL(record_name),site_domain,CONCAT(record_name,'.',site_domain)) as site_url ,record_id ,domain_id from waf_site WHERE
+        user_id = #{user_id} AND parent_id !=0
+    </select>
+    
+    <select id="taskDetails"  parameterType="java.util.Map" resultType="java.util.Map">
+        select record_id,vul_deep,last_end_time,sweep_time,remark,create_user,create_time,modify_time,site_url,time_out,concurrent_requests,execution_mode,execution_time,notification_mode,task_name,execution_regular,execution_week from site_scan 
+         <if test="record_id != '-1'">
+        WHERE record_id = #{record_id} 
+        </if>
+        <if test="startTime != null and startTime != ''">
+        AND last_end_time >=#{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+        	AND last_end_time &lt;=#{endTime}
+        </if>
+        order by create_time ASC limit  #{page_num}, #{page_size}
+    </select>
+    
+    <select id="taskDetailsCount"  parameterType="java.util.Map" resultType="java.lang.Long">
+        select  count(1) from site_scan 
+         <if test="record_id != '-1'">
+        WHERE record_id = #{record_id} 
+        </if>
+        <if test="startTime != null and startTime != ''">
+        AND last_end_time >=#{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+        	AND last_end_time &lt;=#{endTime}
+        </if>
+    </select>
+    
+    <select id="getAllSafeSite" resultType="java.util.Map">
+		select id, site_title siteTitle, site_domain siteDomain, site_ip siteIp, site_repo siteRepo, email
+		from site where type = 0
+		<if test="userId != null and userId != ''">
+			and create_user=#{userId}
+		</if>
+		group by id, site_title, site_domain, site_ip, site_repo, email
+		order by create_time desc
+	</select>
+	
+	 <select id="getLast" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT MAX(last_end_time) AS lastEndTime FROM site_scan WHERE record_id = #{record_id};
+    </select>
+    
+    <select id="getSecond" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT MAX(last_end_time) AS lastEndTime FROM site_scan WHERE record_id = #{record_id}
+    and last_end_time &lt;(select max(last_end_time) from site_scan WHERE record_id = #{record_id});
+    </select>
+    
+    <insert id="addScanningTask" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.Map">
+         insert into site_scan (record_id,vul_deep,sweep_time,remark,create_user,create_time,modify_time,site_url,time_out,concurrent_requests,execution_mode,execution_time,notification_mode,task_name,execution_regular,execution_week) 
+         values(#{record_id},#{vul_deep},#{sweep_time},#{remark},#{create_user},#{create_time},#{modify_time},#{site_url},#{time_out},#{concurrent_requests},#{execution_mode},#{execution_time},#{notification_mode},#{task_name},#{execution_regular},#{execution_week})
+    </insert>
+    
+    <select id="overview" resultType="long" parameterType="java.util.Map">
+		select count(distinct domain_id) as count from waf_site WHERE
+        user_id = #{user_id};
+	</select>
+	
+	<select id="getDomainId" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT distinct domain_id from waf_site where user_id = #{user_id}
+	</select>
+	
+	<select id="getRecordId" parameterType="String" resultType="java.util.Map">
+		SELECT record_id from waf_site where domain_id = #{domain_id} AND parent_id !=0 
+	</select>
+    <select id="getLastTime" parameterType="String" resultType="java.util.Map">
+    SELECT MAX(last_end_time) AS lastEndTime FROM site_scan WHERE record_id = #{record_id};
+    </select>
+    
+    <select id="getserviceIdByUser" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT GROUP_CONCAT(DISTINCT service_id) as service_id from order_service where user_id = #{user_id} and service_status !=0
+	</select>
+	
+	<select id="getserviceIdByDomainId" parameterType="String" resultType="String">
+		SELECT GROUP_CONCAT(service_id) service_id from order_service where domain_id = #{domain_id} and service_status !=0
+	</select>
+	
+	 <select id="getDomainByDomainId" parameterType="String" resultType="java.util.Map">
+    SELECT distinct site_domain FROM waf_site WHERE domain_id = #{domain_id}
+    </select>
+    
+    <select id="getsiteTitleByDomainId" parameterType="String" resultType="String">
+		SELECT distinct site_title from waf_site where domain_id = #{domain_id} 
+	</select>
+    
+</mapper>

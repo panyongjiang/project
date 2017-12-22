@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.GeneralCodeMapper">
+      <sql id="base_column">
+        id,
+		name,
+		IFNULL(value,"") value,
+		defval,
+		updateuser,
+		create_time,
+		modify_time,
+		flag
+      </sql>
+      
+      <update id="updateSafetyConfig" parameterType="java.util.Map">
+		<choose>
+			<when test="smtpServerAdd != null">
+				update general_code set value = #{smtpServerAdd}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'smtpServerAdd' and flag = #{flag}
+			</when>
+			<when test="smtpPort != null">
+				update general_code set value = #{smtpPort}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'smtpPort' and flag = #{flag}
+			</when>
+			<when test="sender != null">
+				update general_code set value = #{sender}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'sender' and flag = #{flag}
+			</when>
+			<when test="sendAddress != null">
+				update general_code set value = #{sendAddress} 
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				where defval = 'sendAddress' and flag = #{flag}
+			</when>
+			<when test="userName != null">
+				update general_code set value = #{userName}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'userName' and flag = #{flag}
+			</when>
+			<when test="password != null">
+				update general_code set value = #{password}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'password' and flag = #{flag}
+			</when>
+			<when test="mailTransferMode != null">
+				update general_code set value = #{mailTransferMode}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'mailTransferMode' and flag = #{flag}
+			</when>
+			<when test="smsServerAdd != null">
+				update general_code set value = #{smsServerAdd} 
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				where defval = 'smsServerAdd' and flag = #{flag}
+			</when>
+			<when test="smsPort != null">
+				update general_code set value = #{smsPort} 
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				where defval = 'smsPort' and flag = #{flag}
+			</when>
+			<when test="serverExpireWarn != null">
+				update general_code set value = #{serverExpireWarn} 
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				where defval = 'serverExpireWarn' and flag = #{flag}
+			</when>
+			<when test="warnSenderMode != null">
+				update general_code set value = #{warnSenderMode} 
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				where defval = 'warnSenderMode' and flag = #{flag}
+			</when>
+			<when test="warnReceiveMode != null">
+				update general_code set value = #{warnReceiveMode}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'warnReceiveMode' and flag = #{flag}
+			</when>
+			<when test="warnContent != null">
+				update general_code set value = #{warnContent}
+				<if test="updateuser != null and updateuser != ''">
+				    ,updateuser = #{updateuser}
+				</if>
+				 where defval = 'warnContent' and flag = #{flag}
+			</when>
+			<otherwise>
+			  select * from general_code
+			</otherwise>
+		</choose>
+
+	</update>
+
+
+      <select id="getAllSafetyConfig" parameterType="java.util.List" resultType="java.util.Map">
+           select 
+           <include refid="base_column" />
+           from general_code where flag in
+         <foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		 </foreach>
+      </select>
+
+
+
+
+</mapper>

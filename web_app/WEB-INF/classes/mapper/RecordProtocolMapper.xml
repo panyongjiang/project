@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.RecordProtocolMapper">
+     
+     <sql id="base_column">
+        id, 
+		record_name, 
+		cert_id,
+		enable, 
+		domain_id
+      </sql>
+ 
+      <insert id="setRecordProtocol" parameterType="java.util.Map">
+          insert into record_protocol(record_name,cert_id,enable,domain_id) values(#{record_name},#{cert_id},#{enable},#{domain_id})
+      </insert>
+      
+      
+      <select id="selectRecordProtocol" parameterType="java.util.Map" resultType="java.util.Map">
+          select
+          <include refid="base_column"></include> 
+          from record_protocol where domain_id = #{domain_id} and record_name = #{record_name}
+       </select>
+      
+      
+      <update id="updateRecordProtocol" parameterType="java.util.Map" >
+          update from record_protocol enable = #{enable}
+          where domain_id = #{domain_id} and record_name = #{record_name}
+      </update>
+      
+      
+      <delete id="deleteRecordProtocol" parameterType="java.util.Map">
+          delete  from record_protocol where domain_id = #{domain_id}
+      </delete>
+      
+       <delete id="deleteRecordProtocolByName" parameterType="java.util.Map">
+          delete  from record_protocol where domain_id = #{domain_id} and record_name = #{record_name}
+      </delete>
+
+
+
+
+
+</mapper>

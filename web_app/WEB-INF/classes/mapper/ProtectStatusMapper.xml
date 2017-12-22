@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.web.mapper.ProtectStatusMapper">
+    <sql id="base_column">
+		id,
+		domain_id,
+		cc_switch,
+		waf_switch,
+		rule_switch,
+		record_name,
+		trigger_qps,
+		source_qps
+    </sql>
+    
+    <insert id="addRecordNameConfigSwith" parameterType="java.util.Map">
+         insert into protect_status(domain_id,record_name) values(#{domain_id},#{record_name})
+    </insert>
+    
+    
+    <select id="getProtectConfigByDomainId" resultType="java.util.Map" parameterType="java.util.Map">
+         select 
+         <include refid="base_column"></include>
+         from protect_status where domain_id = #{domain_id} and record_name = #{record_name} order by modify_time Desc limit 1
+    </select>
+    
+    
+    <update id="updateConfigSwith" parameterType="java.util.Map">
+        update protect_status set
+        <if test="waf_switch != null and waf_switch != ''">
+           waf_switch = #{waf_switch},
+        </if>
+        <if test="cc_switch != null and cc_switch != ''">
+           cc_switch = #{cc_switch},
+        </if>
+        <if test="trigger_qps != null and trigger_qps != ''">
+           trigger_qps = #{trigger_qps},
+        </if>
+        <if test="source_qps != null and source_qps != ''">
+           source_qps = #{source_qps},
+        </if>
+        <if test="rule_switch != null and rule_switch != ''">
+           rule_switch = #{rule_switch},
+        </if>
+           record_name = #{record_name}
+         where domain_id = #{domain_id}
+    </update>
+    
+    
+    <delete id="deleteRecordNameConfigSwith" parameterType="java.util.Map">
+        delete from protect_status where domain_id = #{domain_id} and record_name = #{record_name}
+    </delete>
+
+
+</mapper>
