@@ -1,0 +1,1644 @@
+2017-10-19 15:00:14,336 - 消息来源127.0.0.1:31001==2017-10-19 15:00:14:336
+2017-10-19 15:03:49,930 - [Jaren] modules [], plugins [], sites []
+2017-10-19 15:03:49,948 - [Jaren] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 15:03:49,956 - [Jaren] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:03:49,971 - [Jaren] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:03:49,972 - [Jaren] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 15:03:49,972 - [Jaren] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 15:03:49,972 - [Jaren] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:03:49,982 - [Jaren] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:03:49,982 - [Jaren] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 15:03:49,983 - [Jaren] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:03:49,984 - [Jaren] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 15:03:49,984 - [Jaren] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:03:49,984 - [Jaren] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:03:49,984 - [Jaren] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 15:03:49,985 - [Jaren] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:03:49,985 - [Jaren] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 15:03:49,985 - [Jaren] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:03:51,920 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 fe80::ffff:ffff:fffe prefixlen:0 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 15:03:51,947 - using gathering [true]
+2017-10-19 15:03:51,986 - [Jaren] node_sampler_interval[5s]
+2017-10-19 15:03:52,010 - Using select timeout of 500
+2017-10-19 15:03:52,010 - Epoll-bug workaround enabled = false
+2017-10-19 15:03:52,139 - [Jaren] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:03:52,192 - [Jaren] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:03:52,295 - [Jaren] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:03:52,295 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 15:03:53,370 - UDP Server 启动！
+2017-10-19 15:03:53,372 - UDP通道已经连接
+2017-10-19 15:04:17,617 - totals start 2017-10-19 15:04:17:617
+2017-10-19 15:04:17,633 - 消息来源127.0.0.1:31001==2017-10-19 15:04:17:633
+2017-10-19 15:04:17,634 - 跳转到UdpReqAuth==2017-10-19 15:04:17:634
+2017-10-19 15:04:17,754 - 根据设备号查询最新序号==2017-10-19 15:04:17:754
+2017-10-19 15:04:17,850 - 根据设备号和序号查询密钥==2017-10-19 15:04:17:849
+2017-10-19 15:04:17,855 - 封装发送消息==2017-10-19 15:04:17:854
+2017-10-19 15:04:24,167 - 消息来源127.0.0.1:31001==2017-10-19 15:04:24:166
+2017-10-19 15:04:24,168 - 跳转到UdpReqAuth==2017-10-19 15:04:24:168
+2017-10-19 15:04:24,224 - 根据设备号查询最新序号==2017-10-19 15:04:24:224
+2017-10-19 15:04:24,287 - 根据设备号和序号查询密钥==2017-10-19 15:04:24:287
+2017-10-19 15:04:24,288 - 封装发送消息==2017-10-19 15:04:24:288
+2017-10-19 15:06:14,461 - [Stonecutter] modules [], plugins [], sites []
+2017-10-19 15:06:14,481 - [Stonecutter] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 15:06:14,490 - [Stonecutter] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:06:14,504 - [Stonecutter] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:06:14,505 - [Stonecutter] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 15:06:14,505 - [Stonecutter] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 15:06:14,506 - [Stonecutter] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:06:14,507 - [Stonecutter] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:06:14,507 - [Stonecutter] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 15:06:14,509 - [Stonecutter] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:06:14,509 - [Stonecutter] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 15:06:14,509 - [Stonecutter] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:06:14,509 - [Stonecutter] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:06:14,510 - [Stonecutter] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 15:06:14,510 - [Stonecutter] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:06:14,510 - [Stonecutter] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 15:06:14,511 - [Stonecutter] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:06:16,381 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 fe80::ffff:ffff:fffe prefixlen:0 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 15:06:16,407 - using gathering [true]
+2017-10-19 15:06:16,447 - [Stonecutter] node_sampler_interval[5s]
+2017-10-19 15:06:16,471 - Using select timeout of 500
+2017-10-19 15:06:16,471 - Epoll-bug workaround enabled = false
+2017-10-19 15:06:16,603 - [Stonecutter] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:06:16,654 - [Stonecutter] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:06:16,760 - [Stonecutter] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:06:16,760 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 15:06:17,769 - UDP Server 启动！
+2017-10-19 15:06:17,772 - UDP通道已经连接
+2017-10-19 15:07:59,656 - [Mother Nature] modules [], plugins [], sites []
+2017-10-19 15:07:59,680 - [Mother Nature] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 15:07:59,692 - [Mother Nature] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:07:59,706 - [Mother Nature] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:07:59,708 - [Mother Nature] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 15:07:59,708 - [Mother Nature] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 15:07:59,708 - [Mother Nature] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:07:59,709 - [Mother Nature] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:07:59,709 - [Mother Nature] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 15:07:59,710 - [Mother Nature] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:07:59,710 - [Mother Nature] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 15:07:59,710 - [Mother Nature] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:07:59,711 - [Mother Nature] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:07:59,711 - [Mother Nature] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 15:07:59,711 - [Mother Nature] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:07:59,711 - [Mother Nature] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 15:07:59,711 - [Mother Nature] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:08:01,635 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:1cb2:5aa:8ec6:7d45 prefixlen:0
+        inet6 fe80::1cb2:5aa:8ec6:7d45 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 15:08:01,659 - using gathering [true]
+2017-10-19 15:08:01,698 - [Mother Nature] node_sampler_interval[5s]
+2017-10-19 15:08:01,721 - Using select timeout of 500
+2017-10-19 15:08:01,721 - Epoll-bug workaround enabled = false
+2017-10-19 15:08:01,854 - [Mother Nature] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:08:01,903 - [Mother Nature] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:08:02,019 - [Mother Nature] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:08:02,019 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 15:08:03,044 - UDP Server 启动！
+2017-10-19 15:08:03,047 - UDP通道已经连接
+2017-10-19 15:08:55,921 - totals start 2017-10-19 15:08:55:921
+2017-10-19 15:08:55,936 - 消息来源127.0.0.1:31001==2017-10-19 15:08:55:936
+2017-10-19 15:08:55,937 - 跳转到UdpReqAuth==2017-10-19 15:08:55:937
+2017-10-19 15:08:56,030 - 根据设备号查询最新序号==2017-10-19 15:08:56:030
+2017-10-19 15:08:57,330 - 根据设备号和序号查询密钥==2017-10-19 15:08:57:330
+2017-10-19 15:08:57,335 - 封装发送消息==2017-10-19 15:08:57:334
+2017-10-19 15:10:15,753 - 消息来源127.0.0.1:31001==2017-10-19 15:10:15:753
+2017-10-19 15:10:15,754 - 跳转到UdpReqAuth==2017-10-19 15:10:15:754
+2017-10-19 15:10:15,844 - 根据设备号查询最新序号==2017-10-19 15:10:15:844
+2017-10-19 15:10:15,931 - 根据设备号和序号查询密钥==2017-10-19 15:10:15:931
+2017-10-19 15:10:15,932 - 封装发送消息==2017-10-19 15:10:15:932
+2017-10-19 15:11:24,615 - 消息来源127.0.0.1:31001==2017-10-19 15:11:24:615
+2017-10-19 15:12:14,830 - [Mother Nature] failed to get node info for {#transport#-1}{192.168.8.252}{192.168.8.252:9300}, disconnecting...
+ReceiveTimeoutTransportException[[][192.168.8.252:9300][cluster:monitor/nodes/liveness] request_id [49] timed out after [5001ms]]
+	at org.elasticsearch.transport.TransportService$TimeoutHandler.run(TransportService.java:698)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:14,832 - [Mother Nature] disconnecting from [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}] due to explicit disconnect call
+2017-10-19 15:12:26,074 - [Mother Nature] exception caught on transport layer [[id: 0x414b6fe3, /192.168.28.184:58503 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,075 - [Mother Nature] exception caught on transport layer [[id: 0xd6a01a1b, /192.168.28.184:58499 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,075 - [Mother Nature] exception caught on transport layer [[id: 0xbbed9a04, /192.168.28.184:58505 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,091 - [Mother Nature] exception caught on transport layer [[id: 0x0526dd6c, /192.168.28.184:58507 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,074 - [Mother Nature] exception caught on transport layer [[id: 0xcc96c7b7, /192.168.28.184:58500 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,100 - [Mother Nature] exception caught on transport layer [[id: 0xb4c759e4, /192.168.28.184:58508 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,074 - [Mother Nature] exception caught on transport layer [[id: 0xdf24cc2c, /192.168.28.184:58509 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,106 - [Mother Nature] exception caught on transport layer [[id: 0xbf9988c3, /192.168.28.184:58501 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,074 - [Mother Nature] exception caught on transport layer [[id: 0xd1be1d80, /192.168.28.184:58504 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,074 - [Mother Nature] exception caught on transport layer [[id: 0xcd49e5ce, /192.168.28.184:58502 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,074 - [Mother Nature] exception caught on transport layer [[id: 0x1fc41c2d, /192.168.28.184:58506 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,111 - [Mother Nature] exception caught on transport layer [[id: 0x6c229bb5, /192.168.28.184:58498 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:12:26,108 - [Mother Nature] disconnecting from [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}], channel closed event
+2017-10-19 15:12:26,114 - [Mother Nature] exception caught on transport layer [[id: 0xa172e688, /192.168.28.184:58510 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 15:17:14,641 - [Fusion] modules [], plugins [], sites []
+2017-10-19 15:17:14,662 - [Fusion] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 15:17:14,670 - [Fusion] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:17:14,684 - [Fusion] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:17:14,685 - [Fusion] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 15:17:14,685 - [Fusion] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 15:17:14,685 - [Fusion] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:17:14,686 - [Fusion] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:17:14,686 - [Fusion] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 15:17:14,687 - [Fusion] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:17:14,687 - [Fusion] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 15:17:14,687 - [Fusion] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:17:14,687 - [Fusion] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:17:14,687 - [Fusion] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 15:17:14,687 - [Fusion] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:17:14,688 - [Fusion] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 15:17:14,688 - [Fusion] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:17:16,562 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 fe80::ffff:ffff:fffe prefixlen:0 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 15:17:16,587 - using gathering [true]
+2017-10-19 15:17:16,624 - [Fusion] node_sampler_interval[5s]
+2017-10-19 15:17:16,648 - Using select timeout of 500
+2017-10-19 15:17:16,648 - Epoll-bug workaround enabled = false
+2017-10-19 15:17:16,796 - [Fusion] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:17:16,845 - [Fusion] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:17:18,139 - [Fusion] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:17:18,140 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 15:17:19,171 - UDP Server 启动！
+2017-10-19 15:17:19,175 - UDP通道已经连接
+2017-10-19 15:17:28,539 - totals start 2017-10-19 15:17:28:539
+2017-10-19 15:17:28,546 - 消息来源127.0.0.1:31001==2017-10-19 15:17:28:546
+2017-10-19 15:17:28,547 - 跳转到UdpReqAuth==2017-10-19 15:17:28:547
+2017-10-19 15:17:28,643 - 根据设备号查询最新序号==2017-10-19 15:17:28:643
+2017-10-19 15:17:28,737 - 根据设备号和序号查询密钥==2017-10-19 15:17:28:736
+2017-10-19 15:17:28,739 - 封装发送消息==2017-10-19 15:17:28:738
+2017-10-19 15:18:54,548 - 消息来源127.0.0.1:31001==2017-10-19 15:18:54:548
+2017-10-19 15:18:54,549 - 跳转到UdpReqAuth==2017-10-19 15:18:54:549
+2017-10-19 15:18:54,639 - 根据设备号查询最新序号==2017-10-19 15:18:54:639
+2017-10-19 15:18:54,744 - 根据设备号和序号查询密钥==2017-10-19 15:18:54:744
+2017-10-19 15:18:54,745 - 封装发送消息==2017-10-19 15:18:54:745
+2017-10-19 15:19:50,016 - 消息来源127.0.0.1:31001==2017-10-19 15:19:50:016
+2017-10-19 15:35:05,760 - [Klaatu] modules [], plugins [], sites []
+2017-10-19 15:35:05,787 - [Klaatu] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 15:35:05,802 - [Klaatu] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:35:05,827 - [Klaatu] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:35:05,829 - [Klaatu] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 15:35:05,829 - [Klaatu] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 15:35:05,830 - [Klaatu] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:35:05,830 - [Klaatu] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:35:05,830 - [Klaatu] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 15:35:05,831 - [Klaatu] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:35:05,832 - [Klaatu] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 15:35:05,832 - [Klaatu] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:35:05,832 - [Klaatu] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:35:05,833 - [Klaatu] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 15:35:05,833 - [Klaatu] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:35:05,833 - [Klaatu] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 15:35:05,833 - [Klaatu] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:35:07,742 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 fe80::ffff:ffff:fffe prefixlen:0 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 15:35:07,766 - using gathering [true]
+2017-10-19 15:35:07,810 - [Klaatu] node_sampler_interval[5s]
+2017-10-19 15:35:07,831 - Using select timeout of 500
+2017-10-19 15:35:07,831 - Epoll-bug workaround enabled = false
+2017-10-19 15:35:07,972 - [Klaatu] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:35:08,027 - [Klaatu] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:35:11,157 - [Klaatu] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:35:11,158 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 15:35:12,186 - UDP Server 启动！
+2017-10-19 15:35:12,190 - UDP通道已经连接
+2017-10-19 15:35:31,903 - totals start 2017-10-19 15:35:31:902
+2017-10-19 15:35:31,921 - 消息来源127.0.0.1:31001==2017-10-19 15:35:31:921
+2017-10-19 15:37:54,844 - 跳转到UdpReqAuth==2017-10-19 15:37:54:837
+2017-10-19 15:39:58,142 - 根据设备号查询最新序号==2017-10-19 15:39:58:134
+2017-10-19 15:41:37,583 - 根据设备号和序号查询密钥==2017-10-19 15:41:37:582
+2017-10-19 15:44:46,280 - 封装发送消息==2017-10-19 15:44:46:277
+2017-10-19 15:48:14,303 - 消息来源127.0.0.1:31001==2017-10-19 15:48:14:303
+2017-10-19 15:54:12,646 - [Empathoid] modules [], plugins [], sites []
+2017-10-19 15:54:12,669 - [Empathoid] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 15:54:12,676 - [Empathoid] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:54:12,690 - [Empathoid] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:54:12,691 - [Empathoid] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 15:54:12,691 - [Empathoid] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 15:54:12,691 - [Empathoid] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:54:12,691 - [Empathoid] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:54:12,692 - [Empathoid] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 15:54:12,692 - [Empathoid] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:54:12,693 - [Empathoid] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 15:54:12,693 - [Empathoid] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:54:12,693 - [Empathoid] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 15:54:12,693 - [Empathoid] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 15:54:12,694 - [Empathoid] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 15:54:12,694 - [Empathoid] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 15:54:12,694 - [Empathoid] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 15:54:14,614 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:1cb2:5aa:8ec6:7d45 prefixlen:0
+        inet6 fe80::1cb2:5aa:8ec6:7d45 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 15:54:14,637 - using gathering [true]
+2017-10-19 15:54:14,676 - [Empathoid] node_sampler_interval[5s]
+2017-10-19 15:54:14,697 - Using select timeout of 500
+2017-10-19 15:54:14,697 - Epoll-bug workaround enabled = false
+2017-10-19 15:54:14,856 - [Empathoid] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:54:14,906 - [Empathoid] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:54:15,017 - [Empathoid] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 15:54:15,018 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 15:54:16,399 - UDP Server 启动！
+2017-10-19 15:54:16,401 - UDP通道已经连接
+2017-10-19 15:54:31,556 - totals start 2017-10-19 15:54:31:555
+2017-10-19 15:54:41,919 - 消息来源127.0.0.1:31001==2017-10-19 15:54:41:912

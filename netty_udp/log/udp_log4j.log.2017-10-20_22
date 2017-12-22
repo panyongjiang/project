@@ -1,0 +1,830 @@
+2017-10-20 22:04:50,429 - [Mangog] modules [], plugins [], sites []
+2017-10-20 22:04:50,448 - [Mangog] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-20 22:04:50,455 - [Mangog] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:04:50,468 - [Mangog] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-20 22:04:50,469 - [Mangog] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-20 22:04:50,469 - [Mangog] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-20 22:04:50,470 - [Mangog] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:04:50,470 - [Mangog] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:04:50,471 - [Mangog] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-20 22:04:50,472 - [Mangog] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:04:50,472 - [Mangog] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-20 22:04:50,472 - [Mangog] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:04:50,472 - [Mangog] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-20 22:04:50,473 - [Mangog] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-20 22:04:50,473 - [Mangog] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:04:50,473 - [Mangog] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-20 22:04:50,473 - [Mangog] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:04:52,168 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 fe80::ffff:ffff:fffe prefixlen:0 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:6a prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.0.106 netmask:255.255.255.0 broadcast:192.168.0.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-20 22:04:52,204 - using gathering [true]
+2017-10-20 22:04:52,242 - [Mangog] node_sampler_interval[5s]
+2017-10-20 22:04:52,260 - Using select timeout of 500
+2017-10-20 22:04:52,260 - Epoll-bug workaround enabled = false
+2017-10-20 22:04:52,435 - [Mangog] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-20 22:05:13,570 - [Mangog] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: ConnectException[Connection timed out: no further information: /192.168.8.252:9300];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService.addTransportAddresses(TransportClientNodesService.java:187)
+	at org.elasticsearch.client.transport.TransportClient.addTransportAddress(TransportClient.java:243)
+	at com.udp.config.ElasticSearchConfig.getInstance(ElasticSearchConfig.java:18)
+	at com.udp.server.UdpServer.startSer(UdpServer.java:108)
+	at com.udp.server.UdpServer.run(UdpServer.java:39)
+	at com.uway.netty.App.main(App.java:14)
+Caused by: java.net.ConnectException: Connection timed out: no further information: /192.168.8.252:9300
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-20 22:05:13,581 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-20 22:05:14,645 - UDP Server 启动！
+2017-10-20 22:05:14,646 - UDP通道已经连接
+2017-10-20 22:07:38,590 - [Helleyes] modules [], plugins [], sites []
+2017-10-20 22:07:38,605 - [Helleyes] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-20 22:07:38,612 - [Helleyes] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:07:38,625 - [Helleyes] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-20 22:07:38,625 - [Helleyes] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-20 22:07:38,626 - [Helleyes] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-20 22:07:38,626 - [Helleyes] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:07:38,626 - [Helleyes] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:07:38,626 - [Helleyes] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-20 22:07:38,627 - [Helleyes] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:07:38,627 - [Helleyes] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-20 22:07:38,627 - [Helleyes] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:07:38,627 - [Helleyes] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-20 22:07:38,628 - [Helleyes] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-20 22:07:38,628 - [Helleyes] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:07:38,628 - [Helleyes] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-20 22:07:38,628 - [Helleyes] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:07:40,136 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:145f:2088:3f57:ff95 prefixlen:0
+        inet6 fe80::145f:2088:3f57:ff95 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:6a prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.0.106 netmask:255.255.255.0 broadcast:192.168.0.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-20 22:07:40,168 - using gathering [true]
+2017-10-20 22:07:40,205 - [Helleyes] node_sampler_interval[5s]
+2017-10-20 22:07:40,222 - Using select timeout of 500
+2017-10-20 22:07:40,222 - Epoll-bug workaround enabled = false
+2017-10-20 22:07:40,377 - [Helleyes] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-20 22:08:01,587 - [Helleyes] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: ConnectException[Connection timed out: no further information: /192.168.8.252:9300];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService.addTransportAddresses(TransportClientNodesService.java:187)
+	at org.elasticsearch.client.transport.TransportClient.addTransportAddress(TransportClient.java:243)
+	at com.udp.config.ElasticSearchConfig.getInstance(ElasticSearchConfig.java:18)
+	at com.udp.server.UdpServer.startSer(UdpServer.java:108)
+	at com.udp.server.UdpServer.run(UdpServer.java:39)
+	at com.uway.netty.App.main(App.java:14)
+Caused by: java.net.ConnectException: Connection timed out: no further information: /192.168.8.252:9300
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-20 22:08:01,602 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-20 22:08:02,656 - UDP Server 启动！
+2017-10-20 22:08:02,657 - UDP通道已经连接
+2017-10-20 22:08:22,614 - [Helleyes] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: ConnectException[Connection timed out: no further information: /192.168.8.252:9300];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService$ScheduledNodeSampler.run(TransportClientNodesService.java:369)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: no further information: /192.168.8.252:9300
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	... 3 more
+2017-10-20 22:08:48,623 - [Helleyes] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: ConnectException[Connection timed out: no further information: /192.168.8.252:9300];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService$ScheduledNodeSampler.run(TransportClientNodesService.java:369)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: no further information: /192.168.8.252:9300
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	... 3 more
+2017-10-20 22:09:14,631 - [Helleyes] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: ConnectException[Connection timed out: no further information: /192.168.8.252:9300];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService$ScheduledNodeSampler.run(TransportClientNodesService.java:369)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: no further information: /192.168.8.252:9300
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	... 3 more
+2017-10-20 22:09:49,942 - [Stentor] modules [], plugins [], sites []
+2017-10-20 22:09:49,957 - [Stentor] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-20 22:09:49,964 - [Stentor] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:09:49,978 - [Stentor] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:09:49,979 - [Stentor] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-20 22:09:49,980 - [Stentor] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:09:49,980 - [Stentor] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-20 22:09:49,980 - [Stentor] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-20 22:09:49,980 - [Stentor] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-20 22:09:49,981 - [Stentor] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-20 22:09:49,981 - [Stentor] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-20 22:09:51,570 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:18cf:3410:3f57:ff95 prefixlen:0
+        inet6 fe80::18cf:3410:3f57:ff95 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:6a prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.0.106 netmask:255.255.255.0 broadcast:192.168.0.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-20 22:09:51,603 - using gathering [true]
+2017-10-20 22:09:51,670 - [Stentor] node_sampler_interval[5s]
+2017-10-20 22:09:51,697 - Using select timeout of 500
+2017-10-20 22:09:51,697 - Epoll-bug workaround enabled = false
+2017-10-20 22:09:51,865 - [Stentor] adding address [{#transport#-1}{114.115.138.117}{114.115.138.117:9200}]
+2017-10-20 22:10:13,025 - [Stentor] failed to connect to node [{#transport#-1}{114.115.138.117}{114.115.138.117:9200}], removed from nodes list
+ConnectTransportException[[][114.115.138.117:9200] connect_timeout[30s]]; nested: ConnectException[Connection timed out: no further information: /114.115.138.117:9200];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService.addTransportAddresses(TransportClientNodesService.java:187)
+	at org.elasticsearch.client.transport.TransportClient.addTransportAddress(TransportClient.java:243)
+	at com.udp.config.ElasticSearchConfig.getInstance(ElasticSearchConfig.java:18)
+	at com.udp.server.UdpServer.startSer(UdpServer.java:108)
+	at com.udp.server.UdpServer.run(UdpServer.java:39)
+	at com.uway.netty.App.main(App.java:14)
+Caused by: java.net.ConnectException: Connection timed out: no further information: /114.115.138.117:9200
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-20 22:10:13,034 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-20 22:10:14,052 - UDP Server 启动！
+2017-10-20 22:10:14,054 - UDP通道已经连接

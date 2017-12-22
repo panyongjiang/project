@@ -1,0 +1,945 @@
+2017-10-19 10:00:14,921 - 消息来源127.0.0.1:31001==2017-10-19 10:00:14:921
+2017-10-19 10:01:24,907 - 消息来源127.0.0.1:31001==2017-10-19 10:01:24:907
+2017-10-19 10:01:37,919 - 消息来源127.0.0.1:31001==2017-10-19 10:01:37:919
+2017-10-19 10:01:37,920 - 跳转到UdpReqAuth==2017-10-19 10:01:37:920
+2017-10-19 10:01:38,154 - 根据设备号查询最新序号==2017-10-19 10:01:38:154
+2017-10-19 10:01:38,220 - 根据设备号和序号查询密钥==2017-10-19 10:01:38:220
+2017-10-19 10:01:38,221 - 封装发送消息==2017-10-19 10:01:38:221
+2017-10-19 10:03:20,814 - [Volla] modules [], plugins [], sites []
+2017-10-19 10:03:20,830 - [Volla] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 10:03:20,836 - [Volla] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:03:20,849 - [Volla] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:03:20,850 - [Volla] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 10:03:20,850 - [Volla] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 10:03:20,851 - [Volla] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:20,851 - [Volla] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:03:20,851 - [Volla] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 10:03:20,852 - [Volla] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:20,852 - [Volla] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 10:03:20,852 - [Volla] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:20,852 - [Volla] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:03:20,853 - [Volla] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 10:03:20,853 - [Volla] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:03:20,853 - [Volla] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 10:03:20,853 - [Volla] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:22,571 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:1cb2:5aa:8ec6:7d45 prefixlen:0
+        inet6 fe80::1cb2:5aa:8ec6:7d45 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 10:03:22,601 - using gathering [true]
+2017-10-19 10:03:22,682 - [Volla] node_sampler_interval[5s]
+2017-10-19 10:03:22,704 - Using select timeout of 500
+2017-10-19 10:03:22,704 - Epoll-bug workaround enabled = false
+2017-10-19 10:03:22,814 - [Volla] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:03:22,869 - [Volla] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:03:22,980 - [Volla] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:03:22,980 - redisFilePathD:\workspace\netty_udp\netty_udp/resources/spring-redis.xml
+2017-10-19 10:03:24,107 - UDP Server 启动！
+2017-10-19 10:03:24,109 - UDP通道已经连接
+2017-10-19 10:03:34,686 - [Plague] modules [], plugins [], sites []
+2017-10-19 10:03:34,714 - [Plague] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 10:03:34,724 - [Plague] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:03:34,745 - [Plague] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:03:34,747 - [Plague] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 10:03:34,747 - [Plague] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 10:03:34,747 - [Plague] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:34,748 - [Plague] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:03:34,748 - [Plague] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 10:03:34,749 - [Plague] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:34,749 - [Plague] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 10:03:34,749 - [Plague] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:34,750 - [Plague] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:03:34,750 - [Plague] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 10:03:34,750 - [Plague] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:03:34,750 - [Plague] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 10:03:34,750 - [Plague] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:03:36,759 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:1cb2:5aa:8ec6:7d45 prefixlen:0
+        inet6 fe80::1cb2:5aa:8ec6:7d45 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 10:03:36,781 - using gathering [true]
+2017-10-19 10:03:36,820 - [Plague] node_sampler_interval[5s]
+2017-10-19 10:03:36,847 - Using select timeout of 500
+2017-10-19 10:03:36,848 - Epoll-bug workaround enabled = false
+2017-10-19 10:03:37,023 - [Plague] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:03:37,072 - [Plague] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:03:38,768 - [Plague] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:03:38,769 - redisFilePathD:\workspace\netty_udp\netty_udp/resources/spring-redis.xml
+2017-10-19 10:11:45,529 - [Danielle Moonstar] modules [], plugins [], sites []
+2017-10-19 10:11:45,548 - [Danielle Moonstar] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 10:11:45,557 - [Danielle Moonstar] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:11:45,573 - [Danielle Moonstar] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:11:45,574 - [Danielle Moonstar] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 10:11:45,574 - [Danielle Moonstar] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 10:11:45,574 - [Danielle Moonstar] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:11:45,575 - [Danielle Moonstar] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:11:45,575 - [Danielle Moonstar] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 10:11:45,576 - [Danielle Moonstar] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:11:45,576 - [Danielle Moonstar] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 10:11:45,577 - [Danielle Moonstar] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:11:45,577 - [Danielle Moonstar] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:11:45,577 - [Danielle Moonstar] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 10:11:45,577 - [Danielle Moonstar] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:11:45,577 - [Danielle Moonstar] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 10:11:45,578 - [Danielle Moonstar] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:11:47,185 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 fe80::ffff:ffff:fffe prefixlen:0 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 10:11:47,213 - using gathering [true]
+2017-10-19 10:11:47,288 - [Danielle Moonstar] node_sampler_interval[5s]
+2017-10-19 10:11:47,309 - Using select timeout of 500
+2017-10-19 10:11:47,309 - Epoll-bug workaround enabled = false
+2017-10-19 10:11:47,404 - [Danielle Moonstar] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:11:47,476 - [Danielle Moonstar] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:11:50,615 - [Danielle Moonstar] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:11:50,616 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 10:11:51,822 - UDP Server 启动！
+2017-10-19 10:11:51,823 - UDP通道已经连接
+2017-10-19 10:12:23,460 - totals start 2017-10-19 10:12:23:460
+2017-10-19 10:12:23,465 - 消息来源127.0.0.1:31001==2017-10-19 10:12:23:465
+2017-10-19 10:12:23,466 - 跳转到UdpReqAuth==2017-10-19 10:12:23:466
+2017-10-19 10:12:23,648 - 根据设备号查询最新序号==2017-10-19 10:12:23:648
+2017-10-19 10:12:23,760 - 根据设备号和序号查询密钥==2017-10-19 10:12:23:760
+2017-10-19 10:12:23,761 - 封装发送消息==2017-10-19 10:12:23:761
+2017-10-19 10:13:45,480 - 消息来源127.0.0.1:31001==2017-10-19 10:13:45:480
+2017-10-19 10:45:58,906 - [Jigsaw] modules [], plugins [], sites []
+2017-10-19 10:45:58,922 - [Jigsaw] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 10:45:58,928 - [Jigsaw] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:45:58,940 - [Jigsaw] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:45:58,941 - [Jigsaw] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 10:45:58,941 - [Jigsaw] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 10:45:58,941 - [Jigsaw] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:45:58,941 - [Jigsaw] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:45:58,941 - [Jigsaw] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 10:45:58,942 - [Jigsaw] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:45:58,943 - [Jigsaw] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 10:45:58,943 - [Jigsaw] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:45:58,943 - [Jigsaw] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 10:45:58,943 - [Jigsaw] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 10:45:58,943 - [Jigsaw] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 10:45:58,944 - [Jigsaw] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 10:45:58,944 - [Jigsaw] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 10:46:00,527 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:1cb2:5aa:8ec6:7d45 prefixlen:0
+        inet6 fe80::1cb2:5aa:8ec6:7d45 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 10:46:00,557 - using gathering [true]
+2017-10-19 10:46:00,631 - [Jigsaw] node_sampler_interval[5s]
+2017-10-19 10:46:00,653 - Using select timeout of 500
+2017-10-19 10:46:00,654 - Epoll-bug workaround enabled = false
+2017-10-19 10:46:00,750 - [Jigsaw] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:46:00,796 - [Jigsaw] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:46:02,284 - [Jigsaw] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 10:46:02,284 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 10:46:03,262 - UDP Server 启动！
+2017-10-19 10:46:03,263 - UDP通道已经连接
+2017-10-19 10:46:33,852 - totals start 2017-10-19 10:46:33:852
+2017-10-19 10:46:33,857 - 消息来源127.0.0.1:31001==2017-10-19 10:46:33:857
+2017-10-19 10:46:33,858 - 跳转到UdpReqAuth==2017-10-19 10:46:33:858
+2017-10-19 10:46:34,045 - 根据设备号查询最新序号==2017-10-19 10:46:34:045
+2017-10-19 10:46:34,046 - saveReqAuth 参数com.udp.entity.UdpHead@747af9c6reaParamcom.udp.entity.ReqAuthNumber@73156e9f
+2017-10-19 10:48:26,925 - 消息来源127.0.0.1:31001==2017-10-19 10:48:26:925
+2017-10-19 10:50:52,341 - 消息来源127.0.0.1:31001==2017-10-19 10:50:52:340
+2017-10-19 10:56:37,263 - 消息来源127.0.0.1:31001==2017-10-19 10:56:37:262
+2017-10-19 10:58:10,728 - 消息来源127.0.0.1:31001==2017-10-19 10:58:10:728
+2017-10-19 10:58:15,718 - 消息来源127.0.0.1:31001==2017-10-19 10:58:15:718
+2017-10-19 10:58:15,719 - 跳转到UdpReqAuth==2017-10-19 10:58:15:719
+2017-10-19 10:58:15,857 - 根据设备号查询最新序号==2017-10-19 10:58:15:856
+2017-10-19 10:58:15,920 - 根据设备号和序号查询密钥==2017-10-19 10:58:15:919
+2017-10-19 10:58:15,920 - 封装发送消息==2017-10-19 10:58:15:920
+2017-10-19 10:59:04,838 - 消息来源127.0.0.1:31001==2017-10-19 10:59:04:838
+2017-10-19 10:59:43,346 - 消息来源127.0.0.1:31001==2017-10-19 10:59:43:346
+2017-10-19 10:59:43,417 - 跳转到UdpNtfUrl
+2017-10-19 10:59:43,418 - setNtfUrlEnil 参数com.udp.entity.UdpHead@149d4b92nueParamcom.udp.entity.NtfUrlEnil@1a5ab771

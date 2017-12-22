@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: netty_udp
+Implementation-Version: L1
+Built-By: ￦ﾈﾑ
+Implementation-Vendor-Id: com.uway.netty
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/netty_udp/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

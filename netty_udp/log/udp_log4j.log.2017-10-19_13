@@ -1,0 +1,534 @@
+2017-10-19 13:40:47,022 - [Chameleon] exception caught on transport layer [[id: 0x91fed5db, /192.168.28.184:53163 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,023 - [Chameleon] exception caught on transport layer [[id: 0x93e080af, /192.168.28.184:53164 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,023 - [Chameleon] exception caught on transport layer [[id: 0xff9708a8, /192.168.28.184:53162 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,023 - [Chameleon] exception caught on transport layer [[id: 0x8148d3fd, /192.168.28.184:53160 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,023 - [Chameleon] exception caught on transport layer [[id: 0x93c40e53, /192.168.28.184:53159 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,023 - [Chameleon] exception caught on transport layer [[id: 0x75039f98, /192.168.28.184:53157 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,023 - [Chameleon] exception caught on transport layer [[id: 0x3ff8b7f1, /192.168.28.184:53169 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,096 - [Chameleon] exception caught on transport layer [[id: 0xb4b57708, /192.168.28.184:53165 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,092 - [Chameleon] exception caught on transport layer [[id: 0xdae85e5d, /192.168.28.184:53167 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,089 - [Chameleon] exception caught on transport layer [[id: 0xeff6696f, /192.168.28.184:53168 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,086 - [Chameleon] exception caught on transport layer [[id: 0xea00d776, /192.168.28.184:53156 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,086 - [Chameleon] disconnecting from [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}], channel closed event
+2017-10-19 13:40:47,102 - [Chameleon] disconnecting from [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], channel closed event
+2017-10-19 13:40:47,042 - [Chameleon] exception caught on transport layer [[id: 0xdc98b08f, /192.168.28.184:53166 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,097 - [Chameleon] exception caught on transport layer [[id: 0x0af13130, /192.168.28.184:53161 => /192.168.8.252:9300]], closing connection
+java.io.IOException: 你的主机中的软件中止了一个已建立的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source)
+	at sun.nio.ch.IOUtil.read(Unknown Source)
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89)
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:47,200 - [Chameleon] failed to get node info for {#transport#-1}{192.168.8.252}{192.168.8.252:9300}, disconnecting...
+NodeDisconnectedException[[][192.168.8.252:9300][cluster:monitor/nodes/liveness] disconnected]
+2017-10-19 13:40:52,203 - [Chameleon] exception caught on transport layer [[id: 0xccfbb687]], closing connection
+java.net.SocketException: Network is unreachable: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:40:52,203 - [Chameleon] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: SocketException[Network is unreachable: no further information];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService$ScheduledNodeSampler.run(TransportClientNodesService.java:369)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Network is unreachable: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	... 3 more
+2017-10-19 13:40:57,205 - [Chameleon] failed to connect to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}], removed from nodes list
+ConnectTransportException[[][192.168.8.252:9300] connect_timeout[30s]]; nested: SocketException[Network is unreachable: no further information];
+	at org.elasticsearch.transport.netty.NettyTransport.connectToChannelsLight(NettyTransport.java:967)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNode(NettyTransport.java:933)
+	at org.elasticsearch.transport.netty.NettyTransport.connectToNodeLight(NettyTransport.java:906)
+	at org.elasticsearch.transport.TransportService.connectToNodeLight(TransportService.java:267)
+	at org.elasticsearch.client.transport.TransportClientNodesService$SimpleNodeSampler.doSample(TransportClientNodesService.java:390)
+	at org.elasticsearch.client.transport.TransportClientNodesService$NodeSampler.sample(TransportClientNodesService.java:336)
+	at org.elasticsearch.client.transport.TransportClientNodesService$ScheduledNodeSampler.run(TransportClientNodesService.java:369)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Network is unreachable: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	... 3 more
+2017-10-19 13:40:57,206 - [Chameleon] exception caught on transport layer [[id: 0xd137643c]], closing connection
+java.net.SocketException: Network is unreachable: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.connect(NioClientBoss.java:152)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.processSelectedKeys(NioClientBoss.java:105)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.process(NioClientBoss.java:79)
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337)
+	at org.jboss.netty.channel.socket.nio.NioClientBoss.run(NioClientBoss.java:42)
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108)
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+2017-10-19 13:41:02,275 - [Chameleon] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 13:41:02,342 - [Chameleon] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 13:46:33,948 - [Thomas Halloway] modules [], plugins [], sites []
+2017-10-19 13:46:33,964 - [Thomas Halloway] creating thread_pool [force_merge], type [fixed], size [1], queue_size [null]
+2017-10-19 13:46:33,972 - [Thomas Halloway] creating thread_pool [percolate], type [fixed], size [4], queue_size [1k]
+2017-10-19 13:46:33,986 - [Thomas Halloway] creating thread_pool [fetch_shard_started], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 13:46:33,987 - [Thomas Halloway] creating thread_pool [listener], type [fixed], size [2], queue_size [null]
+2017-10-19 13:46:33,987 - [Thomas Halloway] creating thread_pool [index], type [fixed], size [4], queue_size [200]
+2017-10-19 13:46:33,987 - [Thomas Halloway] creating thread_pool [refresh], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 13:46:33,988 - [Thomas Halloway] creating thread_pool [suggest], type [fixed], size [4], queue_size [1k]
+2017-10-19 13:46:33,988 - [Thomas Halloway] creating thread_pool [generic], type [cached], keep_alive [30s]
+2017-10-19 13:46:33,989 - [Thomas Halloway] creating thread_pool [warmer], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 13:46:33,989 - [Thomas Halloway] creating thread_pool [search], type [fixed], size [7], queue_size [1k]
+2017-10-19 13:46:33,989 - [Thomas Halloway] creating thread_pool [flush], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 13:46:33,989 - [Thomas Halloway] creating thread_pool [fetch_shard_store], type [scaling], min [1], size [8], keep_alive [5m]
+2017-10-19 13:46:33,990 - [Thomas Halloway] creating thread_pool [management], type [scaling], min [1], size [5], keep_alive [5m]
+2017-10-19 13:46:33,990 - [Thomas Halloway] creating thread_pool [get], type [fixed], size [4], queue_size [1k]
+2017-10-19 13:46:33,990 - [Thomas Halloway] creating thread_pool [bulk], type [fixed], size [4], queue_size [50]
+2017-10-19 13:46:33,990 - [Thomas Halloway] creating thread_pool [snapshot], type [scaling], min [1], size [2], keep_alive [5m]
+2017-10-19 13:46:35,869 - configuration:
+
+lo
+        Software Loopback Interface 1
+        inet 127.0.0.1 netmask:255.0.0.0 broadcast:127.255.255.255 scope:host
+        inet6 ::1 prefixlen:128 scope:host
+        UP MULTICAST LOOPBACK mtu:-1 index:1
+
+eth0
+        VMware Virtual Ethernet Adapter for VMnet1
+        inet 192.168.62.1 netmask:255.255.255.0 broadcast:192.168.62.255 scope:site
+        inet6 fe80::9153:7647:312c:c6e7 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:01
+        UP MULTICAST mtu:1500 index:2
+
+eth1
+        WAN Miniport (IPv6)
+        MULTICAST mtu:-1 index:3
+
+net0
+        Microsoft Teredo Tunneling Adapter
+        inet6 2001:0:9d38:953c:1cb2:5aa:8ec6:7d45 prefixlen:0
+        inet6 fe80::1cb2:5aa:8ec6:7d45 prefixlen:32 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        UP POINTOPOINT mtu:1280 index:4
+
+eth2
+        VMware Virtual Ethernet Adapter for VMnet8
+        inet 192.168.100.1 netmask:255.255.255.0 broadcast:192.168.100.255 scope:site
+        inet6 fe80::ed9d:c317:9025:11e2 prefixlen:64 scope:link
+        hardware 00:50:56:C0:00:08
+        UP MULTICAST mtu:1500 index:5
+
+eth3
+        Bluetooth Device (Personal Area Network)
+        inet6 fe80::7d10:2d6b:3dd6:be46 prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:CA
+        MULTICAST mtu:1500 index:6
+
+eth4
+        Hillstone Virtual Network Adapter
+        inet6 fe80::3461:2140:6291:595 prefixlen:64 scope:link
+        hardware 00:FF:27:62:A3:F2
+        MULTICAST mtu:1500 index:7
+
+eth5
+        WAN Miniport (Network Monitor)
+        MULTICAST mtu:-1 index:8
+
+net1
+        Microsoft ISATAP Adapter
+        inet6 fe80::5efe:c0a8:1cb8 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:9
+
+net2
+        WAN Miniport (PPTP)
+        MULTICAST mtu:-1 index:10
+
+eth6
+        Microsoft Kernel Debug Network Adapter
+        MULTICAST mtu:-1 index:11
+
+eth7
+        WAN Miniport (IP)
+        MULTICAST mtu:-1 index:12
+
+wlan0
+        Qualcomm Atheros QCA9377 Wireless Network Adapter
+        inet 192.168.28.184 netmask:255.255.255.0 broadcast:192.168.28.255 scope:site
+        inet6 fe80::8813:4511:8cb7:cbba prefixlen:64 scope:link
+        hardware 28:56:5A:9F:1D:C9
+        UP MULTICAST mtu:1500 index:13
+
+eth8
+        Realtek PCIe GBE Family Controller
+        inet6 fe80::b18d:a5b7:5ef2:3bb8 prefixlen:64 scope:link
+        hardware C8:5B:76:D4:34:CC
+        MULTICAST mtu:1500 index:14
+
+net3
+        Bluetooth Device (RFCOMM Protocol TDI)
+        MULTICAST mtu:-1 index:15
+
+net4
+        WAN Miniport (IKEv2)
+        MULTICAST mtu:-1 index:16
+
+net5
+        Microsoft ISATAP Adapter #2
+        inet6 fe80::5efe:c0a8:6401 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:17
+
+wlan1
+        Microsoft Wi-Fi Direct Virtual Adapter
+        inet6 fe80::2550:f38f:a18b:460 prefixlen:64 scope:link
+        hardware 2A:56:5A:9F:1D:C9
+        MULTICAST mtu:1500 index:18
+
+ppp0
+        WAN Miniport (PPPOE)
+        MULTICAST mtu:-1 index:19
+
+net6
+        WAN Miniport (L2TP)
+        MULTICAST mtu:-1 index:20
+
+net7
+        WAN Miniport (SSTP)
+        MULTICAST mtu:-1 index:21
+
+net8
+        Microsoft ISATAP Adapter #3
+        inet6 fe80::5efe:c0a8:3e01 prefixlen:128 scope:link
+        hardware 00:00:00:00:00:00:00:E0
+        POINTOPOINT mtu:1280 index:22
+
+eth9
+        Hillstone Virtual Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:23
+
+eth10
+        Hillstone Virtual Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:24
+
+eth11
+        Hillstone Virtual Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:25
+
+eth12
+        Realtek PCIe GBE Family Controller-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:26
+
+eth13
+        Realtek PCIe GBE Family Controller-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:27
+
+eth14
+        Realtek PCIe GBE Family Controller-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:28
+
+wlan2
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:29
+
+wlan3
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Virtual WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:30
+
+wlan4
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:31
+
+wlan5
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:32
+
+wlan6
+        Qualcomm Atheros QCA9377 Wireless Network Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:33
+
+wlan7
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:34
+
+wlan8
+        Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+        MULTICAST mtu:-1 index:35
+
+wlan9
+        Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:36
+
+wlan10
+        Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:37
+
+eth15
+        WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:38
+
+eth16
+        WAN Miniport (IP)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:39
+
+eth17
+        WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:40
+
+eth18
+        WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:41
+
+eth19
+        WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+        MULTICAST mtu:-1 index:42
+
+eth20
+        WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+        MULTICAST mtu:-1 index:43
+
+2017-10-19 13:46:35,895 - using gathering [true]
+2017-10-19 13:46:35,932 - [Thomas Halloway] node_sampler_interval[5s]
+2017-10-19 13:46:35,957 - Using select timeout of 500
+2017-10-19 13:46:35,957 - Epoll-bug workaround enabled = false
+2017-10-19 13:46:36,129 - [Thomas Halloway] adding address [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 13:46:36,182 - [Thomas Halloway] connected to node [{#transport#-1}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 13:46:37,966 - [Thomas Halloway] connected to node [{node-2}{2UbsXkJ-RbKgL2tb9tIo7Q}{192.168.8.252}{192.168.8.252:9300}]
+2017-10-19 13:46:37,967 - redisFilePathD:\workspace\netty_udp/resources/spring-redis.xml
+2017-10-19 13:46:39,047 - UDP Server 启动！
+2017-10-19 13:46:39,050 - UDP通道已经连接
+2017-10-19 13:46:56,997 - totals start 2017-10-19 13:46:56:997
+2017-10-19 13:50:18,534 - 消息来源127.0.0.1:31001==2017-10-19 13:50:18:533
+2017-10-19 13:56:15,564 - 消息来源127.0.0.1:31001==2017-10-19 13:56:15:564
+2017-10-19 13:58:48,954 - 消息来源127.0.0.1:31001==2017-10-19 13:58:48:953

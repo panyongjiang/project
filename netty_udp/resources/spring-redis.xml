@@ -1,0 +1,120 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/util 
+      http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+<!--[redis-JedisPoolConfig配置](http://blog.csdn.net/liang_love_java/article/details/50510753)-->
+<!--    jedis-2.7.2.jar 依赖jar包 commons-pool2-2.3.jar 
+        jedis基于 commons-pool2-2.3.jar 自己实现了一个资源池。
+        配置参数 详见 http://blog.csdn.net/liang_love_java/article/details/50510753
+-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"> 
+        <property name="maxIdle" value="1" /> 
+        <property name="maxTotal" value="5" /> 
+        <property name="blockWhenExhausted" value="true" /> 
+        <property name="maxWaitMillis" value="30000" /> 
+        <property name="testOnBorrow" value="true" />  
+    </bean> 
+    
+    <!-- Redis集群配置     这里使用的是spring-data-redis  包中内容 -->
+ <!--     <bean id="redisClusterConfig" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+        <property name="maxRedirects" value="6"></property>
+        <property name="clusterNodes">
+            <set>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.52"></constructor-arg>
+                    <constructor-arg name="port" value="7003"></constructor-arg>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.52"></constructor-arg>
+                    <constructor-arg name="port" value="7004"></constructor-arg>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.52"></constructor-arg>
+                    <constructor-arg name="port" value="7005"></constructor-arg>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.138"></constructor-arg>
+                    <constructor-arg name="port" value="7000"></constructor-arg>
+                </bean>
+                 <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.138"></constructor-arg>
+                    <constructor-arg name="port" value="7001"></constructor-arg>
+                </bean>
+                 <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.138"></constructor-arg>
+                    <constructor-arg name="port" value="7002"></constructor-arg>
+                </bean>
+            </set>
+        </property>
+    </bean> --> 
+     <bean id="redisClusterConfig" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+        <property name="maxRedirects" value="6"></property>
+        <property name="clusterNodes">
+            <set>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.8.252"></constructor-arg>
+                    <constructor-arg name="port" value="7000"></constructor-arg>
+                </bean>
+
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.8.252"></constructor-arg>
+                    <constructor-arg name="port" value="7001"></constructor-arg>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.8.252"></constructor-arg>
+                    <constructor-arg name="port" value="7002"></constructor-arg>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.8.248"></constructor-arg>
+                    <constructor-arg name="port" value="7000"></constructor-arg>
+                </bean>
+                 <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.8.248"></constructor-arg>
+                    <constructor-arg name="port" value="7001"></constructor-arg>
+                </bean>
+                 <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.8.248"></constructor-arg>
+                    <constructor-arg name="port" value="7002"></constructor-arg>
+                </bean>
+            </set>
+        </property>
+    </bean> 
+
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"> 
+    	<constructor-arg name="clusterConfig" ref="redisClusterConfig" />
+        <property name="timeout" value="10000" />
+        <property name="poolConfig" ref="jedisPoolConfig" />
+        <property name="usePool" value="true"/> 
+    </bean> 
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">   
+        <property name="connectionFactory"   ref="jedisConnectionFactory" />   
+        <property name="keySerializer">   
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />   
+        </property>      
+        <property name="valueSerializer">   
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />   
+        </property>   
+        <property name="hashKeySerializer">     
+           <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>     
+        </property>   
+        <property name="hashValueSerializer">   
+           <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>     
+        </property> 
+     </bean> 
+
+</beans>

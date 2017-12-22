@@ -1,0 +1,4 @@
+2017-10-19 18:00:06,319 - totals start 2017-10-19 18:00:06:319
+2017-10-19 18:00:06,335 - 消息来源127.0.0.1:31001==2017-10-19 18:00:06:335
+2017-10-19 18:01:07,816 - 跳转到UdpNtfUrl
+2017-10-19 18:01:07,826 - setNtfUrlEnil 参数com.udp.entity.UdpHead@1860e3b2nueParamcom.udp.entity.NtfUrlEnil@7bda28af
