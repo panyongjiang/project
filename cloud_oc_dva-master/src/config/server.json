@@ -1,0 +1,8 @@
+{
+  "protocol": "http",
+  "host": "192.168.198.200",
+  "port": "8888",
+  "projectName": "/YN_MOBILE",
+  "imgHost": "192.168.8.248",
+  "imgPath": "/api/images"
+}

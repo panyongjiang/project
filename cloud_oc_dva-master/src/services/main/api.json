@@ -1,0 +1,11 @@
+{
+  "method": ["GET", "POST"],
+  "headers": [
+    {
+      "Content-Type": "application/json"
+    }
+  ],
+  "api": [
+    "/*/getMenus"
+  ]
+}

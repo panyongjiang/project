@@ -1,0 +1,14 @@
+{
+  "method": ["GET", "POST"],
+  "headers": [
+    {
+      "Content-Type": "application/json"
+    }
+  ],
+  "api": [
+    "/admin_user/upd_admin_pwd",
+    "/sensitive/list_word",
+    "/sensitive/add_word",
+    "/sensitive/del_word"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "method": ["GET", "POST"],
+  "headers": [
+    {
+      "Content-Type": "application/json"
+    }
+  ],
+  "api": [
+    "/admin_user/getDesKey",
+    "/admin_user/login",
+    "/admin_user/login_out"
+  ]
+}

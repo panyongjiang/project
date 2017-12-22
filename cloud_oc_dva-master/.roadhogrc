@@ -1,0 +1,29 @@
+{
+  "entry": "src/index.js",
+  "extraBabelPlugins": [
+      "transform-runtime",
+      ["import", {
+        "libraryName": "antd",
+        "style": "css"
+      }]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr"
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+
+      ]
+    },
+    "theme": {
+      "@@table-header-bg": "#1DA57A",
+      "@link-color": "#1DA57A",
+      "@border-radius-base": "2px",
+      "@font-size-base": "25px",
+      "@line-height-base": "1.2"
+    }
+  }
+}

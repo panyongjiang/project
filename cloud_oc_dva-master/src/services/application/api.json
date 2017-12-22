@@ -1,0 +1,40 @@
+{
+  "method": ["GET", "POST"],
+  "headers": [
+    {
+      "Content-Type": "application/json"
+    }
+  ],
+  "api": {
+    "trailApplication": [
+      "/admin_safe_trial/list_safe_trial",
+      "/admin_safe_trial/del_safe_trial",
+      "/admin_safe_trial/safe_trial_details",
+      "/admin_safe_trial/audit_safe_trial"
+    ],
+    "issueFeedBack": [
+      "/admin_note/list_note",
+      "/admin_note/get_note",
+      "/admin_note/del_note",
+      "/admin_note/upd_note_status"
+    ],
+    "articleManage": [
+      "/admin_article/list_article",
+      "/admin_article/list_article_category",
+      "/admin_article/add_article",
+      "/admin_article/upd_article",
+      "/admin_article/get_article",
+      "/admin_article/del_article",
+      "/sensitive/sensitive_filter"
+    ],
+    "appCheck": [
+      "/admin_app/list_appCheck",
+      "/admin_app/add_app_report",
+      "/admin_app/download_app"
+    ],
+    "inviteCode": [
+      "/admin_code/list_code",
+      "/admin_code/add_code"
+    ]
+  }
+}

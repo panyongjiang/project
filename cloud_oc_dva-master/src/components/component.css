@@ -1,0 +1,16 @@
+.center {
+  text-align: center !important;
+}
+
+.tableTheadTh {
+  padding: 10px !important;
+}
+
+.formItemMarginBottom {
+  margin-bottom: 5px !important;
+}
+
+.ant-modal {
+  top: 15px !important;
+  padding-bottom: 0 !important;
+}

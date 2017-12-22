@@ -1,0 +1,25 @@
+{
+  "method": ["GET", "POST"],
+  "headers": [
+    {
+      "Content-Type": "application/json"
+    }
+  ],
+  "api": {
+    "userManage": [
+      "/admin_user/list_user",
+      "/admin_user/view_user",
+      "/admin_user/upd_user_pwd",
+      "/admin_user/del_user",
+      "/admin_user/upd_user"
+    ],
+    "serverManage": [
+      "/admin_product/get_service_by_user",
+      "/admin_product/off_service",
+      "/admin_product/start_service",
+      "/admin_product/trial_service",
+      "/admin_product/upd_validate_time",
+      "/admin_user/industry_list"
+    ]
+  }
+}
