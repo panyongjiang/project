@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uway.tasks.mapper.ScheduleJobMapper">
+
+	<sql id="base_select">
+		job_id as jobId,
+		job_name as jobName,
+		job_group as jobGroup,
+		job_status as jobStatus,
+		cron_expression as cronExpression,
+		description as description,
+		interface_url as interfaceUrl,
+		running_status as runningStatus,
+		create_time as createTime,
+		update_time as updateTime
+	</sql>
+
+	<sql id="base_insert">
+	    job_name,
+	    job_group,
+		cron_expression,
+		description,
+		interface_url
+	</sql>
+	
+	<select id="getTasks" parameterType="com.uway.tasks.domain.ScheduleJob" 
+		resultType="com.uway.tasks.domain.ScheduleJob"	>
+		select
+		<include refid="base_select" />
+		from task_schedule_job
+		where 1 = 1
+		<if test="jobId != null">
+			and job_id = #{jobId}
+		</if>
+	</select>
+	
+	<select id="getAllActiveTasks" resultType="com.uway.tasks.domain.ScheduleJob">
+		select
+		<include refid="base_select" />
+		from task_schedule_job
+		where job_status = 1
+	</select>
+	
+	<select id="checkExistsTrigger" parameterType="com.uway.tasks.domain.ScheduleJob" 
+		 resultType="com.uway.tasks.domain.ScheduleJob">
+		select
+		<include refid="base_select" />
+		from task_schedule_job
+		where job_name = #{jobName}
+			and job_group = #{jobGroup}
+	</select>
+	
+	<delete id="deleteTask" parameterType="java.lang.Long">
+		delete from task_schedule_job
+		where job_id = #{jobId}
+	</delete>
+	
+	<insert id="saveEntity" useGeneratedKeys="true" keyProperty="jobId"
+	 parameterType="com.uway.tasks.domain.ScheduleJob">
+		insert into task_schedule_job 
+		(<include refid="base_insert" />)
+		values (
+			#{jobName},
+			#{jobGroup},
+			#{cronExpression},
+			#{description},
+			#{interfaceUrl}
+		)
+	</insert>
+	
+	<update id="updateTask" parameterType="com.uway.tasks.domain.ScheduleJob">
+		update task_schedule_job
+		<set>
+			<if test="jobStatus != null">
+				job_status = #{jobStatus},
+			</if>
+			<if test="cronExpression != null">
+				cron_expression = #{cronExpression},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where job_id = #{jobId}
+	</update>
+	
+</mapper>
