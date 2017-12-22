@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.DepartmentMapper">
+
+	<insert id="insertDepartment" parameterType="com.uway.mobile.domain.Department"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into department(name,company_id) values(#{name},#{companyId})
+	</insert>
+	
+	<update id="updateDepartment" parameterType="com.uway.mobile.domain.Department">
+		update department set name=#{name} where id=#{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from department where id=#{id}
+	</delete>
+
+	<select id="getDepartmentById" resultType="com.uway.mobile.domain.Department">
+		select * from department where id = #{departmentId}
+	</select>
+
+	<select id="getDepartmentsByCompId" resultType="com.uway.mobile.domain.Department">
+		select * from department where company_id = #{companyId}
+	</select>
+
+</mapper>  

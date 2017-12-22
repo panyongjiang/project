@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.LogMapper">
+
+	<insert id="insertLog" parameterType="com.uway.mobile.domain.Log"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into log(opt_user,operation) values(#{optUser}, #{operation})
+	</insert>
+
+	<select id="getLogsWithPage" resultType="com.uway.mobile.domain.Log">
+		select a.*,b.user_name from log a left join user b on a.opt_user=b.id 
+		where a.opt_user=#{userId} order by a.opt_time desc  limit #{page_num}, #{page_size}
+	</select>
+	
+	<select id="getLogsTotalCount" resultType="java.lang.Integer">
+		select count(*) from log where opt_user=#{userId}
+	</select>
+
+</mapper>  

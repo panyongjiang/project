@@ -1,0 +1,70 @@
+http://114.115.138.117:9090/ROUTER_FLOW/file/download?id=5a1b8134c71268e883d35fab
+
+java.lang.OutOfMemoryError: Java heap space
+
+http请求出现的问题：
+
+Thread Name: 线程组
+Sample Start: 2017-11-28 11:20:03 CST
+Load time: 35522
+Connect Time: 73
+Latency: 316
+Size in bytes: 1205
+Sent bytes:0
+Headers size in bytes: 0
+Body size in bytes: 1205
+Sample Count: 1
+Error Count: 1
+Data type ("text"|"bin"|""): text
+Response code: Non HTTP response code: org.apache.http.TruncatedChunkException
+Response message: Non HTTP response message: Truncated chunk ( expected size: 8192; actual size: 7484)
+
+Response headers:
+
+
+HTTPSampleResult fields:
+ContentType: application/octet-stream
+DataEncoding: null
+
+ 异常方法:com.uway.router.controller.MongoController.downloadFile
+2017-11-28 11:33:09.158 ERROR 59523 --- [o-9090-exec-466] o.s.boot.web.support.ErrorPageFilter     
+	: Cannot forward to error page for request [/file/download] as the response has already been committed. As a result,
+	 the response may have the wrong status code. 
+	 If your application is running on WebSphere Application Server you may be able to
+	 resolve this problem by setting com.ibm.ws.webcontainer.invokeFlushAfterService to false
+	 
+java.lang.IllegalStateException: Cannot call reset() after response has been committed
+
+成功：
+	Thread Name: 线程组
+Sample Start: 2017-11-28 11:20:07 CST
+Load time: 117120
+Connect Time: 24
+Latency: 146
+Size in bytes: 2769256
+Sent bytes:177
+Headers size in bytes: 214
+Body size in bytes: 2769042
+Sample Count: 1
+Error Count: 0
+Data type ("text"|"bin"|""): text
+Response code: 200
+Response message: 
+
+Response headers:
+HTTP/1.1 200 
+Access-Control-Allow-Origin: *
+Content-Disposition: attachment; filename=up_delta.package
+Content-Type: application/octet-stream
+Transfer-Encoding: chunked
+Date: Tue, 28 Nov 2017 03:18:29 GMT
+
+
+HTTPSampleResult fields:
+ContentType: application/octet-stream
+DataEncoding: null
+
+
+
+
+

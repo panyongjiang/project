@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.SafeTrialMapper">
+	<!-- 查询所有试用申请列表 -->
+	<select id="getAllSafeTrial" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT a.id, a.user_id,CONCAT(CASE a.waf WHEN 1 THEN '云WAF, ' ELSE '' END ,CASE a.app 
+		WHEN 1 THEN 'app安全检测, ' ELSE '' END,CASE a.site WHEN 1 THEN '网站安全监测, ' ELSE '' END,
+		CASE a.expert WHEN 1 THEN '专家安全监测服务' ELSE '' END) AS trial1, 
+		CASE a.trial_status WHEN 0 THEN '处理中' ELSE '已处理' END trialStatue,
+			DATE_FORMAT(a.create_time, '%Y-%m-%d %H:%i:%s') createTime, b.user_name 
+		FROM safe_trial a LEFT JOIN user b on a.user_id = b.id
+		WHERE 1=1  
+		<if test="userName != null and userName != ''">
+			and b.user_name like #{userName}
+		</if>
+		<if test="trialStatus != null and trialStatus != ''">
+			and a.trial_status = #{trialStatus}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(a.create_time, '%Y-%m-%d %H:%i%s') >= #{startTime}
+			]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(a.create_time, '%Y-%m-%d %H:%i%s') <= #{endTime}
+			]]>
+		</if>
+		order by a.create_time desc limit #{page_num}, #{page_size}
+	</select>
+	
+	<!-- 获取所有试用申请数量 -->
+	<select id="countAllSafeTrial" parameterType="java.util.Map" resultType="long">
+		SELECT COUNT(1)
+		FROM safe_trial a LEFT JOIN user b on a.user_id = b.id
+		WHERE 1=1  
+		<if test="userName != null and userName != ''">
+			and b.user_name like #{userName}
+		</if>
+		<if test="trialStatus != null and trialStatus != ''">
+			and a.trial_status = #{trialStatus}
+		</if>
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(a.create_time, '%Y-%m-%d %H:%i%s') >= #{startTime}
+			]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[
+				and DATE_FORMAT(a.create_time, '%Y-%m-%d %H:%i%s') <= #{endTime}
+			]]>
+		</if>
+	</select>
+	
+	<!-- 通过试用申请Id获取申请详情 -->
+	<select id="getSafeTrialById" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT a.id, a.user_id,CONCAT(CASE a.waf WHEN 1 THEN '云WAF, ' ELSE '' END ,CASE a.app 
+		WHEN 1 THEN 'app安全检测, ' ELSE '' END,CASE a.site WHEN 1 THEN '网站安全监测, ' ELSE '' END,
+		CASE a.expert WHEN 1 THEN '专家安全监测服务' ELSE '' END) AS trial1, a.trial_status trialStatue,
+			DATE_FORMAT(a.create_time, '%Y-%m-%d %H:%i:%s') createTime, b.user_name ,b.email,  
+			b.phone, b.person, b.company, b.position, b.province, b.city, b.address, b.url 
+		FROM safe_trial a LEFT JOIN user b ON a.user_id = b.id
+		WHERE 1 = 1
+		<if test="id != null and id != ''">
+			and a.id = #{id}
+		</if>
+	</select>
+	
+	<!-- 审核申请 -->
+	<update id="updateTrialStatus" parameterType="java.util.Map">
+		UPDATE safe_trial SET trial_status = #{trial_status} WHERE id = #{id}
+	</update>
+	
+	<!-- 根据使用申请id删除申请 -->
+	<delete id="delSafeTrialById" parameterType="java.util.Map">
+		DELETE FROM safe_trial WHERE id = #{id}
+	</delete>
+	
+	<insert id="insertSafeTrial" parameterType="com.uway.mobile.domain.SafeTrial">
+	    insert into safe_trial(id, user_id, waf, app, site, expert, trial_status)  
+	    values(uuid(), #{userId}, #{waf}, #{app}, #{site}, #{expert}, #{trialStatus})
+    </insert> 
+	
+</mapper>  

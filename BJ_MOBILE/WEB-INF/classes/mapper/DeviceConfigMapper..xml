@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.DeviceConfigMapper">
+
+	
+	<insert id="insertDevice" parameterType="java.util.Map" >
+		insert into device(mac,model,version,ip,province,city,district,user_id,device_id) 
+		values(#{mac},#{model},#{version},#{ip},#{province},#{city},#{district},#{userId},#{deviceId})
+	</insert>
+	
+	<select id="queryDeviceById" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Device">
+	   select * from device where user_id=#{userId} order by registe_time desc limit #{pageNum}, #{pageSize}
+	</select>
+	
+	<select id="countDevice" resultType="long" parameterType="java.util.Map">
+    	select count(1) from device where user_id=#{userId}
+    </select>
+    
+    <select id="selectByCondition" parameterType="java.util.Map" resultType="com.uway.mobile.domain.Device">
+       select * from device where user_id in 
+       <foreach item="list" index="index" collection="list" open="("
+            separator="," close=")">
+            #{list}  
+       </foreach>
+         <if test="deviceid !=null and deviceid !='' ">
+            and device_id like CONCAT('%',#{deviceid},'%' )
+         </if>
+         <if test="mac !=null and mac !='' ">
+            and mac like CONCAT('%',#{mac},'%' )
+         </if>
+         <if test="model !=null and model !='' ">
+            and model like CONCAT('%',#{model},'%' )
+         </if>
+         <if test="registeTime !=null and registeTime !='' ">
+            and DATE(registe_time)=#{registeTime}
+         </if>
+         <if test="city !=null and city !='' ">
+            and city=#{city} 
+         </if>
+         <if test="province !=null and registeTime !='' ">
+            and province=#{province}
+         </if>
+         <if test="district !=null and registeTime !='' ">
+            and district=#{district}
+         </if>
+         
+    </select>
+    
+    <select id="selectRoute" resultType="com.uway.mobile.domain.Route">
+       select model,version from route
+    </select>
+
+</mapper>  

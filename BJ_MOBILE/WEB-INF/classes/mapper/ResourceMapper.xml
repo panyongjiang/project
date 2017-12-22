@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.ResourceMapper">
+	<sql id="base_column">
+		id as id,
+		resource_name as resourceName,
+		resource_url as
+		resourceUrl,
+		resource_id as resourceId,
+		resource_parentid as
+		resourceParentid,
+		resource_childid as
+		resourceChildid,
+		menu_sign as menuSign,
+		primary_name as primaryName,
+		create_time as createTime,
+		modify_time as modifyTime
+	</sql>
+
+
+	<select id="getAllResourceLimit" resultType="com.uway.mobile.domain.Resource"
+		parameterType="java.util.Map">
+		select
+		<include refid="base_column" />
+		from resource
+		where assignable = 0
+		<if test="resource_name != null and resource_name != ''">
+			and resource_name like #{resource_name}
+		</if>
+		<if test="resource_url != null and resource_url != ''">
+			and resource_url like #{resource_url}
+		</if>
+		<if test="resource_id != null and resource_id != ''">
+			and id = #{resource_id}
+		</if>
+        ORDER BY resource_name
+		limit #{page_num}, #{page_size}
+	</select>
+	
+	
+	<select id="getAuthorityByUserResourceId" resultType="java.lang.Long">
+	    
+	</select>
+
+
+	<select id="getAllResource" resultType="com.uway.mobile.domain.Resource">
+		select
+		<include refid="base_column" />
+		from resource where assignable = 0  ORDER BY resource_name 
+	</select>
+
+	<select id="getAllAuthorityByUserId" resultType="java.lang.String">
+		SELECT
+		resource_id FROM authority WHERE user_id = #{id}
+	</select>
+
+	<select id="countAllResources" resultType="java.lang.Long">
+		select count(1) from
+		resource
+		where assignable = 0
+		<if test="resource_name != null and resource_name != ''">
+			and resource_name like #{resource_name}
+		</if>
+		<if test="resource_url != null and resource_url != ''">
+			and resource_url like #{resource_url}
+		</if>
+		<if test="resource_id != null and resource_id != ''">
+			and id = #{resource_id}
+		</if>
+	</select>
+
+	<select id="getAllResourceByUserId" resultType="com.uway.mobile.domain.Resource">
+		SELECT
+		<include refid="base_column" />
+		FROM resource WHERE assignable = 0  and id IN (SELECT resource_id FROM
+		authority WHERE
+		user_id = #{id} )
+	</select>
+
+
+	<select id="getAllOutOffResourceByUserId" resultType="com.uway.mobile.domain.Resource">
+		SELECT
+		<include refid="base_column" />
+		FROM resource WHERE id NOT IN (SELECT resource_id FROM
+		authority WHERE
+		user_id = #{id} )
+	</select>
+
+
+
+	<select id="getGroupAuthorityByGroupId" resultType="com.uway.mobile.domain.Resource">
+		select
+		<include refid="base_column" />
+		from resource where assignable = 0  and id in (SELECT resource_id FROM
+		authority WHERE
+		group_id = #{id} )
+	</select>
+
+
+	<select id="getGroupAuthorityIdByGroupId" resultType="java.lang.String">
+		SELECT
+		resource_id FROM
+		authority WHERE
+		group_id = #{id}
+	</select>
+
+
+	<select id="getGroupOutOffAuthorityByGroupId" resultType="com.uway.mobile.domain.Resource">
+		select
+		<include refid="base_column" />
+		from resource where id not in (SELECT resource_id FROM
+		authority WHERE
+		group_id = #{id} )
+	</select>
+
+	<select id="getAllResourceByResourceId" parameterType="java.util.List"
+		resultType="com.uway.mobile.domain.Resource">
+		select
+		<include refid="base_column" />
+		from resource where id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	
+	<select id="getAllResourceMenuByResourceId" parameterType="java.util.List"
+		resultType="com.uway.mobile.domain.Resource">
+		select
+		<include refid="base_column" />
+		from resource where menu = 0  and id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	 </select>
+	 
+	 <select id="getAllResourceMenuByParentResourceId" parameterType="java.util.List"
+		resultType="com.uway.mobile.domain.Resource">
+		select
+		<include refid="base_column" />
+		from resource where menu = 0  and resource_id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	 </select>
+	
+	
+	<select id="getAllResourceByUserResourceId" parameterType="java.util.List"
+		resultType="java.lang.String">
+		select
+		id
+		from resource where resource_id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+</mapper>

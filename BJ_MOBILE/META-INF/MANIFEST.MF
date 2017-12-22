@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: BJ_MOBILE
+Implementation-Version: L1
+Archiver-Version: Plexus Archiver
+Built-By: wench
+Implementation-Vendor-Id: com.uway.mobile
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/BJ_MOBILE/
+Implementation-Vendor: Pivotal Software, Inc.
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.StrategyMapper">
+
+	<insert id="insertStrategy" parameterType="com.uway.mobile.domain.Strategy"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into strategy(name,status,sec_cheat_website,sec_sham_adv,sec_sexy_info,sec_harm_program,sec_tort_content,
+							sec_illegal_gamble,apn_name,apn_type,apn_proxy,apn_port,vpn_ip,vpn_port,vpn_auth,create_user,sec_illegal_site,sec_phishing_site,sec_sexy_site) 
+							values(#{name},#{status},#{secCheatWebsite},#{secShamAdv},#{secSexyInfo},#{secHarmProgram},#{secTortContent},
+									#{secIllegalGamble},#{apnName},#{anpType},#{apnProxy},#{apnPort},#{vpnIp},
+									#{vpnPort},#{vpnAuth},#{createUser},#{secIllegalSite},#{secPhishingSite},#{secSexySite})
+	</insert>
+	
+	<update id="updateStrategy" parameterType="com.uway.mobile.domain.Strategy">
+		update strategy set status=#{status},sec_cheat_website=#{secCheatWebsite},sec_sham_adv=#{secShamAdv},
+			sec_sexy_info=#{secSexyInfo},sec_harm_program=#{secHarmProgram},sec_tort_content=#{secTortContent},
+			sec_illegal_gamble=#{secIllegalGamble},apn_name=#{apnName},apn_type=#{anpType},apn_proxy=#{apnProxy},
+			apn_port=#{apnPort},vpn_ip=#{vpnIp},vpn_port=#{vpnPort},vpn_auth=#{vpnAuth},  
+			sec_illegal_site=#{secIllegalSite},sec_phishing_site=#{secPhishingSite},sec_sexy_site=#{secSexySite} where id=#{id}
+	</update>
+	
+	<delete id="deleteById">
+		delete from strategy where id=#{id}
+	</delete>
+	
+	<select id="getStrategyById" resultType="com.uway.mobile.domain.Strategy">
+		select * from strategy where id = #{id}
+	</select>
+	
+	
+	<select id="getStrategysByUserId" resultType="com.uway.mobile.domain.Strategy">
+		select * from strategy where create_user = #{userId}
+	</select>
+
+</mapper>  

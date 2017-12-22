@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.UserMapper">
+
+	<insert id="insertUser" parameterType="com.uway.mobile.domain.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user(user_name,password, role, name,email, account_holder,
+		department, manufacturer,province,city, area,company_id,company_name,create_time,last_login_time) 
+		values(#{userName}, #{password}, #{role}, #{name},#{email},
+		#{accountHolder}, #{department}, #{manufacturer},#{province},#{city},#{area}, 
+		#{companyId},#{companyName},#{createTime}, #{lastLoginTime})
+	</insert>
+
+	<insert id="insertAdmin" parameterType="com.uway.mobile.domain.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user(user_name,
+		password,role) values(#{userName},
+		#{password},#{role})
+	</insert>
+
+	<select id="getUserByName" resultType="com.uway.mobile.domain.User">
+		select * from user where
+		user_name = #{userName}
+	</select>
+
+	<select id="getAdminByName" resultType="com.uway.mobile.domain.User">
+		select * from user where
+		user_name = #{userName} and role = 1 and is_deleted = 0
+	</select>
+
+	<select id="getUserById" resultType="com.uway.mobile.domain.User">
+		select * from user where id=#{userId}
+	</select>
+
+	<select id="getInfoById" resultType="java.util.Map">
+		SELECT a.user_name as
+		userName, a.industry, IFNULL(a.business, '') business, a.url,
+		a.province, IFNULL(c.areaName, '') provinceName, a.city,
+		IFNULL(d.areaName, '') cityName,
+		a.address, a.phone, a.person,
+		IFNULL(a.email, '') email, IFNULL(a.company,'') company,
+		IFNULL(a.position,'') position, IFNULL(b.industry_name, '')
+		industryName, IFNULL(e.waf, 0) waf,
+		IFNULL(e.app, 0) app,
+		IFNULL(e.site, 0) site, IFNULL(e.expert, 0) expert
+		FROM `user` a
+		LEFT
+		JOIN industry b ON a.industry = b.id
+		LEFT JOIN area c ON a.province =
+		c.areaCode
+		LEFT JOIN area d ON a.city = d.areaCode
+		LEFT JOIN (
+		SELECT
+		b2.app, b2.expert, b2.site, b2.waf, b2.user_id
+		FROM (
+		SELECT max(b1.id)
+		id, b1.app, b1.expert, b1.site, b1.waf, b1.user_id
+		FROM
+		(SELECT user_id,
+		max(create_time) createTime FROM safe_trial GROUP BY
+		user_id) a1
+		LEFT
+		JOIN safe_trial b1
+		ON a1.createTime = b1.create_time AND a1.user_id =
+		b1.user_id
+		WHERE b1.user_id=#{userId} group by b1.app, b1.expert,
+		b1.site, b1.waf,
+		b1.user_id
+		) a2
+		LEFT JOIN safe_trial b2 ON a2.id =
+		b2.id) e
+		ON a.id = e.user_id
+		WHERE
+		a.id=#{userId} and a.role=0 and
+		is_deleted = 0
+	</select>
+
+	<select id="getInfoByAdmin" resultType="java.util.Map">
+		SELECT a.id userId,
+		a.user_name as userName, a.industry, IFNULL(a.business, '') business,
+		a.url,
+		a.province, IFNULL(c.areaName, '') provinceName, a.city,
+		IFNULL(d.areaName, '') cityName,
+		a.address, a.phone, a.person,
+		IFNULL(a.email, '') email, IFNULL(a.company,'') company,
+		IFNULL(a.position,'') position, IFNULL(b.industry_name, '')
+		industryName, IFNULL(e.waf, 0) waf,
+		IFNULL(e.app, 0) app,
+		IFNULL(e.site, 0) site, IFNULL(e.expert, 0) expert
+		FROM `user` a
+		LEFT
+		JOIN industry b ON a.industry = b.id
+		LEFT JOIN area c ON a.province =
+		c.areaCode
+		LEFT JOIN area d ON a.city = d.areaCode
+		LEFT JOIN (
+		SELECT
+		b2.app, b2.expert, b2.site, b2.waf, b2.user_id
+		FROM (
+		SELECT max(b1.id)
+		id, b1.app, b1.expert, b1.site, b1.waf, b1.user_id
+		FROM
+		(SELECT user_id,
+		max(create_time) createTime FROM safe_trial GROUP BY
+		user_id) a1
+		LEFT
+		JOIN safe_trial b1
+		ON a1.createTime = b1.create_time AND a1.user_id =
+		b1.user_id
+		WHERE b1.user_id=#{userId} group by b1.app, b1.expert,
+		b1.site, b1.waf,
+		b1.user_id
+		) a2
+		LEFT JOIN safe_trial b2 ON a2.id =
+		b2.id) e
+		ON a.id = e.user_id
+		WHERE
+		a.id=#{userId} and a.role=0 and
+		is_deleted = 0
+	</select>
+
+	<select id="listUser" parameterType="java.util.Map" resultType="java.util.Map">
+		select user_name userName, id from user where 1=1 and role = 0 and
+		is_deleted = 0
+		<if test="userName != null and userName != ''">
+			and user_name like #{userName}
+		</if>
+		limit #{pageNum}, #{pageSize}
+	</select>
+
+	<select id="countUser" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(1) from user where 1=1 and role = 0 and is_deleted = 0
+		<if test="userName != null and userName != ''">
+			and user_name like #{userName}
+		</if>
+	</select>
+
+	<select id="getAllAdminUser" resultType="com.uway.mobile.domain.User">
+		select * from user where
+		role = 1 and is_deleted = 0
+	</select>
+
+	<select id="countAllAdmin" resultType="java.lang.Long"
+		parameterType="java.util.Map">
+		select count(1) from user where
+		role = 1 and is_deleted = 0
+		<if test="user_name != null and user_name != ''">
+			AND user_name like #{user_name}
+		</if>
+
+	</select>
+
+	<select id="getAllLimitAdminUser" resultType="com.uway.mobile.domain.User"
+		parameterType="java.util.Map">
+		select * from user where role = 1 and is_deleted = 0
+		<if test="user_name != null and user_name != ''">
+			AND user_name like #{user_name}
+		</if>
+		limit #{page_num}, #{page_size}
+	</select>
+
+
+
+
+	<update id="updPwd" parameterType="com.uway.mobile.domain.User">
+		update user set password =
+		#{password} where id = #{id}
+	</update>
+
+	<update id="updUser" parameterType="com.uway.mobile.domain.User">
+		update user set user_name =#{userName}, email = #{email},telephone=#{telephone}, company_id = #{companyId},
+		company_name = #{companyName},province=#{province},city#{city}, area=#{area},account_holder=#{accountHolder} where id = #{id}
+	</update>
+
+	<update id="delUser">
+		update user set is_deleted = 1
+		where id = #{userId}
+	</update>
+
+	<update id="updateAdmin" parameterType="com.uway.mobile.domain.User">
+		update user set user_name
+		= #{userName}
+		where id = #{id}
+	</update>
+	
+	<select id="findUsersByCondition" resultType="com.uway.mobile.domain.User">
+		select * from user where company_id=#{companyId}
+			<if test="userName != null and userName != ''">
+				AND user_name=#{userName}
+			</if>
+			<if test="manufacturer != null and manufacturer != ''">
+				AND manufacturer=#{manufacturer}
+			</if>
+			<if test="accountHolder != null and accountHolder != ''">
+				AND account_holder=#{accountHolder}
+			</if>
+			<if test="startTime != null and startTime != ''">
+				AND create_time&gt;=#{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				AND create_time&lt;=#{endTime}
+			</if>
+			<if test="area != null and area != ''">
+				AND area like CONCAT('%','${area}','%' ) 
+			</if>
+	</select>
+	
+	<select id="getUserId" resultType="com.uway.mobile.domain.User" parameterType="String">
+	   select u.id from user u,(select u1.role from user u1 where u1.id=1) s1  where u.role&gt;=s1.role and u.id in 
+         (select ud.user_id from user_department ud where ud.department_id in 
+            (select d.id from department d,(select u.company_id,u.role from user u where u.id=#{userId}) s where d.company_id=s.company_id))
+	</select>
+	
+	<select id="getUsersByRole" resultType="com.uway.mobile.domain.User">
+		select * from user where role=#{role}
+			<if test="userName != null and userName != ''">
+				AND user_name=#{userName}
+			</if>
+			<if test="companyName != null and companyName != ''">
+				AND company_name=#{companyName}
+			</if>
+			<if test="startTime != null and startTime != ''">
+				AND create_time&gt;=#{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				AND create_time&lt;=#{endTime}
+			</if>
+			<if test="area != null and area != ''">
+				AND area like CONCAT('%','${area}','%' ) 
+			</if>
+			order by id desc  limit #{pageStart}, #{pageSize}
+	</select>
+	
+	<select id="getUsersByRoleCount">
+		select count(*) from user where role=#{role}
+	</select>
+	
+	<delete id="deleteById">
+		delete from user where id=#{userId}
+	</delete>
+	
+</mapper>  

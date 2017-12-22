@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uway.mobile.mapper.AuthorityMapper">
+	<sql id="base_column">
+		user_id as userId,
+		resource_id as resourceId
+	</sql>
+	
+	<sql id="base_column_insert">
+		resource_id,user_id
+	</sql>
+
+	<sql id="base_column_group">
+		id as id,
+		group_name as groupName,
+		description as
+		description,
+		create_time as createTime,
+		modify_time as modifyTime
+	</sql>
+
+	<insert id="saveAllAuthorityByResource" parameterType="java.util.Map">
+		insert into authority(
+		<include refid="base_column_insert" />
+		) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.resource_id},#{item.user_id})
+		</foreach>
+	</insert>
+
+
+	<insert id="saveAllAuthorityByGroup" parameterType="java.util.Map">
+		insert into authority(resource_id,group_id) values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.resource_id},#{item.group_id})
+		</foreach>
+	</insert>
+
+
+
+	<select id="getAllAuthorityIdByUser" resultType="java.lang.String" parameterType="java.lang.String" >
+		SELECT
+		resource_id
+		FROM authority
+		WHERE group_id IN(SELECT
+		group_id
+		FROM user_group_mapping
+		WHERE user_id = #{id}) UNION 
+		SELECT
+		resource_id
+		FROM authority
+		WHERE user_id = #{id}
+	</select>
+   
+   
+
+	<delete id="deleteAuthorityByUser">
+		delete from authority where user_id = #{id}
+	</delete>
+	
+	
+	<delete id="deleteGroupAuthorityByGroupId">
+	    delete from authority where group_id = #{id}
+	</delete>
+
+</mapper>
